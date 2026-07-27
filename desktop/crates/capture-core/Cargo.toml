@@ -22,7 +22,10 @@ libpulse-simple-binding = "2"
 wasapi = "0.23"
 
 # macOS: ScreenCaptureKit system-audio capture via the `ruhear` wrapper — it owns the
-# SCStream + CMSampleBuffer→f32 extraction and pins the (churny) ScreenCaptureKit version.
-# Requires the Screen Recording permission at runtime.
+# SCStream + CMSampleBuffer→f32 extraction. Requires the Screen Recording permission at runtime.
 [target.'cfg(target_os = "macos")'.dependencies]
 ruhear = "0.1"
+# Hold ScreenCaptureKit at 1.4.x: ruhear 0.1.1 calls SCContentFilter::builder(), which 1.5 renamed
+# to create(), so ruhear's own loose `^1.4` resolving to 1.5.x fails to compile (it did in CI). No
+# newer ruhear exists (0.1.1 is latest), so pin the SCK API it was written against.
+screencapturekit = ">=1.4, <1.5"
