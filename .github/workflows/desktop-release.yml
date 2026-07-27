@@ -1,0 +1,76 @@
+name: desktop-release
+
+# Cross-platform desktop build. NOTHING is built on the dev box — this matrix builds native
+# installers on each OS and attaches them to a GitHub Release. Trigger by pushing a tag like
+# `desktop-v0.1.0`, or run manually.
+on:
+  push:
+    tags:
+      - "desktop-v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: macos-latest
+            args: "--target universal-apple-darwin"
+            rust-targets: "aarch64-apple-darwin,x86_64-apple-darwin"
+          - platform: ubuntu-22.04
+            args: ""
+            rust-targets: ""
+          - platform: windows-latest
+            args: ""
+            rust-targets: ""
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Linux system deps (tauri v2 + audio)
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libwebkit2gtk-4.1-dev libjavascriptcoregtk-4.1-dev libsoup-3.0-dev \
+            libgtk-3-dev librsvg2-dev libayatana-appindicator3-dev patchelf \
+            build-essential curl wget file libssl-dev \
+            libasound2-dev libpulse-dev
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.rust-targets }}
+
+      - name: Cache Rust
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: "desktop/src-tauri -> target"
+
+      - name: Install frontend deps
+        run: bun install
+        working-directory: desktop/ui
+
+      - name: Build + release (tauri-action)
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Signing/notarization secrets go here when ready (unsigned builds still work for testing):
+          #   APPLE_CERTIFICATE, APPLE_CERTIFICATE_PASSWORD, APPLE_SIGNING_IDENTITY,
+          #   APPLE_ID, APPLE_PASSWORD, APPLE_TEAM_ID   (macOS notarization)
+          #   TAURI_SIGNING_PRIVATE_KEY, TAURI_SIGNING_PRIVATE_KEY_PASSWORD  (updater signature)
+        with:
+          projectPath: desktop
+          tagName: ${{ github.ref_type == 'tag' && github.ref_name || format('desktop-v{0}', github.run_number) }}
+          releaseName: "AI Sales Coach Desktop ${{ github.ref_type == 'tag' && github.ref_name || github.run_number }}"
+          releaseBody: "Automated cross-platform build. See PROTOCOL.md for the backend contract."
+          releaseDraft: true
+          prerelease: true
+          args: ${{ matrix.args }}

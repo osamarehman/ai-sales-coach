@@ -1,0 +1,16 @@
+[workspace]
+resolver = "2"
+members = ["crates/ws-protocol", "crates/capture-core", "crates/bridge"]
+# src-tauri is EXCLUDED from this workspace so the headless build box never has to resolve or
+# pull the (large) Tauri/webkit dependency tree just to run `cargo test`. It's a standalone
+# package that CI builds per-platform via tauri-action; it path-depends on the crates above.
+exclude = ["src-tauri"]
+
+[workspace.package]
+edition = "2021"
+version = "0.1.0"
+license = "UNLICENSED"
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

@@ -1,0 +1,36 @@
+[package]
+name = "app"
+version = "0.1.0"
+edition = "2021"
+license = "UNLICENSED"
+description = "AI Sales Coach desktop overlay"
+
+# Standalone package (excluded from the crates/ workspace) so the headless build box never resolves
+# the Tauri dependency tree. CI builds this per-platform via tauri-action (desktop) and the
+# tauri-cli mobile flow (Android/iOS).
+
+# The app is a library (`app_lib`) so the mobile shells can load it as a native lib; the desktop
+# binary in main.rs is a thin launcher. staticlib=iOS, cdylib=Android, rlib=desktop bin.
+[lib]
+name = "app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["sync"] }
+bridge = { path = "../crates/bridge" }
+ws-protocol = { path = "../crates/ws-protocol" }
+
+# tray-icon is desktop-only (there's no system tray on Android/iOS), so add it only for desktop
+# targets. Cargo unions features, so desktop gets tray-icon and mobile builds without it.
+[target.'cfg(any(target_os = "windows", target_os = "macos", target_os = "linux"))'.dependencies]
+tauri = { version = "2", features = ["tray-icon"] }
+
+[features]
+# Default Tauri production build strips devtools; keep this here for parity with the template.
+custom-protocol = ["tauri/custom-protocol"]

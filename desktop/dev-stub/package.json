@@ -1,0 +1,9 @@
+{
+  "name": "desktop-dev-stub",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "bun run server.ts",
+    "smoke": "bun run smoke.ts"
+  }
+}

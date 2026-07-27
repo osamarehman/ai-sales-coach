@@ -1,0 +1,28 @@
+[package]
+name = "capture-core"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+
+[dependencies]
+ws-protocol = { path = "../ws-protocol" }
+cpal = "0.15"
+
+# System-output (loopback) capture is platform-specific — one `AudioCapture` impl per OS,
+# each behind a `cfg(target_os)` gate so only the current target's backend compiles.
+
+# Linux: record the default sink's monitor source over the PulseAudio protocol (works on both
+# classic PulseAudio and PipeWire's pulse shim). The blocking "simple" API fits a capture thread.
+[target.'cfg(target_os = "linux")'.dependencies]
+libpulse-binding = "2"
+libpulse-simple-binding = "2"
+
+# Windows: WASAPI shared-mode loopback capture of the default render endpoint.
+[target.'cfg(target_os = "windows")'.dependencies]
+wasapi = "0.23"
+
+# macOS: ScreenCaptureKit system-audio capture via the `ruhear` wrapper — it owns the
+# SCStream + CMSampleBuffer→f32 extraction and pins the (churny) ScreenCaptureKit version.
+# Requires the Screen Recording permission at runtime.
+[target.'cfg(target_os = "macos")'.dependencies]
+ruhear = "0.1"

@@ -1,0 +1,8 @@
+/target
+**/target
+node_modules
+dist
+.vite
+*.log
+# Tauri mobile projects (gen/android, gen/apple) are generated per-build in CI — never committed
+src-tauri/gen/

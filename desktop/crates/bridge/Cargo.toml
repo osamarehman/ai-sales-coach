@@ -1,0 +1,17 @@
+[package]
+name = "bridge"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+
+[dependencies]
+ws-protocol = { path = "../ws-protocol" }
+capture-core = { path = "../capture-core" }
+serde_json.workspace = true
+anyhow = "1"
+futures-util = { version = "0.3", default-features = false, features = ["sink", "std"] }
+tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros", "net", "sync", "time"] }
+tokio-tungstenite = { version = "0.21", default-features = false, features = ["connect", "handshake", "rustls-tls-webpki-roots"] }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros", "net", "sync", "time", "test-util"] }
