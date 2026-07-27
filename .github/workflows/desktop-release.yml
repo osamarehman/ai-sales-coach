@@ -18,9 +18,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # Apple Silicon only. A universal (x86_64+aarch64) build fails to link: screencapturekit's
+          # build.rs compiles its Swift/ScreenCaptureKit bridge for the *host* arch only, and the
+          # macos-latest runner is arm64 — so the x86_64 half has no SCK objects (ld: symbol(s) not
+          # found for architecture x86_64). Intel support would need a separate macos-13 (x86_64) leg.
           - platform: macos-latest
-            args: "--target universal-apple-darwin"
-            rust-targets: "aarch64-apple-darwin,x86_64-apple-darwin"
+            args: "--target aarch64-apple-darwin"
+            rust-targets: "aarch64-apple-darwin"
           - platform: ubuntu-22.04
             args: ""
             rust-targets: ""
