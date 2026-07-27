@@ -21,7 +21,7 @@ test in CI and only the Tauri shell needs a display.
 | `crates/bridge` | WS session + capture orchestration (consent-gated); in-process mock-server test | ✅ `cargo test` |
 | `dev-stub/` | Bun WS server implementing PROTOCOL.md — run the app with no real backend | ✅ `bun run` |
 | `src-tauri/` | Tauri app: `lib.rs` (`run()` + mobile entry) + thin `main.rs`; commands `start_session`/`set_consent`/`stop_session` → emits `cue`/`status` | CI only |
-| `ui/` | SolidJS overlay (Vite + bun): setup → consent gate → live cue cards | CI only |
+| `ui/` | SolidJS overlay (Vite + bun): setup → consent gate → live cue cards + spoken cues (earbuds) | CI only |
 | `.github/workflows/desktop-release.yml` | Desktop build matrix (Linux/macOS/Windows) → GitHub Release | GitHub CI |
 | `.github/workflows/mobile-build.yml` | Experimental Android + iOS build jobs (unsigned/dev artifacts) | GitHub CI |
 
@@ -72,9 +72,18 @@ box; the Windows path is additionally cross-`cargo check`ed here; macOS + mobile
 
 **Mobile is mic-only by OS design:** iOS exposes no API to capture another app's / the system's
 audio, and Android's `AudioPlaybackCapture` explicitly cannot capture `VOICE_COMMUNICATION` (call)
-audio. So mobile captures the rep's mic and delivers cues on-screen (and, planned, as audio to
-earbuds); the prospect/far-end stream stays desktop-only. Set `AISC_MONITOR_SOURCE` on Linux to
-override the monitor source if `@DEFAULT_MONITOR@` doesn't resolve (`pactl list sources short`).
+audio. So mobile captures the rep's mic; the prospect/far-end stream stays desktop-only. Cues reach
+the rep **on-screen and spoken aloud into the attached output device (earbuds)** — the overlay
+speaks each cue via the webview's Web Speech API and the OS routes it to whatever output is
+connected, so no far-end capture is needed to coach hands-free. Set `AISC_MONITOR_SOURCE` on Linux
+to override the monitor source if `@DEFAULT_MONITOR@` doesn't resolve (`pactl list sources short`).
+
+**Spoken cues (earbud delivery):** the overlay synthesizes each incoming cue to speech (newest wins —
+an in-flight utterance is cancelled so the rep never hears a backlog), critical cues get a spoken
+lead, and a 🔊/🔇 toggle (persisted) lets the rep mute. On by default wherever the webview supports
+speech. It needs no protocol or backend change — it reuses the `cue` text already delivered to the
+overlay. **Follow-up (native, not yet done):** a mobile audio-session category so the cue *ducks
+under* the call instead of mixing at full volume — verifiable only on-device.
 
 ## Status (RT-1)
 Done: WS contract + Rust mirror, capture trait + DSP + cpal mic, `FakeSource`, **all three desktop
@@ -82,5 +91,6 @@ system-loopback backends** (Linux Pulse monitor, Windows WASAPI, macOS ScreenCap
 (consent-gated), dev-stub, Tauri shell + SolidJS overlay, icon set, mobile-ready `lib.rs`/`main.rs`
 split, GitHub Actions **desktop release matrix** + **experimental Android/iOS build** workflow.
 **20 Rust tests + 1 protocol smoke, green headless; the Windows path is also cross-type-checked
-here.** The Tauri compile (desktop + mobile) is validated by CI, by design — no GUI/installer builds
-on the box. Next: audio-cue delivery to earbuds on mobile; signing/notarization for store artifacts.
+here.** The overlay's spoken-cue (earbud) path is in and the UI type-checks + builds. The Tauri
+compile (desktop + mobile) is validated by CI, by design — no GUI/installer builds on the box.
+Next: native mobile audio-session ducking for spoken cues; signing/notarization for store artifacts.
