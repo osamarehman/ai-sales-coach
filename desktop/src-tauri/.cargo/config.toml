@@ -1,0 +1,23 @@
+# macOS: teach the loader where Swift's runtime lives.
+#
+# capture-core's system-audio backend goes ruhear → screencapturekit, whose build.rs compiles a
+# Swift/ScreenCaptureKit bridge. Swift's concurrency runtime is recorded by the linker as
+# `@rpath/libswift_Concurrency.dylib`, but Cargo emits no LC_RPATH of its own — so the shipped
+# binary had a dependency it could never resolve. Every launch of the 0.1.x release aborted before
+# main() with:
+#
+#   Library not loaded: @rpath/libswift_Concurrency.dylib
+#   Reason: no LC_RPATH's found        (Namespace DYLD, Code 1 — SIGABRT at launch)
+#
+# /usr/lib/swift is the OS copy of the runtime and is where an Xcode-built Swift app points. It is
+# served from the dyld shared cache, so don't be alarmed that `ls /usr/lib/swift` doesn't list
+# libswift_Concurrency.dylib — adding this rpath to the shipped 0.1.0 binary with install_name_tool
+# was enough to make it launch, which is how the diagnosis was confirmed.
+[target.aarch64-apple-darwin]
+rustflags = ["-C", "link-arg=-Wl,-rpath,/usr/lib/swift"]
+
+# Kept in step with the aarch64 leg so a future macos-13 (Intel) matrix entry doesn't ship the same
+# broken bundle. See the note in .github/workflows/desktop-release.yml about why x86_64 isn't built
+# on the arm64 runner today.
+[target.x86_64-apple-darwin]
+rustflags = ["-C", "link-arg=-Wl,-rpath,/usr/lib/swift"]
