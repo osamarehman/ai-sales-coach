@@ -11,7 +11,9 @@ use crate::{AudioCapture, CaptureError, Channel, PcmChunk, WIRE_RATE};
 use ruhear::{rucallback, RUBuffers, RUHear};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::mpsc::Sender;
-use std::sync::Arc;
+// `Mutex` reads as unused but the `rucallback!` macro expands to `Arc::new(Mutex::new(..))` in this
+// scope (the macro isn't hygienic), so both names must be imported here.
+use std::sync::{Arc, Mutex};
 use std::thread::{self, JoinHandle};
 use std::time::{Duration, Instant};
 
