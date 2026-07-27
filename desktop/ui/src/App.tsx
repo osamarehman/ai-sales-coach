@@ -23,8 +23,18 @@ function speechTextFor(cue: Cue): string {
 // Persist the rep's on/off choice across sessions. "0" = explicitly muted; anything else = speak.
 const SPEAK_PREF_KEY = "aisc.speakCues";
 
+// Where the backend lives, baked in at build time. The dev-stub address only makes sense on a dev
+// box: a released build that keeps it ships an app whose Start session can only ever fail with
+// `websocket connect: Connection refused (os error 61)`, because nothing is listening on 8787 for
+// someone who just ran the installer. Release CI sets VITE_BACKEND_URL to the hosted endpoint; the
+// field stays editable so a rep can still be pointed at a staging box.
+//
+// `||`, not `??`: an unset GitHub Actions variable arrives as "" rather than undefined, and an
+// empty backend URL is worse than the dev default — it fails with no hint of what to put there.
+const DEFAULT_BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "ws://localhost:8787";
+
 export default function App() {
-  const [url, setUrl] = createSignal("ws://localhost:8787");
+  const [url, setUrl] = createSignal(DEFAULT_BACKEND_URL);
   const [token, setToken] = createSignal("dev");
   const [phase, setPhase] = createSignal<Phase>("idle");
   const [status, setStatus] = createSignal("");
@@ -181,7 +191,7 @@ export default function App() {
       <Show when={running()} fallback={
         <section class="setup">
           <label>Backend</label>
-          <input value={url()} onInput={(e) => setUrl(e.currentTarget.value)} placeholder="ws://localhost:8787" />
+          <input value={url()} onInput={(e) => setUrl(e.currentTarget.value)} placeholder={DEFAULT_BACKEND_URL} />
           <input value={token()} onInput={(e) => setToken(e.currentTarget.value)} placeholder="session token" />
           <button class="primary" onClick={start}>Start session</button>
           <Show when={error()}>

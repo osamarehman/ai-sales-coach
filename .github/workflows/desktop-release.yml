@@ -65,6 +65,13 @@ jobs:
           bun install
           bun run build
         working-directory: desktop/ui
+        env:
+          # Bakes the hosted backend into the bundle. Set the BACKEND_URL repository variable
+          # (Settings → Secrets and variables → Actions → Variables) to something like
+          # wss://api.example.com/ws. Left unset, the app falls back to the dev stub on
+          # ws://localhost:8787 — fine for a dev box, but every downloader of that build gets
+          # `websocket connect: Connection refused (os error 61)` when they hit Start session.
+          VITE_BACKEND_URL: ${{ vars.BACKEND_URL }}
 
       - name: Build + release (tauri-action)
         uses: tauri-apps/tauri-action@v0
