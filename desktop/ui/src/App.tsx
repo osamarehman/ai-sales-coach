@@ -2,6 +2,8 @@ import { createSignal, onCleanup, onMount, Show } from "solid-js";
 import { invoke } from "@tauri-apps/api/core";
 import { listen, type UnlistenFn } from "@tauri-apps/api/event";
 import { getCurrentWindow } from "@tauri-apps/api/window";
+import { check, type Update } from "@tauri-apps/plugin-updater";
+import { relaunch } from "@tauri-apps/plugin-process";
 
 type Cue = { id: string; tier: string; text: string; category: string; ttl_ms: number };
 type Phase = "idle" | "connecting" | "ready" | "capturing" | "ended";
@@ -31,6 +33,10 @@ export default function App() {
   const [cue, setCue] = createSignal<Cue | null>(null);
   // Spoken cues on by default wherever TTS exists (this is the whole point on mobile); the rep can mute.
   const [speakCues, setSpeakCues] = createSignal(hasTTS && localStorage.getItem(SPEAK_PREF_KEY) !== "0");
+  // Desktop auto-update state. On mobile the updater plugin isn't compiled in, so `update` stays null.
+  const [update, setUpdate] = createSignal<Update | null>(null);
+  const [updating, setUpdating] = createSignal(false);
+  const [updatePct, setUpdatePct] = createSignal(0);
 
   let cueTimer: ReturnType<typeof setTimeout> | undefined;
   const unlisteners: UnlistenFn[] = [];
@@ -69,6 +75,16 @@ export default function App() {
       await listen<string>("session-error", (e) => setError(e.payload)),
       await listen("ended", () => setPhase("ended")),
     );
+
+    // Desktop auto-update: ask GitHub once on launch whether a newer signed build exists. On mobile
+    // (and any webview without the updater plugin) check() throws — swallow it; mobile updates ship
+    // through the app stores. Offline also lands here and is a no-op until the next launch.
+    try {
+      const found = await check();
+      if (found) setUpdate(found);
+    } catch {
+      /* updater unavailable / offline — no update offered this launch */
+    }
   });
 
   onCleanup(() => {
@@ -114,6 +130,33 @@ export default function App() {
 
   const running = () => phase() !== "idle" && phase() !== "ended";
 
+  // Only surface an update between calls — never interrupt a live session with a restart prompt.
+  const offerUpdate = () => (running() ? null : update());
+
+  // Download + install the pending update (progress shown inline), then relaunch into the new
+  // version. The app comes back at the idle screen, so the next call is a fresh session by design.
+  async function installUpdate() {
+    const u = update();
+    if (!u || updating()) return;
+    setError("");
+    setUpdating(true);
+    try {
+      let total = 0;
+      let got = 0;
+      await u.downloadAndInstall((ev) => {
+        if (ev.event === "Started") total = ev.data.contentLength ?? 0;
+        else if (ev.event === "Progress") {
+          got += ev.data.chunkLength;
+          if (total > 0) setUpdatePct(Math.min(100, Math.round((got / total) * 100)));
+        }
+      });
+      await relaunch();
+    } catch (e) {
+      setError(String(e));
+      setUpdating(false);
+    }
+  }
+
   return (
     <div class="app">
       <header class="titlebar" data-tauri-drag-region>
@@ -123,6 +166,17 @@ export default function App() {
           ×
         </button>
       </header>
+
+      <Show when={offerUpdate()}>
+        {(u) => (
+          <div class="update">
+            <span>Update available — v{u().version}</span>
+            <button class="primary sm" disabled={updating()} onClick={installUpdate}>
+              {updating() ? `Installing… ${updatePct()}%` : "Install & restart"}
+            </button>
+          </div>
+        )}
+      </Show>
 
       <Show when={running()} fallback={
         <section class="setup">

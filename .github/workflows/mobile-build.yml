@@ -119,3 +119,16 @@ jobs:
         working-directory: desktop
         run: cargo tauri ios build --target aarch64-sim
         continue-on-error: true
+
+      # Upload whatever the sim build produced (.app, and .ipa if one was exported). if: always()
+      # because the build step is continue-on-error — we still want the artifact when it partially
+      # succeeds. Path globs both the simulator .app and any exported archive.
+      - name: Upload iOS app (simulator)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-sim-app
+          path: |
+            desktop/src-tauri/gen/apple/build/**/*.app
+            desktop/src-tauri/gen/apple/build/**/*.ipa
+          if-no-files-found: warn

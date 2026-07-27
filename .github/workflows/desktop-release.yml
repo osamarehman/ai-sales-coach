@@ -70,15 +70,26 @@ jobs:
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Signing/notarization secrets go here when ready (unsigned builds still work for testing):
+          # Updater signature: signs the per-platform .sig files + latest.json so an installed app can
+          # verify a downloaded update against the pubkey embedded in tauri.conf.json. Without these,
+          # createUpdaterArtifacts still runs but the artifacts are unsigned and the updater rejects
+          # them. Set as repo Actions secrets. Keypair made with `tauri signer generate`; the private
+          # key is backed up out-of-band (never committed) — see the tauri-desktop-auto-update skill.
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+          # Apple Developer ID signing + notarization go here when ready — this is what removes the
+          # macOS "app is damaged / unidentified developer" Gatekeeper prompt on first download:
           #   APPLE_CERTIFICATE, APPLE_CERTIFICATE_PASSWORD, APPLE_SIGNING_IDENTITY,
-          #   APPLE_ID, APPLE_PASSWORD, APPLE_TEAM_ID   (macOS notarization)
-          #   TAURI_SIGNING_PRIVATE_KEY, TAURI_SIGNING_PRIVATE_KEY_PASSWORD  (updater signature)
+          #   APPLE_ID, APPLE_PASSWORD, APPLE_TEAM_ID
         with:
           projectPath: desktop
           tagName: ${{ github.ref_type == 'tag' && github.ref_name || format('desktop-v{0}', github.run_number) }}
           releaseName: "AI Sales Coach Desktop ${{ github.ref_type == 'tag' && github.ref_name || github.run_number }}"
           releaseBody: "Automated cross-platform build. See PROTOCOL.md for the backend contract."
-          releaseDraft: true
-          prerelease: true
+          # Publish immediately as the "latest" release (not draft, not prerelease). The updater
+          # endpoint is .../releases/latest/download/latest.json, and GitHub's "latest" EXCLUDES
+          # drafts and prereleases — so a draft/prerelease build would be invisible to installed apps
+          # looking for an update. This also fixes the "I can't see the release" draft-visibility issue.
+          releaseDraft: false
+          prerelease: false
           args: ${{ matrix.args }}

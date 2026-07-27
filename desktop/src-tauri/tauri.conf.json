@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "AI Sales Coach",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "identifier": "dev.shipdeck.aisalescoach",
   "build": {
     "beforeDevCommand": "bun run --cwd ui dev",
@@ -32,6 +32,7 @@
   "bundle": {
     "active": true,
     "targets": "all",
+    "createUpdaterArtifacts": true,
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
@@ -39,5 +40,13 @@
       "icons/icon.icns",
       "icons/icon.ico"
     ]
+  },
+  "plugins": {
+    "updater": {
+      "endpoints": [
+        "https://github.com/osamarehman/ai-sales-coach/releases/latest/download/latest.json"
+      ],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEI1NTYxQkYwMjRFQUNERkUKUldUK3plb2s4QnRXdFhZNkNrdHBYVldHZW1RcFIxdE9RREt2c2JINnpId1NmM1VGQURTdS94U2gK"
+    }
   }
 }

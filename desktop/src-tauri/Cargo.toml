@@ -1,6 +1,8 @@
 [package]
 name = "app"
-version = "0.1.0"
+# Keep in sync with tauri.conf.json `version` — this drives env!("CARGO_PKG_VERSION"), the app_version
+# the client reports to the backend. The updater's current-version comparison uses tauri.conf.json.
+version = "0.1.2"
 edition = "2021"
 license = "UNLICENSED"
 description = "AI Sales Coach desktop overlay"
@@ -30,6 +32,10 @@ ws-protocol = { path = "../crates/ws-protocol" }
 # targets. Cargo unions features, so desktop gets tray-icon and mobile builds without it.
 [target.'cfg(any(target_os = "windows", target_os = "macos", target_os = "linux"))'.dependencies]
 tauri = { version = "2", features = ["tray-icon"] }
+# Auto-update is desktop-only: iOS/Android ship updates through the app stores and the updater plugin
+# doesn't support them. Gated here so mobile builds never pull or reference these crates.
+tauri-plugin-updater = "2"
+tauri-plugin-process = "2"
 
 [features]
 # Default Tauri production build strips devtools; keep this here for parity with the template.

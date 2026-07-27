@@ -1,0 +1,8 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "desktop-updater",
+  "description": "Desktop-only: check for, download and install app updates, then relaunch. The updater and process plugins don't exist on mobile, so this capability is scoped to desktop platforms.",
+  "platforms": ["linux", "macOS", "windows"],
+  "windows": ["overlay"],
+  "permissions": ["updater:default", "process:allow-restart"]
+}

@@ -6,3 +6,6 @@ dist
 *.log
 # Tauri mobile projects (gen/android, gen/apple) are generated per-build in CI — never committed
 src-tauri/gen/
+
+# Tauri updater signing key (NEVER commit) — back this dir up to a password manager
+.tauri-signing/

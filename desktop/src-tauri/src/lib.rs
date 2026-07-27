@@ -114,9 +114,23 @@ async fn stop_session(state: State<'_, AppState>) -> Result<(), String> {
 /// `mobile_entry_point` attribute exports this as the native entry the platform shell calls.
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    tauri::Builder::default()
+    #[allow(unused_mut)] // `mut` is only used on desktop, where the plugins are added below.
+    let mut builder = tauri::Builder::default()
         .manage(AppState::default())
-        .invoke_handler(tauri::generate_handler![start_session, set_consent, stop_session])
+        .invoke_handler(tauri::generate_handler![start_session, set_consent, stop_session]);
+
+    // Desktop-only auto-update: fetch + verify + install a signed update, then relaunch via the
+    // process plugin. Mobile updates go through the app stores, so these plugins are compiled out
+    // there (see the cfg-gated deps in Cargo.toml). Relaunch brings the app back at the idle screen,
+    // so the next call is a fresh session by construction.
+    #[cfg(desktop)]
+    {
+        builder = builder
+            .plugin(tauri_plugin_process::init())
+            .plugin(tauri_plugin_updater::Builder::new().build());
+    }
+
+    builder
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
