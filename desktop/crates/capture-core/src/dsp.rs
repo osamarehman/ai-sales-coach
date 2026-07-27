@@ -1,15 +1,26 @@
 //! Pure audio math: interleaved multi-channel f32 (whatever the device gives us) →
 //! mono i16 at the wire sample rate. No I/O, fully unit-testable headless.
 
-/// Average interleaved `channels`-wide f32 frames down to mono.
-pub fn downmix_to_mono(interleaved: &[f32], channels: usize) -> Vec<f32> {
-    if channels <= 1 {
-        return interleaved.to_vec();
-    }
-    interleaved
-        .chunks(channels)
-        .map(|frame| frame.iter().sum::<f32>() / frame.len() as f32)
+/// Decode interleaved little-endian f32 bytes (the wire layout both PulseAudio and WASAPI hand us)
+/// into f32 samples. A trailing partial (<4-byte) tail is ignored — every full sample is decoded.
+pub fn le_f32_bytes_to_samples(bytes: &[u8]) -> Vec<f32> {
+    bytes
+        .chunks_exact(4)
+        .map(|c| f32::from_le_bytes([c[0], c[1], c[2], c[3]]))
         .collect()
+}
+
+/// Average interleaved `channels`-wide f32 frames down to mono. `channels == 0` yields no audio
+/// (guards the `chunks(0)` panic); `channels == 1` is a straight copy.
+pub fn downmix_to_mono(interleaved: &[f32], channels: usize) -> Vec<f32> {
+    match channels {
+        0 => Vec::new(),
+        1 => interleaved.to_vec(),
+        _ => interleaved
+            .chunks(channels)
+            .map(|frame| frame.iter().sum::<f32>() / frame.len() as f32)
+            .collect(),
+    }
 }
 
 /// Linear-interpolation resampler for mono f32. Good enough for speech STT; not hi-fi.
@@ -59,6 +70,29 @@ mod tests {
     #[test]
     fn downmix_passthrough_mono() {
         assert_eq!(downmix_to_mono(&[0.1, 0.2], 1), vec![0.1, 0.2]);
+    }
+
+    #[test]
+    fn downmix_zero_channels_is_empty() {
+        // 0 channels must not panic on chunks(0); no channels -> no audio.
+        assert!(downmix_to_mono(&[0.1, 0.2], 0).is_empty());
+    }
+
+    #[test]
+    fn le_f32_bytes_decode_roundtrip() {
+        let mut bytes = Vec::new();
+        for v in [0.0f32, 1.0, -1.0, 0.25] {
+            bytes.extend_from_slice(&v.to_le_bytes());
+        }
+        assert_eq!(le_f32_bytes_to_samples(&bytes), vec![0.0, 1.0, -1.0, 0.25]);
+    }
+
+    #[test]
+    fn le_f32_bytes_ignore_partial_tail() {
+        // 4 good bytes + 1 stray byte -> exactly one decoded sample, tail dropped.
+        let mut bytes = 1.0f32.to_le_bytes().to_vec();
+        bytes.push(0xAB);
+        assert_eq!(le_f32_bytes_to_samples(&bytes), vec![1.0]);
     }
 
     #[test]

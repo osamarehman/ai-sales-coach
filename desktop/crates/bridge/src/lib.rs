@@ -141,12 +141,19 @@ async fn run_session(
             ctrl = control_rx.recv() => match ctrl {
                 Some(Control::Consent { method }) => {
                     let c = ClientMsg::Consent { captured: true, method, ts_ms: 0 };
-                    write.send(Message::Text(serde_json::to_string(&c)?)).await?;
+                    // Break (not `?`) on a send failure so the capture teardown after the loop still
+                    // runs — a `?` return here would leak any already-started capture thread (mic).
+                    if let Err(e) = write.send(Message::Text(serde_json::to_string(&c)?)).await {
+                        emit(AppEvent::Error(format!("ws send consent: {e}"))).await;
+                        break;
+                    }
                     if !consented {
                         consented = true;
+                        // One shared clock for both channels so their ts_ms line up (see AudioCapture).
+                        let epoch = std::time::Instant::now();
                         for (ch, src) in [(Channel::Mic, cfg.mic_source), (Channel::System, cfg.system_source)] {
                             match make_capture(ch, src) {
-                                Ok(Some(mut cap)) => match cap.start(pcm_tx.clone()) {
+                                Ok(Some(mut cap)) => match cap.start(pcm_tx.clone(), epoch) {
                                     Ok(()) => captures.push(cap),
                                     Err(e) => emit(AppEvent::Error(format!("{ch:?} capture start: {e}"))).await,
                                 },
@@ -170,7 +177,13 @@ async fn run_session(
                 if let Some(chunk) = audio {
                     if consented {
                         let bytes = encode_audio_frame(chunk.channel, chunk.ts_ms, &chunk.samples);
-                        write.send(Message::Binary(bytes)).await?;
+                        // Break (not `?`) so capture teardown runs — a `?` here on a mid-call WS
+                        // error would return past the cleanup and leave the mic + loopback threads
+                        // running (hot mic after a dropped connection).
+                        if let Err(e) = write.send(Message::Binary(bytes)).await {
+                            emit(AppEvent::Error(format!("ws send audio: {e}"))).await;
+                            break;
+                        }
                     }
                 }
             }
@@ -196,9 +209,15 @@ async fn run_session(
         }
     }
 
-    for cap in captures.iter_mut() {
-        cap.stop();
-    }
+    // stop() joins capture threads (a blocking op — and Pulse teardown can briefly park), so run it
+    // off the async worker to avoid stalling the runtime's reactor while threads wind down.
+    tokio::task::spawn_blocking(move || {
+        for mut cap in captures {
+            cap.stop();
+        }
+    })
+    .await
+    .ok();
     Ok(())
 }
 

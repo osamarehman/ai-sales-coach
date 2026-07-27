@@ -31,7 +31,9 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Install Android NDK + platform
-        run: sdkmanager "ndk;${NDK_VERSION}" "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+        # android-36 + build-tools;36.0.0: the tauri v2 Android template pins compileSdk 36, so an
+        # older platform/build-tools set fails the generated Gradle build. 34 kept for older deps.
+        run: sdkmanager "ndk;${NDK_VERSION}" "platform-tools" "platforms;android-36" "build-tools;36.0.0" "platforms;android-34" "build-tools;34.0.0"
 
       - name: Export NDK_HOME
         run: echo "NDK_HOME=${ANDROID_HOME}/ndk/${NDK_VERSION}" >> "$GITHUB_ENV"
@@ -54,7 +56,7 @@ jobs:
           bun run build
 
       - name: Install Tauri CLI
-        run: cargo install tauri-cli --version "^2.0" --locked
+        run: cargo install tauri-cli --version "2.11.5" --locked
 
       - name: Tauri Android init
         working-directory: desktop
@@ -96,7 +98,7 @@ jobs:
           bun run build
 
       - name: Install Tauri CLI
-        run: cargo install tauri-cli --version "^2.0" --locked
+        run: cargo install tauri-cli --version "2.11.5" --locked
 
       # Hard compile gate: does the whole Rust app (tauri + bridge + cpal mic via CoreAudio) build
       # for a real iOS device arch? generate_context! embeds ../ui/dist, so the build above runs first.
@@ -106,7 +108,9 @@ jobs:
 
       - name: Tauri iOS init
         working-directory: desktop
-        run: cargo tauri ios init
+        # --ci: non-interactive (don't prompt for a dev team / prompt to open Xcode) so the job
+        # can't hang waiting on stdin.
+        run: cargo tauri ios init --ci
 
       # Simulator build needs no code signing — validates the full Xcode packaging path. A signed
       # device .ipa needs Apple credentials (APPLE_DEVELOPMENT_TEAM, APPLE_CERTIFICATE,

@@ -147,7 +147,7 @@ impl AudioFrame {
         let channel = Channel::from_wire(bytes[0]).ok_or(DecodeError::BadChannel(bytes[0]))?;
         let ts_ms = u64::from_le_bytes(bytes[1..9].try_into().unwrap());
         let payload = &bytes[AUDIO_HEADER_LEN..];
-        if payload.len() % 2 != 0 {
+        if !payload.len().is_multiple_of(2) {
             return Err(DecodeError::OddPayload);
         }
         let samples = payload

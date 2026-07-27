@@ -36,19 +36,18 @@ impl Default for MacSystemAudio {
 }
 
 impl AudioCapture for MacSystemAudio {
-    fn start(&mut self, sink: Sender<PcmChunk>) -> Result<(), CaptureError> {
+    fn start(&mut self, sink: Sender<PcmChunk>, epoch: Instant) -> Result<(), CaptureError> {
         let stop = self.stop.clone();
         // RUHear owns ScreenCaptureKit objects that aren't Send, so it lives entirely on this
         // thread: create it here, start it (it drives its own delivery thread), then park until
         // stopped. The capture callback runs on ruhear's thread and just forwards chunks.
         let handle = thread::spawn(move || {
-            let start = Instant::now();
             let cb = move |buffers: RUBuffers| {
                 let samples = planar_to_mono16k(&buffers, MON_RATE);
                 if samples.is_empty() {
                     return;
                 }
-                let ts_ms = start.elapsed().as_millis() as u64;
+                let ts_ms = epoch.elapsed().as_millis() as u64;
                 let _ = sink.send(PcmChunk { channel: Channel::System, ts_ms, samples });
             };
             let mut ru = RUHear::new(rucallback!(cb));

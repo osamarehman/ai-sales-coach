@@ -14,4 +14,5 @@ tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros", "net", "
 tokio-tungstenite = { version = "0.21", default-features = false, features = ["connect", "handshake", "rustls-tls-webpki-roots"] }
 
 [dev-dependencies]
-tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros", "net", "sync", "time", "test-util"] }
+# Features union with the normal tokio dep above during tests; only test-util is dev-only.
+tokio = { version = "1", features = ["test-util"] }

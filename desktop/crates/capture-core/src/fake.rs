@@ -7,23 +7,19 @@ use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::mpsc::Sender;
 use std::sync::Arc;
 use std::thread::{self, JoinHandle};
-use std::time::Duration;
+use std::time::{Duration, Instant};
 
-/// Generate `n_frames` chunks of a `freq`-Hz sine (0.0 → silence), `frame_samples` each, mono PCM16.
-pub fn generate_tone(freq: f32, sample_rate: u32, frame_samples: usize, n_frames: usize) -> Vec<Vec<i16>> {
-    let mut out = Vec::with_capacity(n_frames);
-    let mut phase: f32 = 0.0;
-    let step = if freq > 0.0 { TAU * freq / sample_rate as f32 } else { 0.0 };
-    for _ in 0..n_frames {
-        let mut frame = Vec::with_capacity(frame_samples);
-        for _ in 0..frame_samples {
-            let s = if freq > 0.0 { (phase.sin() * 0.5 * i16::MAX as f32) as i16 } else { 0 };
-            frame.push(s);
-            phase = (phase + step) % TAU;
-        }
-        out.push(frame);
+/// One `frame_samples`-long frame of a `freq`-Hz sine (0.0 → silence) at [`WIRE_RATE`], advancing
+/// `phase` so consecutive frames are continuous. Mono PCM16.
+fn tone_frame(freq: f32, frame_samples: usize, phase: &mut f32) -> Vec<i16> {
+    let step = if freq > 0.0 { TAU * freq / WIRE_RATE as f32 } else { 0.0 };
+    let mut frame = Vec::with_capacity(frame_samples);
+    for _ in 0..frame_samples {
+        let s = if freq > 0.0 { (phase.sin() * 0.5 * i16::MAX as f32) as i16 } else { 0 };
+        frame.push(s);
+        *phase = (*phase + step) % TAU;
     }
-    out
+    frame
 }
 
 /// Streams a continuous tone into the sink at roughly real time until stopped.
@@ -49,7 +45,9 @@ impl FakeSource {
 }
 
 impl AudioCapture for FakeSource {
-    fn start(&mut self, sink: Sender<PcmChunk>) -> Result<(), CaptureError> {
+    /// `_epoch` is ignored: the fake emits a deterministic `ts_ms` counter from 0 (tests rely on it)
+    /// rather than wall-clock time, so it needs no shared session clock.
+    fn start(&mut self, sink: Sender<PcmChunk>, _epoch: Instant) -> Result<(), CaptureError> {
         let stop = self.stop.clone();
         let channel = self.channel;
         let freq = self.freq;
@@ -57,15 +55,9 @@ impl AudioCapture for FakeSource {
         let frame_ms = (frame_samples as u64 * 1000) / WIRE_RATE as u64;
         let handle = thread::spawn(move || {
             let mut phase: f32 = 0.0;
-            let step = if freq > 0.0 { TAU * freq / WIRE_RATE as f32 } else { 0.0 };
             let mut ts_ms: u64 = 0;
             while !stop.load(Ordering::Relaxed) {
-                let mut samples = Vec::with_capacity(frame_samples);
-                for _ in 0..frame_samples {
-                    let s = if freq > 0.0 { (phase.sin() * 0.5 * i16::MAX as f32) as i16 } else { 0 };
-                    samples.push(s);
-                    phase = (phase + step) % TAU;
-                }
+                let samples = tone_frame(freq, frame_samples, &mut phase);
                 if sink.send(PcmChunk { channel, ts_ms, samples }).is_err() {
                     break; // receiver gone
                 }
@@ -91,25 +83,26 @@ mod tests {
     use std::sync::mpsc;
 
     #[test]
-    fn generate_tone_shapes() {
-        let frames = generate_tone(440.0, 16000, 320, 5);
-        assert_eq!(frames.len(), 5);
-        assert!(frames.iter().all(|f| f.len() == 320));
-        // A 440Hz tone is not all-zero.
-        assert!(frames.iter().flatten().any(|&s| s != 0));
+    fn tone_frame_is_sized_and_nonzero() {
+        let mut phase = 0.0;
+        let frame = tone_frame(440.0, 320, &mut phase);
+        assert_eq!(frame.len(), 320);
+        assert!(frame.iter().any(|&s| s != 0)); // a 440Hz tone is not all-zero
+        assert_ne!(phase, 0.0); // phase advanced for the next frame
     }
 
     #[test]
-    fn silence_is_zero() {
-        let frames = generate_tone(0.0, 16000, 100, 2);
-        assert!(frames.iter().flatten().all(|&s| s == 0));
+    fn silence_frame_is_zero() {
+        let mut phase = 0.0;
+        let frame = tone_frame(0.0, 100, &mut phase);
+        assert!(frame.iter().all(|&s| s == 0));
     }
 
     #[test]
     fn fake_source_streams_then_stops() {
         let (tx, rx) = mpsc::channel();
         let mut src = FakeSource::new(Channel::System, 220.0);
-        src.start(tx).unwrap();
+        src.start(tx, Instant::now()).unwrap();
         // Collect a few frames then stop.
         let first = rx.recv_timeout(Duration::from_millis(500)).expect("a chunk");
         assert_eq!(first.channel, Channel::System);

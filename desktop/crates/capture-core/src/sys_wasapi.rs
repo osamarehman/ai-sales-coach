@@ -43,12 +43,12 @@ impl Default for WasapiLoopback {
 }
 
 impl AudioCapture for WasapiLoopback {
-    fn start(&mut self, sink: Sender<PcmChunk>) -> Result<(), CaptureError> {
+    fn start(&mut self, sink: Sender<PcmChunk>, epoch: Instant) -> Result<(), CaptureError> {
         let stop = self.stop.clone();
         // COM + device setup happens on the capture thread (COM apartment is per-thread); its
         // success/failure is reported back so start() is fallible like the other backends.
         let (ready_tx, ready_rx) = mpsc::channel::<Result<(), CaptureError>>();
-        let handle = thread::spawn(move || capture_loop(&stop, &sink, &ready_tx));
+        let handle = thread::spawn(move || capture_loop(&stop, &sink, &ready_tx, epoch));
         self.handle = Some(handle);
         match ready_rx.recv() {
             Ok(res) => res,
@@ -86,14 +86,23 @@ fn setup() -> Result<WasapiSession, CaptureError> {
     let format = WaveFormat::new(32, 32, &SampleType::Float, MON_RATE as usize, MON_CHANNELS, None);
     let (_default_period, min_period) = audio_client.get_device_period().map_err(be)?;
     let mode = StreamMode::EventsShared { autoconvert: true, buffer_duration_hns: min_period };
-    audio_client.initialize_client(&format, &Direction::Render, &mode).map_err(be)?;
+    // LOOPBACK, not a typo: the device is Render (above) but we init as **Capture**. wasapi only sets
+    // AUDCLNT_STREAMFLAGS_LOOPBACK for the (device=Render, init=Capture, Shared) case — see the match
+    // in wasapi-0.23 api.rs and the record.rs example ("Direction::Render [device] for loopback").
+    // Passing Direction::Render here builds a *render* client (no loopback) and captures nothing.
+    audio_client.initialize_client(&format, &Direction::Capture, &mode).map_err(be)?;
     let h_event = audio_client.set_get_eventhandle().map_err(be)?;
     let capture_client = audio_client.get_audiocaptureclient().map_err(be)?;
     audio_client.start_stream().map_err(be)?;
     Ok(WasapiSession { audio_client, h_event, capture_client })
 }
 
-fn capture_loop(stop: &AtomicBool, sink: &Sender<PcmChunk>, ready_tx: &Sender<Result<(), CaptureError>>) {
+fn capture_loop(
+    stop: &AtomicBool,
+    sink: &Sender<PcmChunk>,
+    ready_tx: &Sender<Result<(), CaptureError>>,
+    epoch: Instant,
+) {
     let session = match setup() {
         Ok(s) => {
             let _ = ready_tx.send(Ok(()));
@@ -105,7 +114,6 @@ fn capture_loop(stop: &AtomicBool, sink: &Sender<PcmChunk>, ready_tx: &Sender<Re
         }
     };
 
-    let start = Instant::now();
     let mut queue: VecDeque<u8> = VecDeque::new();
     while !stop.load(Ordering::Relaxed) {
         // Event fires per buffer period; a timeout (silence) just loops back to re-check `stop`.
@@ -120,16 +128,10 @@ fn capture_loop(stop: &AtomicBool, sink: &Sender<PcmChunk>, ready_tx: &Sender<Re
         if frames == 0 {
             continue;
         }
-        let mut bytes = vec![0u8; frames * BLOCKALIGN];
-        for b in bytes.iter_mut() {
-            *b = queue.pop_front().unwrap();
-        }
-        let samples: Vec<f32> = bytes
-            .chunks_exact(4)
-            .map(|c| f32::from_le_bytes([c[0], c[1], c[2], c[3]]))
-            .collect();
+        let bytes: Vec<u8> = queue.drain(..frames * BLOCKALIGN).collect();
+        let samples = dsp::le_f32_bytes_to_samples(&bytes);
         let mono = dsp::to_mono_pcm16(&samples, MON_CHANNELS, MON_RATE, WIRE_RATE);
-        let ts_ms = start.elapsed().as_millis() as u64;
+        let ts_ms = epoch.elapsed().as_millis() as u64;
         if sink.send(PcmChunk { channel: Channel::System, ts_ms, samples: mono }).is_err() {
             break; // receiver gone
         }

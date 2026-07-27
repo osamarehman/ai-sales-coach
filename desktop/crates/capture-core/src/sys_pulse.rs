@@ -18,7 +18,7 @@ use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::mpsc::{self, Sender};
 use std::sync::Arc;
 use std::thread::{self, JoinHandle};
-use std::time::Instant;
+use std::time::{Duration, Instant};
 
 /// Format we ask PulseAudio to deliver. 48k/stereo/f32 is the near-universal monitor native format,
 /// so the server does little/no conversion and we own the downmix + 48k→16k resample.
@@ -42,10 +42,7 @@ fn monitor_source_name() -> String {
 /// Interleaved little-endian f32 bytes (as PulseAudio delivers) → mono PCM16 @[`WIRE_RATE`].
 /// Pure + headless-testable; the live capture path needs a running audio server (a real desktop).
 fn frame_to_mono16k(bytes: &[u8], channels: usize, in_rate: u32) -> Vec<i16> {
-    let samples: Vec<f32> = bytes
-        .chunks_exact(4)
-        .map(|b| f32::from_le_bytes([b[0], b[1], b[2], b[3]]))
-        .collect();
+    let samples = dsp::le_f32_bytes_to_samples(bytes);
     dsp::to_mono_pcm16(&samples, channels, in_rate, WIRE_RATE)
 }
 
@@ -67,7 +64,7 @@ impl Default for PulseMonitor {
 }
 
 impl AudioCapture for PulseMonitor {
-    fn start(&mut self, sink: Sender<PcmChunk>) -> Result<(), CaptureError> {
+    fn start(&mut self, sink: Sender<PcmChunk>, epoch: Instant) -> Result<(), CaptureError> {
         let stop = self.stop.clone();
         // Surface a failed monitor connect back to the caller before returning (mirrors CpalMic).
         let (ready_tx, ready_rx) = mpsc::channel::<Result<(), CaptureError>>();
@@ -82,18 +79,18 @@ impl AudioCapture for PulseMonitor {
                     return;
                 }
             };
-            let start = Instant::now();
             let mut buf = vec![0u8; FRAME_BYTES];
             while !stop.load(Ordering::Relaxed) {
                 // Blocking read fills the whole buffer. On an idle/suspended sink the monitor
-                // produces no data and this parks until audio resumes or the process exits — fine
-                // for a live call where the prospect's audio keeps the sink running.
+                // produces no data and this parks until audio resumes or the process exits. During
+                // a live call the prospect's audio keeps the sink running; at teardown, `stop()`
+                // uses a bounded join so a parked read here can't wedge the caller.
                 if let Err(e) = simple.read(&mut buf) {
                     eprintln!("pulse monitor read error: {e}");
                     break;
                 }
                 let samples = frame_to_mono16k(&buf, MON_CHANNELS as usize, MON_RATE);
-                let ts_ms = start.elapsed().as_millis() as u64;
+                let ts_ms = epoch.elapsed().as_millis() as u64;
                 if sink.send(PcmChunk { channel: Channel::System, ts_ms, samples }).is_err() {
                     break; // receiver gone
                 }
@@ -109,7 +106,11 @@ impl AudioCapture for PulseMonitor {
     fn stop(&mut self) {
         self.stop.store(true, Ordering::Relaxed);
         if let Some(h) = self.handle.take() {
-            let _ = h.join();
+            // The capture thread may be parked in a blocking `Simple::read` on a suspended sink
+            // (no monitor data => read never returns), so an unbounded `join()` here would hang
+            // teardown forever. Wait briefly for a clean exit, then detach: the orphaned thread
+            // ends when the read next returns or at process exit, and the caller isn't blocked.
+            join_bounded(h, Duration::from_millis(300));
         }
     }
 }
@@ -137,6 +138,17 @@ fn connect() -> Result<Simple, CaptureError> {
              (set {MONITOR_ENV} to a name from `pactl list sources short`)"
         ))
     })
+}
+
+/// Join `handle`, but give up after `timeout` and let the thread finish detached. Used so teardown
+/// can't block indefinitely on a capture thread parked in a blocking read (see `stop`).
+fn join_bounded(handle: JoinHandle<()>, timeout: Duration) {
+    let (done_tx, done_rx) = mpsc::channel::<()>();
+    thread::spawn(move || {
+        let _ = handle.join();
+        let _ = done_tx.send(());
+    });
+    let _ = done_rx.recv_timeout(timeout);
 }
 
 #[cfg(test)]

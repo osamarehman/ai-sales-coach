@@ -31,7 +31,7 @@ tree; it's a standalone crate CI builds per-OS.
 ## Run the pieces
 ```bash
 # 1. Headless: unit + integration tests (protocol, DSP, fake source, WS bridge)
-cd desktop && cargo test              # 17 tests, no display/audio needed
+cd desktop && cargo test              # 20 tests, no display/audio needed
 
 # 2. Headless: protocol smoke test (handshake + consent gate + cue)
 cd desktop/dev-stub && bun run smoke.ts
@@ -81,6 +81,6 @@ Done: WS contract + Rust mirror, capture trait + DSP + cpal mic, `FakeSource`, *
 system-loopback backends** (Linux Pulse monitor, Windows WASAPI, macOS ScreenCaptureKit), `bridge`
 (consent-gated), dev-stub, Tauri shell + SolidJS overlay, icon set, mobile-ready `lib.rs`/`main.rs`
 split, GitHub Actions **desktop release matrix** + **experimental Android/iOS build** workflow.
-**17 Rust tests + 1 protocol smoke, green headless; the Windows path is also cross-type-checked
+**20 Rust tests + 1 protocol smoke, green headless; the Windows path is also cross-type-checked
 here.** The Tauri compile (desktop + mobile) is validated by CI, by design — no GUI/installer builds
 on the box. Next: audio-cue delivery to earbuds on mobile; signing/notarization for store artifacts.

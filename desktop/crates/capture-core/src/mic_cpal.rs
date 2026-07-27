@@ -30,11 +30,11 @@ impl Default for CpalMic {
 }
 
 impl AudioCapture for CpalMic {
-    fn start(&mut self, sink: Sender<PcmChunk>) -> Result<(), CaptureError> {
+    fn start(&mut self, sink: Sender<PcmChunk>, epoch: Instant) -> Result<(), CaptureError> {
         let stop = self.stop.clone();
         // Propagate the (fallible) stream build back to the caller before returning.
         let (ready_tx, ready_rx) = mpsc::channel::<Result<(), CaptureError>>();
-        let handle = thread::spawn(move || match build_and_play(sink) {
+        let handle = thread::spawn(move || match build_and_play(sink, epoch) {
             Ok(stream) => {
                 let _ = ready_tx.send(Ok(()));
                 // Keep the stream alive on this thread until stopped.
@@ -63,7 +63,8 @@ impl AudioCapture for CpalMic {
 }
 
 /// Build + play the default input stream, converting every callback buffer to mono PCM16 @16k.
-fn build_and_play(sink: Sender<PcmChunk>) -> Result<cpal::Stream, CaptureError> {
+/// `epoch` is the shared session clock (see [`AudioCapture::start`]).
+fn build_and_play(sink: Sender<PcmChunk>, epoch: Instant) -> Result<cpal::Stream, CaptureError> {
     let device = cpal::default_host()
         .default_input_device()
         .ok_or(CaptureError::NoDevice)?;
@@ -74,12 +75,11 @@ fn build_and_play(sink: Sender<PcmChunk>) -> Result<cpal::Stream, CaptureError> 
     let config: cpal::StreamConfig = supported.into();
     let channels = config.channels as usize;
     let in_rate = config.sample_rate.0;
-    let start = Instant::now();
 
     let err_fn = |e| eprintln!("cpal mic stream error: {e}");
 
     let emit = move |mono_pcm: Vec<i16>, sink: &Sender<PcmChunk>| {
-        let ts_ms = start.elapsed().as_millis() as u64;
+        let ts_ms = epoch.elapsed().as_millis() as u64;
         let _ = sink.send(PcmChunk { channel: Channel::Mic, ts_ms, samples: mono_pcm });
     };
 

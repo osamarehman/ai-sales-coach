@@ -20,11 +20,12 @@ mod sys_wasapi;
 #[cfg(target_os = "macos")]
 mod sys_macos;
 
-pub use fake::{generate_tone, FakeSource};
+pub use fake::FakeSource;
 pub use mic_cpal::CpalMic;
 pub use ws_protocol::Channel;
 
 use std::sync::mpsc::Sender;
+use std::time::Instant;
 
 /// Sample rate of every [`PcmChunk`] leaving this crate. Matches `PROTOCOL.md` default.
 pub const WIRE_RATE: u32 = 16_000;
@@ -58,8 +59,13 @@ impl std::error::Error for CaptureError {}
 
 /// A running or startable audio source. `start` streams [`PcmChunk`]s to `sink`; the backend
 /// owns its own thread(s). `stop` tears it down.
+///
+/// `epoch` is the **shared** session clock: every backend stamps `ts_ms` as `epoch.elapsed()`, so
+/// the mic and system streams use one common zero. Passing each backend its own `Instant::now()`
+/// would skew the two channels by however long the second `start()` took to connect (tens to
+/// hundreds of ms on WASAPI/Pulse), misaligning the transcript the backend builds from them.
 pub trait AudioCapture: Send {
-    fn start(&mut self, sink: Sender<PcmChunk>) -> Result<(), CaptureError>;
+    fn start(&mut self, sink: Sender<PcmChunk>, epoch: Instant) -> Result<(), CaptureError>;
     fn stop(&mut self);
 }
 
