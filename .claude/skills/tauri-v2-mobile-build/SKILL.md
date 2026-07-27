@@ -67,9 +67,12 @@ crate-type = ["staticlib", "cdylib", "rlib"]   # staticlib=iOS, cdylib=Android, 
 
 ## Pin the CLI
 
-`cargo install tauri-cli --version "2.11.5" --locked` (a concrete version, not `^2.0`). The mobile
+`cargo install tauri-cli --version "2.11.4" --locked` (a concrete version, not `^2.0`). The mobile
 init/build templates change between CLI minor versions; an unpinned CLI is a source of silent drift
-where CI worked yesterday and breaks today with no code change.
+where CI worked yesterday and breaks today with no code change. **Verify the exact version exists on
+crates.io first** — `cargo install --version "=X.Y.Z"` hard-fails ("could not find tauri-cli … with
+version") if you pin a number that was never published (a fabricated pin cost a full mobile CI run
+here). Check `curl -H 'User-Agent: x' https://crates.io/api/v1/crates/tauri-cli` → `max_stable_version`.
 
 ## Capability reality
 

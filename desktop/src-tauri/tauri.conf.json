@@ -4,9 +4,8 @@
   "version": "0.1.0",
   "identifier": "dev.shipdeck.aisalescoach",
   "build": {
-    "beforeDevCommand": "bun --cwd ../ui run dev",
+    "beforeDevCommand": "bun run --cwd ui dev",
     "devUrl": "http://localhost:1420",
-    "beforeBuildCommand": "bun --cwd ../ui run build",
     "frontendDist": "../ui/dist"
   },
   "app": {

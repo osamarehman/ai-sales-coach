@@ -54,8 +54,12 @@ jobs:
         with:
           workspaces: "desktop/src-tauri -> target"
 
-      - name: Install frontend deps
-        run: bun install
+      # Build the web assets here (deterministic cwd) rather than via tauri.conf's beforeBuildCommand,
+      # so tauri-action always finds ../ui/dist regardless of the CLI's working directory.
+      - name: Build frontend
+        run: |
+          bun install
+          bun run build
         working-directory: desktop/ui
 
       - name: Build + release (tauri-action)
