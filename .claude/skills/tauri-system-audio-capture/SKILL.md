@@ -51,6 +51,26 @@ Other WASAPI facts (verified against the crate, don't re-litigate):
   must live entirely on one thread. Needs the **Screen Recording** permission; until granted, no
   buffers arrive (app just shows no cues — not an error).
 
+### macOS build gotchas (each cost a blind CI round-trip — a local macOS compile catches all three)
+
+The headless box can't compile the macOS backend (screencapturekit's build.rs needs the macOS
+SDK/Swift), so these only surface in CI, one error per run. On a Mac, `cargo build -p capture-core`
+first to catch them all at once.
+
+1. **Pin `screencapturekit` to `1.4.x`.** `ruhear` 0.1.1 requires a loose `screencapturekit = "^1.4"`,
+   but 1.5 renamed `SCContentFilter::builder()` → `create()`, so Cargo resolving 1.5.x breaks ruhear
+   (`E0599: no associated function builder`). No newer ruhear exists (0.1.1 is latest). Add
+   `screencapturekit = ">=1.4, <1.5"` to capture-core's macOS deps + `cargo update -p screencapturekit`
+   in **both** lockfiles (workspace and `src-tauri`).
+2. **Import `Arc` AND `Mutex`.** `ruhear`'s `rucallback!(cb)` expands to `Arc::new(Mutex::new(cb))` in
+   *your* scope (non-hygienic), so both must be `use`d in the calling file or you get
+   `E0433: cannot find type Mutex`.
+3. **Build Apple-Silicon-only, not universal.** screencapturekit's build.rs compiles its Swift bridge
+   for the **host arch only**. On an arm64 `macos-latest` runner a `--target universal-apple-darwin`
+   build links aarch64 fine but fails x86_64: `ld: symbol(s) not found for architecture x86_64`
+   (`_sc_stream_*`, `_sc_content_filter_*`). Use `--target aarch64-apple-darwin`; Intel would need its
+   own `macos-13` (x86_64) matrix leg building natively.
+
 ## Teardown & error-path correctness (all backends)
 
 These are the bugs a green test suite won't catch:
