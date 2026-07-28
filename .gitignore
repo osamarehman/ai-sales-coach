@@ -17,3 +17,6 @@ target/
 *.bak
 *.bak.*
 .DS_Store
+
+# Local MCP client config — kept out of version control by request.
+.mcp.json
