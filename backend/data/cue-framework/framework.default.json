@@ -1,0 +1,31 @@
+{
+  "slug": "default-consultative-v1",
+  "name": "Default Consultative Framework",
+  "version": 1,
+  "status": "active",
+  "tenant_id": null,
+  "stage_model": [
+    { "slug": "connect", "name": "Connect", "goal": "Disarm resistance, make it a real conversation, focus on them." },
+    { "slug": "discover", "name": "Discover", "goal": "Gather the facts of their present situation." },
+    { "slug": "frame_problem", "name": "Frame the Problem", "goal": "Surface the problem, its cause, and how it's affecting them." },
+    { "slug": "consequence", "name": "Consequence", "goal": "Get them to picture what happens if nothing changes — build urgency." },
+    { "slug": "qualify", "name": "Qualify", "goal": "Confirm how important solving it is to them." },
+    { "slug": "transition", "name": "Transition", "goal": "Bridge from discovery to showing the solution." },
+    { "slug": "present", "name": "Present", "goal": "Show how the solution solves THEIR stated problem — only after discovery." },
+    { "slug": "commit", "name": "Commit", "goal": "Help them commit and name the next step." }
+  ],
+  "gating_config": {
+    "confidence_min": { "critical": 0.75, "helpful": 0.80, "fyi": 0.85 },
+    "one_cue_on_screen": true,
+    "display_seconds": [6, 8],
+    "soft_rate_per_min": 0.5,
+    "hard_cap_per_min": 2,
+    "budget_per_30min": [8, 12],
+    "min_gap_seconds": 20,
+    "warmup_seconds": 75,
+    "critical_preempts": true,
+    "self_heal": true,
+    "end_reserve_next_step": true
+  },
+  "note": "De-branded stage model + alert-fatigue gating defaults synthesized from internal realtime cue research. The 23 cue definitions + 8 scheduled goals load separately into cue_definitions/cue_goals (a later slice); this file seeds the framework header only."
+}

@@ -1,0 +1,82 @@
+# Production overlay for THIS ShipDeck box, which runs a shared, app-NEUTRAL Caddy edge
+# (/root/platform, container `platform-edge-1`) on 80/443. Rather than a second TLS proxy (a port
+# conflict), we route our app THROUGH that edge over the shared `web` network — our service
+# aliases (sc-backend / sc-frontend) keep us distinct from any other app's aliases on `web`.
+#
+# Bring up (base + THIS file, NOT the dev override, NOT prod.yml):
+#   docker network create web                                  # once — shared by every app on the box
+#   docker compose -f docker-compose.yml -f docker-compose.shared-edge.yml up -d --build
+#   # our route is a drop-in the edge imports: /root/platform/conf.d/sales-coach.caddy
+#   docker exec platform-edge-1 caddy reload --config /etc/caddy/Caddyfile
+#
+# .env needs: NODE_ENV=production, PUBLIC_APP_URL=https://<domain>, PUBLIC_API_URL=https://<domain>,
+# and a real OPENROUTER_API_KEY. No host ports are published — the edge reaches us by alias.
+services:
+  db:
+    restart: unless-stopped
+
+  backend:
+    command: ["bun", "run", "start"] # baked image, no watch; migrations run on boot
+    environment:
+      NODE_ENV: production
+      TRUST_PROXY: "1" # one hop: the platform edge Caddy -> backend
+    networks:
+      default: {} # reach db on our project network
+      web: # reachable by the shared platform edge as `sc-backend`
+        aliases:
+          - sc-backend
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+      args:
+        # Inlined into the client bundle at build time (client-safe project token).
+        VITE_POSTHOG_KEY: ${POSTHOG_PROJECT_TOKEN:-${POSTHOG_KEY:-}}
+        VITE_POSTHOG_HOST: ${POSTHOG_HOST:-https://us.i.posthog.com}
+    networks:
+      default: {}
+      web: # reachable by the shared platform edge as `sc-frontend`
+        aliases:
+          - sc-frontend
+    restart: unless-stopped
+
+  # Waitlist landing page — served at https://sales-coach.shipdeck.dev/join by the shared edge
+  # (see /root/platform/conf.d/sales-coach.caddy). Reached by the alias `sc-landing`.
+  landing:
+    build:
+      context: ./landing
+      dockerfile: Dockerfile.prod
+      args:
+        VITE_POSTHOG_KEY: ${POSTHOG_PROJECT_TOKEN:-${POSTHOG_KEY:-}}
+        VITE_POSTHOG_HOST: ${POSTHOG_HOST:-https://us.i.posthog.com}
+    networks:
+      default: {}
+      web:
+        aliases:
+          - sc-landing
+    restart: unless-stopped
+
+  # Realtime coaching WS (RT-0) — reachable by the shared edge as `sc-realtime`, exposed at
+  # wss://<domain>/realtime (add the drop-in to /root/platform/conf.d/sales-coach.caddy).
+  # Also set PUBLIC_REALTIME_URL=wss://<domain>/realtime in .env so minted tokens point at it.
+  realtime:
+    build:
+      context: ./realtime
+      dockerfile: Dockerfile.prod
+    environment:
+      NODE_ENV: production
+    networks:
+      default: {}
+      web:
+        aliases:
+          - sc-realtime
+    restart: unless-stopped
+
+networks:
+  # The shared web-tier network the platform edge uses to reach every app by alias. Created once
+  # out-of-band and referenced as external by every project on the box: docker network create web
+  web:
+    name: web
+    external: true

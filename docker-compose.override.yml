@@ -1,0 +1,25 @@
+# Local dev only (auto-merged by `docker compose up`). Bind-mounts the source so host
+# edits reflect live and `bun --watch` reloads without a rebuild; the anonymous volume
+# keeps the image's node_modules from being shadowed by the host. Also publishes the
+# LOOPBACK host ports for local access — never 0.0.0.0 (see docker-compose.yml).
+# Reach a remote box's dev stack via SSH forward:
+#   ssh -L 8090:localhost:8090 -L 5183:localhost:5183 <box>
+# Host ports are configurable so multiple projects can share one box.
+services:
+  backend:
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    ports:
+      - "127.0.0.1:${BACKEND_HOST_PORT:-8090}:8080"
+
+  realtime:
+    volumes:
+      - ./realtime:/app
+      - /app/node_modules
+    ports:
+      - "127.0.0.1:${REALTIME_HOST_PORT:-8091}:8081"
+
+  frontend:
+    ports:
+      - "127.0.0.1:${FRONTEND_HOST_PORT:-5183}:5173"

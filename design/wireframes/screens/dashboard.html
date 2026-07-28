@@ -1,0 +1,75 @@
+<!-- @dsCard group="Screens" name="Dashboard" subtitle="Overview — KPIs, recent calls, top improvement areas" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — AI Sales Coach</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo"></span><b>Sales Coach</b></div>
+    <div class="nav-item active"><span class="ic"></span>Dashboard</div>
+    <div class="nav-item"><span class="ic"></span>Calls</div>
+    <div class="nav-item"><span class="ic"></span>Team</div>
+    <div class="nav-item"><span class="ic"></span>Trends</div>
+    <div class="nav-label">Workspace</div>
+    <div class="nav-item"><span class="ic"></span>Settings</div>
+    <div class="spacer"></div>
+    <div class="user-chip"><span class="avatar"></span><div class="meta">Jordan Lee<br><small>Acme Sales · Manager</small></div></div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar"><div class="crumbs"><b>Dashboard</b></div><div class="grow"></div>
+      <div class="input placeholder" style="width:170px">Last 30 days ▾</div></div>
+
+    <div class="content">
+      <div class="page-head"><div><h1>Good morning, Jordan</h1><div class="sub">18 calls analyzed across 6 reps this period.</div></div></div>
+
+      <div class="stats" style="margin-bottom:16px">
+        <div class="card stat"><div class="k">Calls analyzed</div><div class="v">18</div><div class="d up">+4 vs last period</div></div>
+        <div class="card stat"><div class="k">Avg total score</div><div class="v">78.2</div><div class="d up">+3.1 pts</div></div>
+        <div class="card stat"><div class="k">Won / Lost / DQ</div><div class="v">9 · 6 · 3</div><div class="d">50% win rate</div></div>
+        <div class="card stat"><div class="k">Analyses pending</div><div class="v">2</div><div class="d">running now</div></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-h"><h3>Recent calls</h3><div class="grow"></div><button class="btn sm ghost">View all →</button></div>
+          <table class="table">
+            <thead><tr><th>Call</th><th>Advisor</th><th>Score</th><th>Outcome</th></tr></thead>
+            <tbody>
+              <tr class="row"><td class="who"><span class="avatar sm"></span><b>Rivera Holdings</b></td><td>M. Chen</td><td class="score-cell">85.5</td><td><span class="badge won">Won</span></td></tr>
+              <tr class="row"><td class="who"><span class="avatar sm"></span><b>Delgado Corp</b></td><td>S. Patel</td><td class="score-cell">72.7</td><td><span class="badge lost">Lost</span></td></tr>
+              <tr class="row"><td class="who"><span class="avatar sm"></span><b>Northwind LLC</b></td><td>M. Chen</td><td class="muted">—</td><td><span class="pill pending"><span class="dot"></span>Analyzing…</span></td></tr>
+              <tr class="row"><td class="who"><span class="avatar sm"></span><b>Bexley Group</b></td><td>A. Kim</td><td class="score-cell">40.9</td><td><span class="badge dq">Disqualified</span></td></tr>
+              <tr class="row"><td class="who"><span class="avatar sm"></span><b>Orion Retail</b></td><td>S. Patel</td><td class="score-cell">81.8</td><td><span class="badge won">Won</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="stack" style="gap:16px">
+          <div class="card">
+            <div class="card-h"><h3>Top improvement areas</h3></div>
+            <div style="padding:14px 18px">
+              <div class="between" style="margin-bottom:12px"><span>H — High Priority</span><span class="mono muted">avg 3.1</span></div>
+              <div class="ph" style="height:8px; margin-bottom:16px; width:34%"></div>
+              <div class="between" style="margin-bottom:12px"><span>Question Quality</span><span class="mono muted">avg 4.4</span></div>
+              <div class="ph" style="height:8px; margin-bottom:16px; width:48%"></div>
+              <div class="between" style="margin-bottom:12px"><span>Objection Handling</span><span class="mono muted">avg 4.9</span></div>
+              <div class="ph" style="height:8px; width:54%"></div>
+            </div>
+          </div>
+          <div class="card pad">
+            <div class="grp" style="padding:0 0 10px">Score trend</div>
+            <div class="ph" style="height:96px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

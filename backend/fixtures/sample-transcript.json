@@ -1,0 +1,102 @@
+{
+  "transcript": [
+    {
+      "speaker": {
+        "display_name": "Alex (Advisor)"
+      },
+      "text": "Hey Rob, thanks for hopping on. Before we dive into the gameplan, mind if I ask what made you book this call?",
+      "timestamp": "00:00:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Rob (Prospect)"
+      },
+      "text": "Sure. We're struggling to keep our sales reps consistent on discovery calls.",
+      "timestamp": "00:00:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Alex (Advisor)"
+      },
+      "text": "Got it. If we could fix that consistency, how big a priority is this for you this quarter?",
+      "timestamp": "00:00:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Rob (Prospect)"
+      },
+      "text": "Honestly it's our number one priority right now.",
+      "timestamp": "00:00:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Alex (Advisor)"
+      },
+      "text": "Makes sense. What's it costing you to leave it unsolved \u2014 roughly?",
+      "timestamp": "00:00:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Rob (Prospect)"
+      },
+      "text": "We figure we're losing maybe 20k a month in slipped deals.",
+      "timestamp": "00:00:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Alex (Advisor)"
+      },
+      "text": "That's significant. Who else besides you would weigh in on a decision like this?",
+      "timestamp": "00:00:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Rob (Prospect)"
+      },
+      "text": "Just me, I own the company.",
+      "timestamp": "00:01:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Alex (Advisor)"
+      },
+      "text": "Perfect. And if this were a fit, are you ready to get started in the next couple weeks?",
+      "timestamp": "00:01:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Rob (Prospect)"
+      },
+      "text": "If it solves the problem, yes.",
+      "timestamp": "00:01:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Alex (Advisor)"
+      },
+      "text": "Great. Let me walk you through how the coaching program works, then we'll map next steps.",
+      "timestamp": "00:01:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Rob (Prospect)"
+      },
+      "text": "This sounds like what we need. What's the next step?",
+      "timestamp": "00:02:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Alex (Advisor)"
+      },
+      "text": "I'll send over onboarding today and we'll book your kickoff for Monday. Sound good?",
+      "timestamp": "00:02:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Rob (Prospect)"
+      },
+      "text": "Perfect, let's do it.",
+      "timestamp": "00:02:18"
+    }
+  ]
+}

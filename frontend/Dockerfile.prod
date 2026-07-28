@@ -1,0 +1,16 @@
+# Production frontend: build the static bundle at image-build time (so a broken build
+# fails the deploy, not a running container), then serve it with vite preview.
+FROM oven/bun:1-alpine
+WORKDIR /app
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
+COPY . .
+# PostHog RUM is inlined into the client bundle at build time (Vite reads VITE_* from the env).
+# Values arrive as docker-compose build args (POSTHOG_PROJECT_TOKEN / POSTHOG_HOST). Blank => inert.
+ARG VITE_POSTHOG_KEY=""
+ARG VITE_POSTHOG_HOST=""
+ENV VITE_POSTHOG_KEY=$VITE_POSTHOG_KEY
+ENV VITE_POSTHOG_HOST=$VITE_POSTHOG_HOST
+RUN bun run build
+EXPOSE 5173
+CMD ["bun", "run", "preview", "--host", "0.0.0.0", "--port", "5173"]

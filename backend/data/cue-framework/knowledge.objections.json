@@ -1,0 +1,246 @@
+{
+  "framework_slug": "default-consultative-v1",
+  "source_doc": "diffusing-objections",
+  "source_note": "INTERNAL provenance only, never surfaced to users. Extracted + de-branded from owner-supplied source material, pp.3-13. Pages 14-15 excluded (vendor product marketing, not methodology). All wording below is OUR restatement, not verbatim.",
+  "entries": [
+    {
+      "kind": "principle",
+      "category": "objection_mindset",
+      "stage": null,
+      "objection_type": null,
+      "title": "An objection is a concern, not a rejection",
+      "summary": "When the prospect pushes back, treat it as a concern about the offer, not a rejection of the rep. Do NOT snap into rebuttal mode. Most late objections are really a request for one of four things: (1) clarity on price, (2) clarity on timing, (3) reassurance on follow-up/service, or (4) a change to scope/quality. Name it, stay calm, and get curious before responding.",
+      "content": {
+        "reframe": "Objection = an unmet information need or a request for a small change to the deal.",
+        "four_common_meanings": ["price of the solution", "timing of the solution", "how they'll be serviced after buying", "quality/scope of what's offered"],
+        "anti_pattern": "Reacting immediately with facts, logic, or a canned rebuttal (incl. feel/felt/found)."
+      },
+      "examples": [],
+      "tags": ["mindset", "objection", "reframe"],
+      "trigger_signal": "objection_intent(P) fired (any type)",
+      "priority": "helpful",
+      "source_ref": { "doc": "diffusing-objections", "pages": "3" }
+    },
+    {
+      "kind": "principle",
+      "category": "objection_method",
+      "stage": null,
+      "objection_type": null,
+      "title": "Clarify → Discuss → Diffuse (the 3-step concern formula)",
+      "summary": "The core move for any concern. 1) CLARIFY — find out what the concern actually means and what's behind it (repeat their words back, ask what they mean, how they arrived at it). 2) DISCUSS — talk it through conversationally, ally-to-ally; never flip into proving/presentation mode. 3) DIFFUSE — ask how THEY would resolve it and offer an alternative view so they dissolve it in their own mind.",
+      "content": {
+        "steps": [
+          { "step": "clarify", "goal": "Understand the real concern and its cause before responding.", "moves": ["Repeat their exact word back, then ask what they mean by it.", "Ask how they arrived at that view."] },
+          { "step": "discuss", "goal": "Explore it together as two people solving one problem.", "moves": ["Stay conversational; resist defending with features/logic."] },
+          { "step": "diffuse", "goal": "Let them talk themselves past the concern.", "moves": ["Ask how they see themselves resolving it.", "Offer a gentle alternative: 'Suppose you could … / What if we could …?'"] }
+        ]
+      },
+      "examples": [
+        { "our_phrasing": "If there were a way to handle <their concern>, would that clear the path for you?", "note": "diffuse opener; only works after genuine discovery" }
+      ],
+      "tags": ["method", "objection", "clarify", "discuss", "diffuse"],
+      "trigger_signal": "objection_intent(P) fired (any type)",
+      "priority": "critical",
+      "source_ref": { "doc": "diffusing-objections", "pages": "6-8" }
+    },
+    {
+      "kind": "principle",
+      "category": "objection_prevention",
+      "stage": "discover",
+      "objection_type": null,
+      "title": "Most objections are prevented upstream, in discovery",
+      "summary": "Thorough problem-awareness and consequence work removes most objections before they ever surface. A cluster of hard objections late in a call is usually a signal that discovery was too thin — not that the prospect is difficult. Coaching implication: if objections spike late and discovery coverage was low, the fix is earlier, deeper discovery next time.",
+      "content": {
+        "engine_link": "If objection_count is high AND problem_awareness_count/consequence_count were low earlier, attribute to weak discovery, not to the prospect."
+      },
+      "examples": [],
+      "tags": ["prevention", "discovery", "coverage"],
+      "trigger_signal": "post-call: objection_count high while discovery-stage coverage flags were low",
+      "priority": "fyi",
+      "source_ref": { "doc": "diffusing-objections", "pages": "4-5" }
+    },
+    {
+      "kind": "question_bank",
+      "category": "clarify",
+      "stage": null,
+      "objection_type": null,
+      "title": "Clarifying questions (surface the real concern)",
+      "summary": "Short, curious questions that make the prospect define the concern in their own words instead of you assuming. Use the moment an objection lands, before any response.",
+      "content": {
+        "questions": [
+          "When you say <their word>, what do you mean by that exactly?",
+          "How did you arrive at that?",
+          "What's making you feel that way?",
+          "Can you tell me a bit more about that?",
+          "I'm curious — what's behind that for you?",
+          "Where did that number/information come from?"
+        ]
+      },
+      "examples": [],
+      "tags": ["clarify", "questions", "discovery"],
+      "trigger_signal": "objection_intent(P) fired; mirror_used == false in rep's next turn",
+      "priority": "critical",
+      "source_ref": { "doc": "diffusing-objections", "pages": "6-7" }
+    },
+    {
+      "kind": "question_bank",
+      "category": "checkin",
+      "stage": "present",
+      "objection_type": null,
+      "title": "Temperature-check questions (before committing questions)",
+      "summary": "Low-pressure check-ins that surface hidden concerns while trust is high, so they don't resurface at close. Use near the end of the conversation, right before asking for the next step.",
+      "content": {
+        "questions": [
+          "How's this landing for you so far?",
+          "Can you see how this would help in your situation?",
+          "Anything you'd want me to address before we go further?",
+          "Are we on the same page here?",
+          "What are your thoughts on this so far?"
+        ]
+      },
+      "examples": [],
+      "tags": ["checkin", "questions", "pre-close"],
+      "trigger_signal": "stage in {present, transition} approaching commit; no recent check-in",
+      "priority": "helpful",
+      "source_ref": { "doc": "diffusing-objections", "pages": "5" }
+    },
+    {
+      "kind": "objection_pattern",
+      "category": "diffuse",
+      "stage": null,
+      "objection_type": "price",
+      "title": "Price / “too expensive”",
+      "summary": "“Too expensive” is ambiguous — clarify what it actually means (a cheaper competitor? a capped/allocated budget? total cost once add-ons are included?). Each meaning needs a different response, so never assume. Once clarified, diffuse by getting them to confirm fit and then surface how they'd fund it.",
+      "content": {
+        "clarify": ["When you say it's too expensive, what do you mean by that?", "How did you land on that figure?", "Can I ask where that number came from?"],
+        "discuss": "Explore the real constraint together; don't defend the price with a feature/ROI monologue.",
+        "diffuse": [
+          "If the money side were handled, is this something that would work for you? … Why do you feel it would?",
+          "I get that budget's a real constraint. How do you think you could free up the funds so you can <their stated goal>?",
+          "What other ways could you find the funding so you can <their stated goal>?"
+        ]
+      },
+      "examples": [
+        { "our_phrasing": "If budget weren't the blocker, would this get you what you're after?", "note": "usually a yes when discovery was done; opens the funding conversation" }
+      ],
+      "tags": ["price", "money", "diffuse"],
+      "trigger_signal": "objection_intent(P) == 'price'",
+      "priority": "critical",
+      "source_ref": { "doc": "diffusing-objections", "pages": "6-10" }
+    },
+    {
+      "kind": "objection_pattern",
+      "category": "diffuse",
+      "stage": null,
+      "objection_type": "budget",
+      "title": "Lack of money / “can’t afford it”",
+      "summary": "Confirm fit first, then let them lead on how to find the funds. If they can't, offer avenues gently (reallocating, financing) rather than discounting reflexively. If they ask price very early, tie the amount to the outcome they said they want.",
+      "content": {
+        "clarify": ["Setting the money aside for a second — is this the right fix for what you described?"],
+        "discuss": "Acknowledge the constraint honestly; stay on their side.",
+        "diffuse": [
+          "If you did have the funds, is this something that would work for you? … Why?",
+          "How do you think you could resolve the funding so you can <their stated goal>?",
+          "What other avenues do you have to find the budget so you can <their stated goal>?"
+        ]
+      },
+      "examples": [
+        { "our_phrasing": "To get the result you described, some budget has to go into it — roughly what could you put toward that?", "note": "use when they ask price too early" }
+      ],
+      "tags": ["budget", "money", "affordability", "diffuse"],
+      "trigger_signal": "objection_intent(P) in {'no_budget','cant_afford'}",
+      "priority": "critical",
+      "source_ref": { "doc": "diffusing-objections", "pages": "8-10" }
+    },
+    {
+      "kind": "objection_pattern",
+      "category": "qualify",
+      "stage": null,
+      "objection_type": "send_references",
+      "title": "“Send me references”",
+      "summary": "Could be genuine, or a polite brush-off. Qualify by asking what they'd want to ask a reference (surfaces the hidden concern), then pin a concrete next step for after the reference call — otherwise the deal evaporates.",
+      "content": {
+        "clarify": ["Happy to — what would you want to ask them when you talk?", "So I point you to the right person, what specifically do you want to dig into?"],
+        "discuss": "Their answer reveals the real concern; address that.",
+        "diffuse": ["Say the reference confirms we solved exactly this — where do you think we'd go from there?"]
+      },
+      "examples": [],
+      "tags": ["references", "qualify", "next-step"],
+      "trigger_signal": "objection_intent(P) == 'send_references'",
+      "priority": "helpful",
+      "source_ref": { "doc": "diffusing-objections", "pages": "11" }
+    },
+    {
+      "kind": "objection_pattern",
+      "category": "defer",
+      "stage": null,
+      "objection_type": "send_quote",
+      "title": "“Can you send me a quote?”",
+      "summary": "Don't quote into a vacuum. Ask what they're hoping the quote will tell them (usually a budget-fit question), run a few situation questions, then defer the quote to the end and tie it to a next step.",
+      "content": {
+        "clarify": ["Sure — what are you hoping to see from the quote?"],
+        "discuss": "It usually means 'can we afford this' — answer that with discovery, not a number.",
+        "diffuse": ["Before I put numbers together, mind if I understand your situation a bit so it's actually useful? Then: assuming the quote fits, what would the next step look like?"]
+      },
+      "examples": [],
+      "tags": ["quote", "defer", "discovery", "next-step"],
+      "trigger_signal": "objection_intent(P) == 'send_quote'",
+      "priority": "helpful",
+      "source_ref": { "doc": "diffusing-objections", "pages": "11-12" }
+    },
+    {
+      "kind": "objection_pattern",
+      "category": "defer",
+      "stage": null,
+      "objection_type": "send_info",
+      "title": "“Just send me some info”",
+      "summary": "Never fire off collateral before confirming they're a serious prospect. Ask what exactly they want the info to answer, and who/what they use today, then tie sending it to an explicit next step.",
+      "content": {
+        "clarify": ["Sure — so I send the right thing, what exactly are you looking to learn?", "Who or what are you using for that now?"],
+        "discuss": "Their answer tells you if there's a real problem to solve.",
+        "diffuse": ["I'll send it over — suppose it fits what you're after, what would you want the next step to be?"]
+      },
+      "examples": [],
+      "tags": ["send-info", "defer", "next-step"],
+      "trigger_signal": "objection_intent(P) == 'send_info'",
+      "priority": "helpful",
+      "source_ref": { "doc": "diffusing-objections", "pages": "12" }
+    },
+    {
+      "kind": "objection_pattern",
+      "category": "defer",
+      "stage": null,
+      "objection_type": "send_proposal",
+      "title": "“Just send me a proposal”",
+      "summary": "Hard rule: never write a proposal before you understand the problem and know they can fund it. If asked upfront, say you're glad to but you're not yet sure you can help, and ask for a few situation questions first.",
+      "content": {
+        "clarify": [],
+        "discuss": "Protect your time; a proposal without discovery is usually a dead end.",
+        "diffuse": ["I'd be glad to put a proposal together — though I'm not sure yet I can even help. Could I ask a couple of questions about your situation first so it's actually worth your time?"]
+      },
+      "examples": [],
+      "tags": ["proposal", "defer", "gatekeeping"],
+      "trigger_signal": "objection_intent(P) == 'send_proposal'",
+      "priority": "helpful",
+      "source_ref": { "doc": "diffusing-objections", "pages": "13" }
+    },
+    {
+      "kind": "objection_pattern",
+      "category": "diffuse",
+      "stage": null,
+      "objection_type": "call_back_busy",
+      "title": "“Call me back / I’m too busy right now”",
+      "summary": "Flip the neediness: ask what their timeframe is for getting back to YOU, and book a specific time on the calendar. Positions you as an in-demand authority, not a chaser.",
+      "content": {
+        "clarify": ["No problem — what's your timeframe for circling back, just so I know when I'd be free for you?"],
+        "discuss": "Their answer signals real interest vs brush-off.",
+        "diffuse": ["If you've got your calendar handy, let's lock a specific time so neither of us has to chase the other — would that work?"]
+      },
+      "examples": [],
+      "tags": ["callback", "busy", "scheduling", "authority-positioning"],
+      "trigger_signal": "objection_intent(P) == 'call_back'",
+      "priority": "helpful",
+      "source_ref": { "doc": "diffusing-objections", "pages": "12-13" }
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-ai_sales_coach}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-ai_sales_coach}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ai_sales_coach} -d ${POSTGRES_DB:-ai_sales_coach}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    # DB port is intentionally NOT published — only the backend reaches it over the
+    # compose network. For a shell: docker compose exec db psql -U ai_sales_coach
+
+  backend:
+    build: ./backend
+    environment:
+      # Composed here so the password lives in exactly one place (.env).
+      DATABASE_URL: postgres://${POSTGRES_USER:-ai_sales_coach}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-ai_sales_coach}
+      PORT: 8080
+      NODE_ENV: ${NODE_ENV:-development}
+      # Public origins. In dev these are localhost; in prod (.env) they are the https
+      # domain — same origin for both, since Caddy serves app + /api behind one host.
+      PUBLIC_APP_URL: ${PUBLIC_APP_URL:-http://localhost:5183}
+      PUBLIC_API_URL: ${PUBLIC_API_URL:-http://localhost:8090}
+      # Auth (M4). Generate: openssl rand -hex 32
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-}
+      # Encrypts per-tenant provider tokens at rest (M3/M4). 32-byte hex.
+      APP_ENCRYPTION_KEY: ${APP_ENCRYPTION_KEY:-}
+      # OpenRouter inference (M2).
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENROUTER_MODEL: ${OPENROUTER_MODEL:-anthropic/claude-sonnet-4.5}
+      # Realtime coaching (RT-0): the backend mints session tokens the isolated
+      # `realtime` service verifies with the same secret; wsUrl is handed to clients.
+      REALTIME_TOKEN_SECRET: ${REALTIME_TOKEN_SECRET:-}
+      PUBLIC_REALTIME_URL: ${PUBLIC_REALTIME_URL:-ws://localhost:8091}
+      # Observability (PostHog error tracking). Blank => capture is a no-op.
+      # Sourced from the project token (phc_…, client-safe); the container env the SDK reads is POSTHOG_KEY.
+      POSTHOG_KEY: ${POSTHOG_PROJECT_TOKEN:-${POSTHOG_KEY:-}}
+      POSTHOG_HOST: ${POSTHOG_HOST:-https://us.i.posthog.com}
+    depends_on:
+      db:
+        condition: service_healthy
+    # No host ports here. Dev publishes loopback ports via docker-compose.override.yml;
+    # prod exposes ONLY Caddy (80/443) via docker-compose.prod.yml. Keeping ports out
+    # of the base is what lets the prod overlay avoid publishing the app at all.
+
+  # Isolated real-time coaching service (RT-0): a Bun WebSocket server with a server-side
+  # all-party consent gate. Shares Postgres but writes ONLY live_* tables — a live-coaching
+  # failure can never break the post-call grader. Desktop/phone clients connect per the WS
+  # contract in desktop/PROTOCOL.md. No host port in base (dev override / prod edge expose it).
+  realtime:
+    build: ./realtime
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-ai_sales_coach}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-ai_sales_coach}
+      PORT: 8081
+      NODE_ENV: ${NODE_ENV:-development}
+      # Same secret the backend signs tokens with (falls back to BETTER_AUTH_SECRET).
+      REALTIME_TOKEN_SECRET: ${REALTIME_TOKEN_SECRET:-}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-}
+      # Live cue engine (RT-3): Anthropic direct (Haiku 4.5). Blank => engine stays off.
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      REALTIME_CUE_MODEL: ${REALTIME_CUE_MODEL:-claude-haiku-4-5-20251001}
+      # Observability (PostHog error tracking). Blank => capture is a no-op.
+      # Sourced from the project token (phc_…, client-safe); the container env the SDK reads is POSTHOG_KEY.
+      POSTHOG_KEY: ${POSTHOG_PROJECT_TOKEN:-${POSTHOG_KEY:-}}
+      POSTHOG_HOST: ${POSTHOG_HOST:-https://us.i.posthog.com}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    environment:
+      # Client-side RUM. Dev (vite dev) reads these at runtime; prod inlines them via the
+      # Dockerfile.prod build args. Sourced from the same project token as the server. Blank => inert.
+      VITE_POSTHOG_KEY: ${POSTHOG_PROJECT_TOKEN:-${POSTHOG_KEY:-}}
+      VITE_POSTHOG_HOST: ${POSTHOG_HOST:-https://us.i.posthog.com}
+    depends_on:
+      - backend
+
+  # Standalone waitlist landing page (its own container so it can't affect the app).
+  # Prod overlay swaps in Dockerfile.prod + the `sc-landing` alias (docker-compose.shared-edge.yml).
+  landing:
+    build: ./landing
+    environment:
+      VITE_POSTHOG_KEY: ${POSTHOG_PROJECT_TOKEN:-${POSTHOG_KEY:-}}
+      VITE_POSTHOG_HOST: ${POSTHOG_HOST:-https://us.i.posthog.com}
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

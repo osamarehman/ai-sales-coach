@@ -1,0 +1,65 @@
+<!-- @dsCard group="Screens" name="Calls List" subtitle="Filterable table — rep / date / outcome, with a pending row" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calls — AI Sales Coach</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo"></span><b>Sales Coach</b></div>
+    <div class="nav-item"><span class="ic"></span>Dashboard</div>
+    <div class="nav-item active"><span class="ic"></span>Calls</div>
+    <div class="nav-item"><span class="ic"></span>Team</div>
+    <div class="nav-item"><span class="ic"></span>Trends</div>
+    <div class="nav-label">Workspace</div>
+    <div class="nav-item"><span class="ic"></span>Settings</div>
+    <div class="spacer"></div>
+    <div class="user-chip"><span class="avatar"></span><div class="meta">Jordan Lee<br><small>Acme Sales · Manager</small></div></div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar"><div class="crumbs"><b>Calls</b></div><div class="grow"></div></div>
+
+    <div class="content">
+      <div class="page-head"><div><h1>Calls</h1><div class="sub">Every analyzed call across your team.</div></div>
+        <div class="grow"></div><button class="btn">Export</button></div>
+
+      <!-- filter bar -->
+      <div class="row" style="gap:10px; margin-bottom:14px; flex-wrap:wrap">
+        <div class="input placeholder" style="width:210px">Search calls…</div>
+        <div class="input placeholder" style="width:150px">All reps ▾</div>
+        <div class="input placeholder" style="width:160px">Last 30 days ▾</div>
+        <div class="input placeholder" style="width:150px">Any outcome ▾</div>
+        <div class="grow"></div>
+        <span class="muted" style="font-size:12.5px">18 results</span>
+      </div>
+
+      <div class="card">
+        <table class="table">
+          <thead><tr>
+            <th>Call</th><th>Advisor</th><th>Date</th><th>Duration</th><th>Score ▾</th><th>Outcome</th><th>Status</th>
+          </tr></thead>
+          <tbody>
+            <tr class="row"><td class="who"><span class="avatar sm"></span><b>Rivera Holdings — Discovery</b></td><td>M. Chen</td><td class="muted">Jul 22</td><td class="mono muted">41:18</td><td class="score-cell">85.5</td><td><span class="badge won">Won</span></td><td><span class="pill"><span class="dot" style="background:var(--pos)"></span>Analyzed</span></td></tr>
+            <tr class="row"><td class="who"><span class="avatar sm"></span><b>Orion Retail — Renewal</b></td><td>S. Patel</td><td class="muted">Jul 22</td><td class="mono muted">33:02</td><td class="score-cell">81.8</td><td><span class="badge won">Won</span></td><td><span class="pill"><span class="dot" style="background:var(--pos)"></span>Analyzed</span></td></tr>
+            <tr class="row"><td class="who"><span class="avatar sm"></span><b>Northwind LLC — Intro</b></td><td>M. Chen</td><td class="muted">Jul 21</td><td class="mono muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="pill pending"><span class="dot"></span>Analyzing…</span></td></tr>
+            <tr class="row"><td class="who"><span class="avatar sm"></span><b>Delgado Corp — Demo</b></td><td>S. Patel</td><td class="muted">Jul 21</td><td class="mono muted">52:44</td><td class="score-cell">72.7</td><td><span class="badge lost">Lost</span></td><td><span class="pill"><span class="dot" style="background:var(--pos)"></span>Analyzed</span></td></tr>
+            <tr class="row"><td class="who"><span class="avatar sm"></span><b>Bexley Group — Discovery</b></td><td>A. Kim</td><td class="muted">Jul 20</td><td class="mono muted">28:10</td><td class="score-cell">40.9</td><td><span class="badge dq">Disqualified</span></td><td><span class="pill"><span class="dot" style="background:var(--pos)"></span>Analyzed</span></td></tr>
+            <tr class="row"><td class="who"><span class="avatar sm"></span><b>Halcyon Inc — Follow-up</b></td><td>A. Kim</td><td class="muted">Jul 20</td><td class="mono muted">19:37</td><td class="muted">—</td><td class="muted">—</td><td><span class="pill failed"><span class="dot"></span>Failed · retry</span></td></tr>
+            <tr class="row"><td class="who"><span class="avatar sm"></span><b>Vertex Systems — Discovery</b></td><td>M. Chen</td><td class="muted">Jul 19</td><td class="mono muted">44:55</td><td class="score-cell">77.3</td><td><span class="badge won">Won</span></td><td><span class="pill"><span class="dot" style="background:var(--pos)"></span>Analyzed</span></td></tr>
+          </tbody>
+        </table>
+        <div class="between" style="padding:12px 16px; border-top:1px solid var(--line)">
+          <span class="muted" style="font-size:12.5px">1–7 of 18</span>
+          <div class="row"><button class="btn sm" disabled>← Prev</button><button class="btn sm">Next →</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+node_modules/
+dist/
+
+# Secrets — never commit. .env holds real credentials; keep only the template.
+.env
+.env.*
+!.env.example
+
+# Tauri updater signing material — private key + password. NEVER commit.
+.tauri-signing/
+
+# Rust build output (also covered by desktop/src-tauri/.gitignore).
+target/
+
+# Backups, logs, OS/editor cruft.
+*.log
+*.bak
+*.bak.*
+.DS_Store

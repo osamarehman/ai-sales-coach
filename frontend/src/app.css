@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Design tokens — mirrored from the Cloud Design "AI Sales Coach"
+   project (Modern SaaS analytics). Single source of truth for the app.
+   ============================================================ */
+:root {
+  --bg: #f7f8fa; --surface: #ffffff; --surface-2: #f8f9fb;
+  --ink: #101319; --ink-2: #3a414c; --muted: #6b7480; --faint: #9aa2ac;
+  --line: #e9ecf1; --line-strong: #d8dde4;
+  --accent: #5b57eb; --accent-strong: #4b47d6; --accent-tint: #eeeefe; --accent-ink: #3a37b8;
+  --pos: #0a9d6e; --pos-tint: #e7f8f1; --pos-ink: #076f4f;
+  --par: #b8770a; --par-tint: #fbf1df; --par-ink: #8a5906;
+  --neg: #e0384f; --neg-tint: #fdecef; --neg-ink: #b02338;
+  --dq:  #5b6472; --dq-tint:  #eef1f4; --dq-ink:  #3b434f;
+  --shadow: 0 1px 2px rgba(16,19,25,.05), 0 12px 28px -14px rgba(16,19,25,.18);
+  --shadow-sm: 0 1px 2px rgba(16,19,25,.06);
+}
+:root.dark {
+  --bg: #0b0d11; --surface: #14171d; --surface-2: #1a1e25;
+  --ink: #eef1f5; --ink-2: #c3c9d2; --muted: #8b929d; --faint: #616874;
+  --line: #232833; --line-strong: #333a46;
+  --accent: #837ef5; --accent-strong: #9a96f7; --accent-tint: #211f3a; --accent-ink: #b9b6fb;
+  --pos: #1fb583; --pos-tint: #10281f; --pos-ink: #7fe6bf;
+  --par: #d99327; --par-tint: #2a2110; --par-ink: #f0c078;
+  --neg: #f2586c; --neg-tint: #2c1418; --neg-ink: #f7a3ae;
+  --dq:  #8a93a2; --dq-tint:  #1c2028; --dq-ink:  #b9c0cb;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 30px -14px rgba(0,0,0,.6);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --bg: #0b0d11; --surface: #14171d; --surface-2: #1a1e25;
+    --ink: #eef1f5; --ink-2: #c3c9d2; --muted: #8b929d; --faint: #616874;
+    --line: #232833; --line-strong: #333a46;
+    --accent: #837ef5; --accent-strong: #9a96f7; --accent-tint: #211f3a; --accent-ink: #b9b6fb;
+    --pos: #1fb583; --pos-tint: #10281f; --pos-ink: #7fe6bf;
+    --par: #d99327; --par-tint: #2a2110; --par-ink: #f0c078;
+    --neg: #f2586c; --neg-tint: #2c1418; --neg-ink: #f7a3ae;
+    --dq:  #8a93a2; --dq-tint:  #1c2028; --dq-ink:  #b9c0cb;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 30px -14px rgba(0,0,0,.6);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+  }
+}
+
+/* Expose tokens to Tailwind so utilities like bg-surface / text-ink /
+   text-brand / border-line resolve to the theme-aware CSS vars. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-brand: var(--accent);
+  --color-brand-strong: var(--accent-strong);
+  --color-brand-tint: var(--accent-tint);
+  --color-brand-ink: var(--accent-ink);
+  --color-pos: var(--pos);
+  --color-neg: var(--neg);
+  --color-par: var(--par);
+  --color-dq: var(--dq);
+  --radius-card: 12px;
+  --radius-ctl: 8px;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+html, body { margin: 0; }
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+* { border-color: var(--line); }
+
+/* ============================================================
+   Component layer — the shared kit, built on the tokens above.
+   Screens compose these classes + Tailwind utilities.
+   ============================================================ */
+@layer components {
+  .card { background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius-card); box-shadow: var(--shadow-sm); }
+
+  .btn { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 14px;
+    border-radius: var(--radius-ctl); border: 1px solid var(--line-strong); background: var(--surface);
+    color: var(--ink); font: inherit; font-weight: 550; font-size: 13px; cursor: pointer;
+    transition: background .12s, border-color .12s, box-shadow .12s; white-space: nowrap; }
+  .btn:hover { background: var(--surface-2); }
+  .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent);
+    box-shadow: 0 1px 2px rgba(91,87,235,.35); }
+  .btn-primary:hover { background: var(--accent-strong); }
+  .btn-ghost { border-color: transparent; background: transparent; }
+  .btn-sm { height: 28px; padding: 0 10px; font-size: 12.5px; }
+
+  .field-label { font-size: 12.5px; font-weight: 600; color: var(--ink-2); }
+  .mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums; }
+  .input { height: 38px; width: 100%; border: 1px solid var(--line-strong); border-radius: var(--radius-ctl);
+    background: var(--surface); padding: 0 12px; font: inherit; font-size: 13.5px; color: var(--ink); }
+  .input:focus { outline: 2px solid color-mix(in srgb, var(--accent) 55%, transparent); outline-offset: 1px; border-color: var(--accent); }
+  .input::placeholder { color: var(--faint); }
+
+  .switch { width: 38px; height: 22px; border-radius: 999px; background: var(--line-strong);
+    position: relative; flex: none; transition: .15s; cursor: pointer; border: none; padding: 0; }
+  .switch[data-on="true"] { background: var(--accent); }
+  .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px;
+    border-radius: 50%; background: #fff; transition: .15s; }
+  .switch[data-on="true"]::after { left: 18px; }
+
+  .chip { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px;
+    border-radius: 999px; font-size: 11.5px; font-weight: 600; border: 1px solid var(--line-strong);
+    color: var(--ink-2); background: var(--surface-2); white-space: nowrap; }
+  .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--faint); }
+  .chip-yes { background: var(--pos-tint); border-color: transparent; color: var(--pos-ink); }
+  .chip-yes .dot { background: var(--pos); }
+  .chip-partial { background: var(--par-tint); border-color: transparent; color: var(--par-ink); }
+  .chip-partial .dot { background: var(--par); }
+  .chip-no { background: var(--neg-tint); border-color: transparent; color: var(--neg-ink); }
+  .chip-no .dot { background: var(--neg); }
+  .chip-dq { background: var(--dq-tint); border-color: transparent; color: var(--dq-ink); }
+  .chip-dq .dot { background: var(--dq); box-shadow: 0 0 0 3px color-mix(in srgb, var(--dq) 22%, transparent); }
+
+  .badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 11px;
+    border-radius: 7px; font-size: 12px; font-weight: 650; border: 1px solid transparent; white-space: nowrap; }
+  .badge-won { background: var(--pos); color: #fff; }
+  .badge-lost { background: var(--neg-tint); color: var(--neg-ink); }
+  .badge-dq { background: var(--dq-tint); color: var(--dq-ink); }
+
+  .pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--muted); }
+  .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--faint); }
+  .pill-pending .dot { background: var(--par); animation: pulse 1.4s infinite; }
+  .pill-ok .dot { background: var(--pos); }
+  .pill-failed { color: var(--neg-ink); } .pill-failed .dot { background: var(--neg); }
+  @keyframes pulse { 0%,100%{opacity:.35} 50%{opacity:1} }
+
+  .table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .table th { text-align: left; font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em;
+    color: var(--muted); font-weight: 600; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  .table td { padding: 13px 14px; border-bottom: 1px solid var(--line); color: var(--ink-2); vertical-align: middle; }
+  .table tr:last-child td { border-bottom: none; }
+  .table tbody tr:hover td { background: var(--surface-2); cursor: pointer; }
+
+  .skeleton { background: linear-gradient(90deg,var(--surface-2) 25%,var(--line) 50%,var(--surface-2) 75%);
+    background-size: 200% 100%; animation: sk 1.3s infinite; border-radius: 6px; }
+  @keyframes sk { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+}
+
+/* thin, tokenized scrollbars */
+* { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }

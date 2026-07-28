@@ -1,0 +1,56 @@
+<!-- @dsCard group="Screens" name="Onboarding — Connect Fathom" subtitle="First-run wizard, step 1 of 3 (webhook URL + call filter)" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect Fathom — AI Sales Coach</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div class="center-wrap">
+  <div style="width:560px; max-width:100%">
+    <div class="row" style="gap:10px; margin-bottom:22px; justify-content:center">
+      <span class="logo" style="width:26px;height:26px;border-radius:7px;background:var(--primary);display:inline-block"></span>
+      <b style="font-size:15px">Sales Coach</b>
+    </div>
+
+    <!-- steps -->
+    <div class="row" style="justify-content:center; gap:8px; margin-bottom:22px">
+      <span class="chip yes"><span class="dot"></span>1 · Connect Fathom</span>
+      <span class="faint">──</span>
+      <span class="chip"><span class="dot"></span>2 · Call filter</span>
+      <span class="faint">──</span>
+      <span class="chip"><span class="dot"></span>3 · Done</span>
+    </div>
+
+    <div class="card pad">
+      <h1 style="font-size:19px">Connect your Fathom account</h1>
+      <p class="muted" style="margin:6px 0 20px">We read call transcripts to grade them. Your key is encrypted at rest and never shown again.</p>
+
+      <div class="field">
+        <label>Fathom API key</label>
+        <div class="input placeholder">Paste your key (Settings → API &amp; Integrations)</div>
+        <span class="hint">Find it in Fathom under Settings → API &amp; Integrations → Generate API Key.</span>
+      </div>
+
+      <div class="field">
+        <label>Your webhook URL</label>
+        <div class="input copy"><span class="muted">https://app.salescoach.io/api/webhooks/fathom/tok_9f3a…c21</span><button class="btn sm">Copy</button></div>
+        <span class="hint">In Fathom → Settings → Webhooks, add this URL and enable <b>Recording completed</b> + <b>Transcript available</b>.</span>
+      </div>
+
+      <div class="banner" style="margin:6px 0 20px; border-color:var(--line-strong)">
+        <span class="mark" style="border-color:var(--line-strong)"></span>
+        <div><b>Nothing to grade yet</b><span class="muted">We'll analyze calls automatically as Fathom sends them in.</span></div>
+      </div>
+
+      <div class="between">
+        <button class="btn ghost">Skip for now</button>
+        <button class="btn primary">Continue →</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

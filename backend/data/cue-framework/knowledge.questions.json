@@ -1,0 +1,2720 @@
+{
+  "framework_slug": "default-consultative-v1",
+  "source_doc": "questions",
+  "source_note": "INTERNAL provenance only, never surfaced to users. Extracted + de-branded from owner-supplied source material (125-page image book) via vision fan-out. All wording is OUR paraphrase, not verbatim. Front matter, branding, and marketing pages excluded.",
+  "entries": [
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "The evolution of selling — why old methods stall",
+      "summary": "Selling has moved through distinct eras, each with its own style of persuasion. Many reps still operate with the earliest, pressure-based approaches without realizing it, which quietly costs them deals they could have won.",
+      "content": {
+        "points": [
+          "Selling has passed through several distinct phases, and each one persuades in a different way.",
+          "Most reps unknowingly rely on the oldest, most pressure-heavy tactics.",
+          "Staying stuck in outdated methods loses winnable deals; the biggest gains come from adopting the modern, dialogue-based approach."
+        ]
+      },
+      "tags": [
+        "principle",
+        "methodology",
+        "mindset",
+        "new-model"
+      ],
+      "trigger_signal": "coaching/onboarding context; rep defaults to older pitch-and-push patterns rather than a question-led dialogue",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "13"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Telling and pushing is the least persuasive move",
+      "summary": "Old-school selling leans on making claims, hyping features, and pushing the prospect toward yes. This is the weakest form of persuasion because people instinctively resist being pushed, so leading with statements creates the very resistance the rep is trying to avoid.",
+      "content": {
+        "points": [
+          "The more you tell, claim, and pressure, the more the prospect pushes back — resistance is a natural human reaction to being pushed.",
+          "Rattling off features and benefits and then telling someone why they have to buy is the least persuasive thing you can do.",
+          "Avoid opener-style claims such as 'this is exactly right for you,' 'I've got a great opportunity for you,' or 'we're the number-one rated provider, years running.'",
+          "Talking fast, talking loud, and trying to dominate or manipulate the prospect signals pressure and breaks trust."
+        ]
+      },
+      "tags": [
+        "principle",
+        "resistance",
+        "anti-pattern",
+        "tonality-context"
+      ],
+      "trigger_signal": "rep is making claims/telling instead of asking; low question-to-statement ratio; monologue or hype language detected",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "14"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "connecting",
+      "stage": "connect",
+      "objection_type": null,
+      "title": "Personalized intro opener for curious prospects",
+      "summary": "For inbound or curious prospects, first find out why they reached out, then briefly name two or three problems common in their world and how you help - framed as a soft check-in rather than a pitch.",
+      "content": {
+        "questions": [
+          "Before I get into it, what made you want to ask about what we do?",
+          "You know how a lot of people in [their situation] are running into [problem A], [problem B], and [problem C] lately? We help them [desired outcome].",
+          "Is that the kind of thing you were hoping to look into?"
+        ]
+      },
+      "tags": [
+        "connecting",
+        "opener",
+        "rapport"
+      ],
+      "trigger_signal": "stage=connect AND (prospect asked 'what do you do' OR call just opened with low rapport)",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "23"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "situation",
+      "stage": "discover",
+      "objection_type": null,
+      "title": "Current-situation and stakeholder questions",
+      "summary": "Open discovery by learning what the prospect currently does and how the people around the decision feel about it - tying each ask to a benefit so it never feels like a form.",
+      "content": {
+        "questions": [
+          "So I get where you're coming from - what do you do for work yourself?",
+          "Walk me through how things run for you right now.",
+          "How does [your partner / the other decision-maker] feel about you moving forward on this, so that [shared benefit they'd both care about]?"
+        ]
+      },
+      "tags": [
+        "discovery",
+        "situation",
+        "stakeholders"
+      ],
+      "trigger_signal": "stage=discover AND situation-coverage low (current setup or stakeholders still unknown)",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "18, 23"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "problem_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Explore the nature and root of the problem",
+      "summary": "After a pain point surfaces, ask pointed questions about what it looks like, where it's concentrated, how long it's persisted, and what's behind it - so the prospect starts to suspect the issue is bigger than they first assumed.",
+      "content": {
+        "questions": [
+          "When you look at [the issue], what does it actually look like day to day?",
+          "Is this happening across the board, or is it concentrated in one part of [the business/process]?",
+          "How long has this been going on for you?",
+          "What do you think is really causing it?"
+        ]
+      },
+      "tags": [
+        "problem",
+        "discovery",
+        "root-cause"
+      ],
+      "trigger_signal": "stage=frame_problem AND a pain point was mentioned but not yet explored in depth",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "17"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "consequence",
+      "stage": "consequence",
+      "objection_type": null,
+      "title": "Surface the cost of doing nothing",
+      "summary": "Get the prospect to articulate what the unresolved problem is doing to them and what it stops them from achieving, so the urgency to change comes from them rather than from you.",
+      "content": {
+        "questions": [
+          "What is this doing to [your results / your team / your growth] right now?",
+          "What is it stopping you from being able to do?",
+          "How is that affecting you personally?",
+          "If nothing changes, where does this leave you down the road?"
+        ]
+      },
+      "tags": [
+        "consequence",
+        "urgency",
+        "cost-of-inaction"
+      ],
+      "trigger_signal": "stage=consequence AND problem identified but impact/urgency not yet drawn out",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "17, 22"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "qualifying",
+      "stage": "qualify",
+      "objection_type": null,
+      "title": "Qualify resources by tying them to the outcome",
+      "summary": "Instead of asking about budget early and bluntly, ask what resources they have available framed around the end result they care about - and only raise it later, once the problems are established.",
+      "content": {
+        "questions": [
+          "What kind of resources do you have available so you can [achieve the outcome that matters to them]?",
+          "What would you need to have in place to make [that result] happen for you?"
+        ]
+      },
+      "tags": [
+        "qualifying",
+        "budget",
+        "outcome"
+      ],
+      "trigger_signal": "stage=qualify AND problems already established (do NOT surface this early in the call)",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "18"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "transition",
+      "stage": "transition",
+      "objection_type": null,
+      "title": "Open them to a new perspective",
+      "summary": "A gentle transition question that invites the prospect to reconsider an assumption and become open to your suggestion, without pushing a conclusion onto them.",
+      "content": {
+        "questions": [
+          "What if it turned out to be different from what you assumed - would you be open to looking at it another way?",
+          "Would you be open to exploring a different angle on this?"
+        ]
+      },
+      "tags": [
+        "transition",
+        "reframe",
+        "openness"
+      ],
+      "trigger_signal": "stage=transition AND prospect holds an assumption that blocks the solution",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "24"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Self-persuasion beats external pressure",
+      "summary": "People commit to conclusions they reach themselves. Use questions to create internal tension so the prospect argues their own case, instead of imposing your views, which they resist.",
+      "content": {
+        "points": [
+          "External pressure is anything you push onto the prospect - telling them what to think or believe; it creates resistance.",
+          "Internal tension comes from the prospect's own answers to your questions, and it's what actually moves them to act.",
+          "Internally-driven motivation lasts; externally-imposed motivation fades fast, so let the prospect supply the reasons to change.",
+          "When people reach a conclusion on their own they don't just accept it - they defend it, so guide them to persuade themselves and overcome their own concerns."
+        ]
+      },
+      "tags": [
+        "principle",
+        "psychology",
+        "internal-tension"
+      ],
+      "trigger_signal": "any stage - coach the rep to ask rather than assert the moment they start telling or pitching",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "15, 19, 25"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Go deeper than surface-level and anchor every question to the outcome",
+      "summary": "Generic discovery questions that every rep asks feel like an interrogation and trigger resistance. Ask fewer, deeper questions, tie each one to the result the prospect cares about, and phrase suggestions as questions rather than statements.",
+      "content": {
+        "points": [
+          "Common surface-level questions ('what's your biggest challenge?', 'if you had a magic wand what would it look like?', 'what's your budget?', 'who else is involved in the decision?', 'what are you looking for in a solution?') sound like every other salesperson and get guarded, logical answers.",
+          "Reframe budget and logistics questions so they connect to the end result the prospect wants - for example, ask what resources they can access so they can achieve the outcome that matters to them.",
+          "Turn statements into questions: instead of telling them what you offer, ask a question that lets them explore it, so they own the conclusion.",
+          "Deeper questions stir the emotion and urgency that surface-level questions never reach."
+        ]
+      },
+      "tags": [
+        "principle",
+        "discovery",
+        "technique"
+      ],
+      "trigger_signal": "stage=discover/frame_problem AND rep asked a generic/surface question or started telling instead of asking",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "17, 18, 24"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "The five-stage questioning flow and where to spend time",
+      "summary": "A full conversation moves through connect, engage/discover, transition, present, and commit - with the bulk of the time spent engaging and building rather than presenting.",
+      "content": {
+        "points": [
+          "Stage 1 - Connect: shift the focus onto the prospect and off yourself.",
+          "Stage 2 - Engage: situation questions map their current state; problem-awareness questions open the emotional door to what's wrong, why, and how it affects them; solution-awareness questions let them picture life once it's fixed; consequence questions make them weigh the cost of doing nothing; qualifying questions confirm how important changing really is.",
+          "Stage 3 - Transition: move them from exploring to being ready to hear your solution.",
+          "Stage 4 - Present: show how your specific solution addresses the problems they surfaced, checking for agreement as you go.",
+          "Stage 5 - Commit: help them take the next step toward buying.",
+          "Spend the large majority of the conversation engaging and building, a small slice presenting, and the smallest slice on commitment."
+        ]
+      },
+      "tags": [
+        "principle",
+        "framework",
+        "stages"
+      ],
+      "trigger_signal": "conversation-level - use to detect which stage the call is in and which question type should come next",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "20, 26"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "connecting",
+      "stage": "connect",
+      "objection_type": null,
+      "title": "Connection & re-engagement questions (call opening)",
+      "summary": "Low-pressure opening questions that shift the focus onto the prospect and lower their guard. Used in the first seconds of outbound, inbound, and in-person calls to re-surface why the prospect originally raised their hand.",
+      "content": {
+        "questions": [
+          "Have you already found what you're after, or are you still looking for it?",
+          "When you spoke with [name], what came up in that conversation that made you want to look into this further?",
+          "When you saw the ad about [topic], what was being said that made you want to explore it further?",
+          "Outbound opener: 'Hi [name], it's [your name] with [company] - looks like you recently replied to an ad about getting help with [outcome] and asked us to reach out. I've only got a few minutes before my next appointment, so let me start by asking: have you found what you're after, or are you still looking for [restate the outcome]?'",
+          "And do you have a clear picture of what you're actually looking for?",
+          "Inbound opener: 'Hi [name], it's [your name] with [company] - I see you booked time about possibly getting help with [their problem] so you could [restate the outcome], is that right?'",
+          "When you went through the ad where [X] was mentioned, what was it about what they said that made you want to look into this?",
+          "What were you hoping to get out of our call today, just so I understand you a little better?",
+          "In-person / field variant: 'Looks like [our rep or technician] was recently out about possibly [upgrading or changing X] - is that right?'",
+          "Besides just [the surface reason], what was it about what they mentioned that made you want to look into this further?",
+          "When you first booked, what was going on that made you want to look outside for help with this?"
+        ]
+      },
+      "tags": [
+        "connect",
+        "connecting",
+        "rapport",
+        "call-opening",
+        "engagement"
+      ],
+      "trigger_signal": "stage=connect AND rapport/engagement not yet established (call opening / first ~7-12 seconds)",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "28-34"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "connecting",
+      "stage": "connect",
+      "objection_type": null,
+      "title": "Call-framing statement (expert positioning)",
+      "summary": "A short framing statement delivered right after opening rapport. It lowers pressure and positions the rep as a neutral expert: the call is just to compare where they are now vs. what they want and see the gap, with 'possible next steps' only if it turns out to be a fit.",
+      "content": {
+        "questions": [
+          "This call is pretty low-key - it's really just for us to understand what you're using now and the results you're getting, compared to what you'd actually want, so we can see what that gap looks like. Toward the end, if it feels like it might be a fit for what you're after, we can talk about possible next steps. Would that work for you?",
+          "Just so you know, these early calls are basic - it's more for us to understand what you're doing to manage [area] now and the results from that, versus what you might really want, to see what the gap looks like. If it seems like it might be what you're looking for, we can talk about possible next steps at the end. Would that help?",
+          "Really the purpose here is to find out more about what you have and how it's working for you now, compared to what you actually need, to see what that gap might look like - and if it feels like a fit before we wrap up, we can talk about possible next steps. Would that help you?"
+        ]
+      },
+      "tags": [
+        "connect",
+        "connecting",
+        "framing",
+        "positioning",
+        "authority",
+        "agenda"
+      ],
+      "trigger_signal": "stage=connect AND opening rapport done but call purpose/agenda not yet framed",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "29-34"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": "connecting",
+      "stage": null,
+      "objection_type": null,
+      "title": "Disarm, don't alarm - the connection mindset",
+      "summary": "How to show up in the first moments of a call so the prospect stays open instead of dropping into fight-or-flight and brushing you off.",
+      "content": {
+        "points": [
+          "The first ~7-12 seconds set the tone; prospects subconsciously read your verbal and non-verbal cues and react to them.",
+          "Coming across as aggressive, needy, or attached triggers fight-or-flight and brush-offs like 'I'm too busy,' 'call me back later,' or 'we already have that.'",
+          "Coming across as neutral, calm, and detached - while asking the right questions - makes them curious and want to engage and open up.",
+          "Detach from the expectation of making the sale; refocus on whether you can actually solve a real problem for them. The moment they feel sold is the moment they shut down.",
+          "The job of connection questions is to take the focus off you, put it on the prospect, and lower their guard."
+        ]
+      },
+      "tags": [
+        "connect",
+        "connecting",
+        "mindset",
+        "principle",
+        "rapport"
+      ],
+      "trigger_signal": "stage=connect AND rep tone reads eager/needy/salesy OR prospect gives an early brush-off",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "27"
+      }
+    },
+    {
+      "kind": "tonality",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Delivery: calm, detached tone with verbal pauses and bridges",
+      "summary": "How the questions should sound so they land as unscripted and genuinely curious rather than salesy or like an interrogation.",
+      "content": {
+        "points": [
+          "Use a neutral, calm, detached tone - relaxed and curious, never eager or pushy.",
+          "Insert deliberate verbal pauses (the '...' in the scripts): slow down so you sound unscripted and genuinely interested, and so the prospect thinks more deeply and opens up emotionally - this also builds internal tension that pays off later in consequence questions.",
+          "Don't fire question after question robotically; bridge between questions with soft verbal cues like 'ahh,' 'oh, I see,' or 'that makes sense' so it feels like a real conversation.",
+          "Use those cues naturally, not mechanically or on autopilot.",
+          "Match tone to intent - for example, use a genuinely concerned tone when asking about a painful what-if."
+        ]
+      },
+      "tags": [
+        "tonality",
+        "delivery",
+        "pacing",
+        "verbal-cues",
+        "tone"
+      ],
+      "trigger_signal": "any stage AND delivery reads rushed/scripted OR rep fires questions back-to-back without acknowledging answers",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "27, 28, 38"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "situation",
+      "stage": "discover",
+      "objection_type": null,
+      "title": "Situation & fact-finding questions",
+      "summary": "Foundational discovery questions that map the prospect's current setup - what they use, how long, how much, what their process is - and start surfacing the gap between where they are and where they want to be. Includes generalized forms of the insurance and agency examples.",
+      "content": {
+        "questions": [
+          "What are you doing right now for this?",
+          "What are you currently using?",
+          "How long have you been doing it this way?",
+          "What first got you involved with that?",
+          "What does your current process look like?",
+          "How many of those do you have?",
+          "Can you walk me through what you're doing now to [achieve X]?",
+          "How are you handling [X] today?",
+          "Do you currently do A, B, or C?",
+          "What type of [X] do you have now, just so I understand?",
+          "You mentioned on your application/intake that you're running into some issues with [X] - can you tell me a bit more about that?",
+          "What are you doing now to get [X], just so I have some background?",
+          "It doesn't sound like you have [X] in place now - is there anything else that would cover [the outcome they care about] if something happened?",
+          "Who would end up being responsible for handling everything if something happened?",
+          "Would they have to cover that out of pocket, or take on a loan and pay interest to deal with it?",
+          "You mentioned you have [amount/type] - what else do you have alongside it, like other assets that would carry over?",
+          "Is what you have now permanent, or does it eventually run out?",
+          "How long have you had it?",
+          "What are you paying just to keep it?",
+          "When you first chose it, what made you go with that over the other options at the time?",
+          "Walk me through how you're bringing in new [leads/customers] right now.",
+          "What made you go that route instead of the other options out there?",
+          "What's the average [deal/order] size in your market?",
+          "How many [leads/customers] are you getting per month on average?",
+          "What about [referrals / other channels]?"
+        ]
+      },
+      "tags": [
+        "discover",
+        "situation",
+        "fact-finding",
+        "discovery",
+        "current-state"
+      ],
+      "trigger_signal": "stage=discover AND situation/fact-finding coverage low",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "35-38"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": "situation",
+      "stage": null,
+      "objection_type": null,
+      "title": "Situation questions as gap-building fact-finding",
+      "summary": "Why and how situation questions form the foundation of discovery and start setting up the gap.",
+      "content": {
+        "points": [
+          "Situation questions are the foundation of the entire conversation; use them mainly as a fact-finding strategy.",
+          "They serve two purposes: help you understand the prospect's current situation, and help the prospect discover problems they weren't aware of.",
+          "Most prospects don't actually know their real situation or problems until you help them uncover it - and if they can't see their real situation, you can't build a gap from where they are to where they want to be.",
+          "Once the current-situation foundation is set, you start building the gap toward where they want to be.",
+          "Gap-building usually starts a bit later with problem-awareness questions, but in some industries (e.g., insurance) you can begin building the gap during situation questions."
+        ]
+      },
+      "tags": [
+        "discover",
+        "situation",
+        "principle",
+        "discovery",
+        "gap"
+      ],
+      "trigger_signal": "stage=discover AND rep moved toward pitch/problem before establishing current-situation facts",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "35"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "situation",
+      "stage": "discover",
+      "objection_type": null,
+      "title": "Quantify current results and the loss gap",
+      "summary": "Situation questions that pin down the prospect's current numbers (volume, conversion, average value) and then walk them to the revenue they are losing versus a better alternative.",
+      "content": {
+        "questions": [
+          "How many listings do those ___ leads generate for you in a typical month?",
+          "And of those listings, how many actually close?",
+          "Just two?",
+          "If you're pulling in 60 leads a month, what do you think is keeping you at only three listings from them?",
+          "If those same 60 leads were far higher quality, genuinely interested buyers, how many closings a month do you think you'd get?",
+          "So around six closings a month, and what's your average commission per property?",
+          "Roughly 8k per home, right?",
+          "Grab your phone, if you're leaving about four closings a month on the table at 8k each, what does that add up to?",
+          "So that's roughly 32k a month in commissions you'd otherwise be earning with better leads, is that something you'd want to change?"
+        ]
+      },
+      "tags": [
+        "discovery",
+        "situation",
+        "metrics",
+        "gap-math"
+      ],
+      "trigger_signal": "stage=discover AND prospect has quantifiable KPIs but current volume/conversion/value not yet captured",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "039"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "situation",
+      "stage": "discover",
+      "objection_type": null,
+      "title": "Open up the current situation and prior attempts",
+      "summary": "Situation questions for a services or coaching context that surface the stated issue, what else is going on, and what the prospect has already tried and for how long.",
+      "content": {
+        "questions": [
+          "On your intake form you mentioned running into some [issue: connection, intimacy, resentment, communication, etc.] with your husband, is that right?",
+          "Could you tell me a bit more about what's going on there?",
+          "What else has been happening?",
+          "What have you been doing so far to try to work through the [issue] with him?",
+          "And how long have you been trying that?",
+          "Anything else you've been doing?",
+          "I'm curious, what led you to start doing that?"
+        ]
+      },
+      "tags": [
+        "discovery",
+        "situation",
+        "prior-attempts"
+      ],
+      "trigger_signal": "stage=discover AND situation-coverage low (issue named on intake but not yet explored)",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "040"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "problem_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Surface dissatisfaction with the status quo",
+      "summary": "Short problem-awareness stems that test whether the prospect actually likes their present situation and why their current provider or product falls short.",
+      "content": {
+        "questions": [
+          "Are you happy with what you're currently getting?",
+          "Do you like how things are going for you right now?",
+          "Is this something you'd want to change?",
+          "What makes you feel your current [provider/product] isn't quite enough?"
+        ]
+      },
+      "tags": [
+        "problem-awareness",
+        "status-quo"
+      ],
+      "trigger_signal": "stage=frame_problem AND prospect has not yet voiced any dissatisfaction",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "041"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "problem_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "The 'is everything really perfect?' reframe",
+      "summary": "Used when a prospect claims everything is fine: reflect back that it sounds perfect, invite the one thing they'd change, then probe why they'd change it and why it matters now.",
+      "content": {
+        "questions": [
+          "It honestly sounds like things are going perfectly for you, if you could change anything about your [current situation] or the results you're getting, is there anything you would?",
+          "If they admit they don't like it: I'm curious, what is it about your [current situation] that you're not happy with?",
+          "Why would you want to change that?",
+          "And why is that important to you now?"
+        ]
+      },
+      "tags": [
+        "problem-awareness",
+        "reframe",
+        "vague-prospect"
+      ],
+      "trigger_signal": "stage=frame_problem AND prospect claims satisfaction / says there's no problem",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "042"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "problem_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Get the prospect to expand",
+      "summary": "Neutral clarifiers that invite the prospect to elaborate when they give a vague or short answer, so they expand on what they don't like and why change is worthwhile.",
+      "content": {
+        "questions": [
+          "What do you mean by that?",
+          "Can I ask what you meant when you said...?",
+          "I'm not sure I fully follow, can you help me understand?",
+          "When you said ___, could you expand on that a little?",
+          "So do you mean that...?",
+          "Let me make sure I understand what you're saying..."
+        ]
+      },
+      "tags": [
+        "clarifying",
+        "expansion",
+        "cross-stage"
+      ],
+      "trigger_signal": "prospect gave a vague or short answer that needs expansion (any discovery stage)",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "042"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "problem_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Targeted drill-down on a stated problem",
+      "summary": "A specificity-focused drill-down after the prospect names a problem: how long it's gone on, its impact and in what way, what they dislike, then anchor the real reason they're looking versus the alternative.",
+      "content": {
+        "questions": [
+          "How long has that been going on?",
+          "Has that had any impact on you?",
+          "In what way, exactly?",
+          "You don't sound too sure about it, what is it you don't like?",
+          "Just so I understand the thinking behind why you'd be looking for [what they said they wanted], aside from [reason #1] and [reason #2] you already mentioned, what's the main reason you'd want [your product/service] rather than [the alternative]?"
+        ]
+      },
+      "tags": [
+        "problem-awareness",
+        "probing",
+        "specificity"
+      ],
+      "trigger_signal": "stage=frame_problem AND prospect gave a general or vague problem statement",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "043"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "problem_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Problem-awareness probe on current results (finance example)",
+      "summary": "Problem-awareness flow for a financial context: ask whether they truly like the returns they're getting, and when they hedge that it isn't perfect, reflect it back to open the gap.",
+      "content": {
+        "questions": [
+          "With the retirement strategy you have now, do you actually like the returns you've been getting?",
+          "If they say yes: What do you like about it?",
+          "So it sounds like things are going perfectly, what would you change if you could?",
+          "When they admit it's not quite perfect: Not quite perfect?"
+        ]
+      },
+      "tags": [
+        "problem-awareness",
+        "example",
+        "finance"
+      ],
+      "trigger_signal": "stage=frame_problem AND prospect is evaluating the results of a current provider",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "044"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "problem_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Problem-awareness probe on an underperforming vendor or channel (staffing example)",
+      "summary": "Problem-awareness flow when a prospect relies on a channel, vendor, or hire that underdelivers: what's causing the poor results, specific examples, frequency, personal impact, who else it affects, and how long they'll tolerate it.",
+      "content": {
+        "questions": [
+          "You've been posting roles on [job board] for the past [few years], what do you think has caused it to stop bringing you the right people?",
+          "So your internal recruiter has been on this for months, what's making you feel they're not finding the right candidates?",
+          "You've been working with [these two] for about [four years] now, do you actually like the quality and results you've been getting?",
+          "What don't you like about it?",
+          "Not delivering?",
+          "Can you give me a specific example of when that happened?",
+          "What happened when they tried to fill it with [those less-experienced people]?",
+          "How often does this happen?",
+          "How does that affect you when it happens?",
+          "What are your bosses saying to you about it?",
+          "Besides you, who else in your department does this affect right now?",
+          "What happens if this stays the way it is?",
+          "How long do you think they'll give you to get it fixed?",
+          "If they're vague: Those are fairly decent [agencies/job boards], but are you 100% satisfied with the quality and the time it's taking them to find candidates?",
+          "Not 100% satisfied?",
+          "Just so I can see the rationale, besides wanting a more skilled, dedicated employee to grow the company, what's the main reason you'd look to switch agencies rather than trying to figure it all out on your own?"
+        ]
+      },
+      "tags": [
+        "problem-awareness",
+        "example",
+        "staffing",
+        "impact"
+      ],
+      "trigger_signal": "stage=frame_problem AND prospect is using an underperforming vendor, channel, or hire",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "044-046"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "problem_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Problem-awareness probe for a home seller",
+      "summary": "Problem-awareness flow for a seller: why they want to sell or switch agents, what the previous agent missed, the price they'd be happy with, how it compares to offers, and a price-anchor scenario when expectations are unrealistic.",
+      "content": {
+        "questions": [
+          "Option A: This home is beautiful, can I ask what's making you want to sell it?",
+          "Option B: You mentioned this is due to a family matter, can I ask what's going on, just so I understand?",
+          "That realtor you used last year seems decent, so what's making you consider going with a different agent? Just so I have more context.",
+          "What do you feel they missed in marketing your home that caused it to sit for so long?",
+          "Just so I understand the thinking, besides [what they said, e.g. wanting the best possible price], what's the main reason you'd want another agent handling this rather than marketing it yourself and hoping it sells?",
+          "What sale price or range would you be happy to sell for?",
+          "If the price is reasonable: How does that compare to the offers you've received so far?",
+          "Can I ask why that price point?",
+          "If they name an unrealistically high price: Say we list at that price, but buyers start comparing it to similar homes nearby that are 5-10% lower, and it sits unsold for months, what should we do at that point?"
+        ]
+      },
+      "tags": [
+        "problem-awareness",
+        "example",
+        "real-estate",
+        "price-anchor"
+      ],
+      "trigger_signal": "stage=frame_problem AND prospect is a seller comparing agents or setting a price",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "046-047"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "solution_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Explore past attempts to reach the desired outcome",
+      "summary": "Solution-awareness openers that ask whether the prospect was already pursuing the outcome they want; branch on 'no' (what stopped them) versus 'yes' (what they did, the results, and what held them back).",
+      "content": {
+        "questions": [
+          "Before we spoke today, had you already been looking for [the outcome they said they want] so you could [get the result they described]?",
+          "If no: What's stopped you from doing that before now?",
+          "If yes: What did you try?",
+          "How did that work out?",
+          "What kind of results did you get from it?",
+          "What do you think held you back from succeeding with it?"
+        ]
+      },
+      "tags": [
+        "solution-awareness",
+        "past-attempts"
+      ],
+      "trigger_signal": "stage=frame_problem AND problem is owned but solution-awareness exploration not yet started",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "050"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Be a problem-finder, not just a problem-solver",
+      "summary": "Solving problems is table stakes that every competing rep offers; the differentiator is finding problems the prospect can't yet see, by asking the right questions at the right time.",
+      "content": {
+        "points": [
+          "Being a problem-solver alone gives no competitive edge, since rival reps solving the same problems are working the same prospects.",
+          "Solving only happens after purchase; to stand out you must find problems first, which requires the right questions, timing, and tone.",
+          "Most prospects don't even know they have a problem when they first talk to you; without surfacing it and getting them to engage emotionally, they feel no urgency to buy."
+        ]
+      },
+      "tags": [
+        "principle",
+        "problem-finding"
+      ],
+      "trigger_signal": "coaching tip surfaced when the rep jumps to pitching solutions before uncovering problems",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "041"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Purpose and dosage of problem-awareness questions",
+      "summary": "Problem-awareness questions establish whether the prospect likes their present situation and their history; ask as many as the answers require.",
+      "content": {
+        "points": [
+          "These questions answer two things: do they like their present situation, and what is their past history?",
+          "Ask as many as needed, typically three to four, sometimes more depending on the answers you receive.",
+          "They build the gap from where the prospect is now to where they want to be."
+        ]
+      },
+      "tags": [
+        "principle",
+        "problem-awareness",
+        "dosage"
+      ],
+      "trigger_signal": "surfaced during frame_problem to gauge how many problem-awareness questions remain before moving on",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "041"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Let the prospect do the math",
+      "summary": "When quantifying losses, have the prospect calculate the numbers themselves so the cost feels real and self-owned rather than imposed.",
+      "content": {
+        "points": [
+          "Have the prospect add up their own losses out loud (e.g. missed deals multiplied by average value), even asking them to use their phone.",
+          "A number the prospect computes themselves feels real and is owned by them, building urgency without pressure from you."
+        ]
+      },
+      "tags": [
+        "principle",
+        "gap-math"
+      ],
+      "trigger_signal": "surfaced when quantifiable losses are on the table and the rep should hand the calculation to the prospect",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "039"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Two parts of solution-awareness questioning",
+      "summary": "Solution-awareness questions get the prospect to emotionally own their problems and picture their future once solved, in two parts: past attempts and future state.",
+      "content": {
+        "points": [
+          "These questions get the prospect emotionally involved so they attach themselves to solving the problem, and solving it with you.",
+          "Part 1 focuses on what they've done in the past to solve the problem, often revealing they've done very little and how long it has dragged on.",
+          "Part 2 focuses on what their future looks like once the newfound problems are solved, contrasting their present state with the desired future state."
+        ]
+      },
+      "tags": [
+        "principle",
+        "solution-awareness"
+      ],
+      "trigger_signal": "surfaced when entering solution-awareness to structure past-attempts then future-state questioning",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "048"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Skipping solution-awareness triggers stall objections",
+      "summary": "Without solution-awareness questions the prospect can't picture their future improved state, feels no urgency, and defaults to stall objections; asking them well keeps the rep out of chase mode.",
+      "content": {
+        "points": [
+          "Skip these questions and the prospect never sees what their future looks like with your solution, so they feel no urgency to act now.",
+          "That leftover uncertainty triggers stall objections such as wanting to think it over, needing to keep looking, doing more research, having no budget right now, getting quotes from other companies, or needing to check with a spouse, advisor, or relative.",
+          "Asked correctly, these questions prevent the rep from rushing into 'chase mode' and make the whole conversation smoother."
+        ]
+      },
+      "tags": [
+        "principle",
+        "solution-awareness",
+        "objection-prevention"
+      ],
+      "trigger_signal": "surfaced when stall objections appear and solution-awareness coverage was low",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "049"
+      }
+    },
+    {
+      "kind": "tonality",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Curious and concerned tone when challenging",
+      "summary": "Deliver reflective and challenging questions with a genuinely curious, mildly confused or concerned tone rather than a confrontational one.",
+      "content": {
+        "points": [
+          "Reflect-back and challenge questions land only with a genuinely curious, softly confused or concerned tone, never accusatory.",
+          "Repeating a small number back (e.g. 'Only two?') works because the tone signals concern, not judgment.",
+          "Skeptical or concerned tone cues should feel like you're on the prospect's side, wanting to understand."
+        ]
+      },
+      "tags": [
+        "tonality",
+        "curiosity",
+        "concern"
+      ],
+      "trigger_signal": "surfaced when the rep is about to challenge or reflect back a prospect's answer",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "039, 045"
+      }
+    },
+    {
+      "kind": "tonality",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Use deliberate verbal pauses",
+      "summary": "The ellipses and periods scattered through the scripted questions signal intentional pauses; slow down so each question lands and pressure stays low.",
+      "content": {
+        "points": [
+          "Periods and ellipses inside a scripted question mark intentional verbal pauses, not just punctuation.",
+          "Pause between phrases so each question has time to land and the prospect doesn't feel pressured."
+        ]
+      },
+      "tags": [
+        "tonality",
+        "pacing",
+        "pauses"
+      ],
+      "trigger_signal": "surfaced when a scripted question contains ellipses signaling where to pause",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "044"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "solution_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Prior-attempt and barrier probes",
+      "summary": "Gauges what the prospect has already tried (or hasn't) to solve their problem and surfaces what held them back, so the gap between their current approach and a real fix becomes obvious.",
+      "content": {
+        "questions": [
+          "Before we connected today, had you already been looking for a way to reach that outcome, or how have you been handling it so far?",
+          "How familiar are you with how a solution like this actually works?",
+          "Would it help if I walked you through how this works for our other clients?",
+          "What's kept you from taking care of that before now?",
+          "What made you hold off on moving forward with that other provider?",
+          "What kept you from going with that approach, if you don't mind me asking?",
+          "So what options have you been looking at up to this point?",
+          "I'm curious, what stopped you from exploring other approaches before today?",
+          "What got in the way of you getting started with them?",
+          "Were other people actually seeing results from that approach?",
+          "Why do you think it worked for others but not for you?",
+          "What do you feel was holding you back from getting the results you wanted back then?",
+          "How has that approach been working out for you so far?",
+          "What kind of results did it actually get you?",
+          "What do you think held you back from succeeding with that approach?",
+          "What do you feel really stopped that provider from delivering for you?",
+          "Can I ask what made you consider that option in the first place?"
+        ]
+      },
+      "tags": [
+        "solution-awareness",
+        "frame-problem",
+        "prior-attempts",
+        "barriers"
+      ],
+      "trigger_signal": "stage=frame_problem AND prospect mentions a past or current attempt, or admits inaction; probe what they tried and what stopped them",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "51-55"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "solution_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Ideal-criteria elicitation sequence",
+      "summary": "Gets the prospect to spell out, in their own words, what they truly need from a solution before anything is presented, then pressure-tests why each criterion matters.",
+      "content": {
+        "questions": [
+          "Just so I'm sure this would genuinely be a fit, beyond the two things you've already mentioned, what else are you really looking for in a solution?",
+          "What would your ideal criteria look like?",
+          "Can I ask why that matters so much to you right now?",
+          "Is there anything else you'd want?",
+          "Let's make sure this actually works for you: aside from what you already said, what are you hoping to get out of this, and what would that look like in concrete terms?"
+        ]
+      },
+      "tags": [
+        "solution-awareness",
+        "frame-problem",
+        "criteria",
+        "buying-criteria"
+      ],
+      "trigger_signal": "stage=frame_problem AND buying criteria not yet captured; elicit the prospect's ideal criteria before presenting a solution",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "51-52, 55"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "solution_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Future-pacing and benefit visualization",
+      "summary": "Second wave of solution-awareness questions that get the prospect to picture and feel what life looks like once the problem is solved, amplifying the personal value of change.",
+      "content": {
+        "questions": [
+          "Aside from what you already told me you wanted, where do you see this helping you the most?",
+          "On a personal level, what would that mean for you?",
+          "How would things be different if you could reach that? How might your life or business look compared to now?",
+          "What kind of feeling would that give you?",
+          "How do you picture the payoff of finally getting this solved?",
+          "How do you picture yourself actually putting something like this to use?",
+          "Say we help you reach that goal, what would you be able to do that you can't do, or can't do at your best, right now?",
+          "What would being able to do those things again mean to you?",
+          "How would it be different reaching that and, more importantly, keeping it that way for good?",
+          "Can you say a bit more about what you mean by that?",
+          "If you're the one who brings in the right solution to fix this, how does that help you personally?",
+          "What would it do for you personally, say it helped you land that promotion?"
+        ]
+      },
+      "tags": [
+        "solution-awareness",
+        "frame-problem",
+        "future-pacing",
+        "benefits"
+      ],
+      "trigger_signal": "stage=frame_problem AND solution benefits not yet future-paced; after criteria are captured, get the prospect to visualize the solved state",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "54, 56-58"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "consequence",
+      "stage": "consequence",
+      "objection_type": null,
+      "title": "Cost-of-inaction and urgency questions",
+      "summary": "Gets the prospect to confront what happens if nothing changes, letting them argue their own case for why solving the problem now matters more than putting it off.",
+      "content": {
+        "questions": [
+          "What if you don't do anything about this and things only get worse from here?",
+          "Have you thought about what happens if you just leave this alone?",
+          "Have you considered the possible fallout of not dealing with this?",
+          "If nothing changes and you keep going the way you are for the next few years, what are you going to do?",
+          "What happens if you don't act and the problem keeps compounding until the better option is off the table? Where does that leave you?",
+          "On the flip side, what happens if you keep things as they are and the negative trend continues? Where does that leave your business?",
+          "And if you don't change anything and the problem keeps happening, what are the consequences for you at that point?",
+          "What happens if you hold onto the failing setup and it keeps breaking down? What would that do to what depends on it?",
+          "What happens if you leave this alone and the cost keeps climbing until, down the road, you're on a fixed income and the bill is several times what it is today? How would you cover it then?",
+          "And what happens then?",
+          "So it sounds like it's important for you to do something about this, is that fair?",
+          "Do you really want to have to go through all of that if you didn't have to?",
+          "Do you want to keep living with that situation if you didn't have to?",
+          "Do you want to be stuck absorbing those increases if you didn't have to?",
+          "Do you want to keep putting yourself through that if you didn't have to?",
+          "Are you really willing to settle for that?",
+          "And whose choice is it whether you settle or not?",
+          "Why look at solving this now instead of pushing it down the road and continuing to absorb the problem like a lot of people who don't know any better do?"
+        ]
+      },
+      "tags": [
+        "consequence",
+        "urgency",
+        "cost-of-inaction"
+      ],
+      "trigger_signal": "stage=consequence AND cost-of-inaction not yet surfaced; build urgency after solution-awareness is complete",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "59-62"
+      }
+    },
+    {
+      "kind": "tonality",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Tone and delivery for benefit and consequence questions",
+      "summary": "How to deliver the future-pacing and consequence questions so they land emotionally without sounding pushy.",
+      "content": {
+        "points": [
+          "When you reference the money or savings your solution delivers, understate it rather than hyping it up; playing the number down makes the prospect mentally magnify how meaningful it really is.",
+          "On future and benefit questions you can open light and slightly playful, then shift into a more serious, concerned tone to give the answer weight.",
+          "For consequence questions, use a challenging or concerned tone; this is the point in the conversation to be a little firmer with the prospect.",
+          "When painting a long consequence scenario, slow your delivery and pace it out step by step so the prospect feels each stage."
+        ]
+      },
+      "tags": [
+        "tonality",
+        "tone",
+        "delivery"
+      ],
+      "trigger_signal": "delivery coaching; rep tone flagged flat or pushy, especially during benefit and consequence questions",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "57, 59-62"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Empower, don't manipulate; and question sequencing",
+      "summary": "Ethical guardrail for consequence questioning plus where it falls in the overall question flow.",
+      "content": {
+        "points": [
+          "Never weaponize a prospect's problems to bully them into buying; that's manipulation and it backfires.",
+          "The goal is not to force a decision, it's to help the prospect realize on their own that they can fix their situation by choosing your solution.",
+          "Consequence questions are meant to let the prospect argue their own case for why change can't wait; they talk themselves into urgency.",
+          "Sequencing: consequence questions come after both parts of the solution-awareness and benefit questions are complete."
+        ]
+      },
+      "tags": [
+        "principle",
+        "ethics",
+        "non-manipulation",
+        "sequence"
+      ],
+      "trigger_signal": "guardrail; surfaces when consequence questioning trends manipulative or pushy, or to confirm question ordering",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "58-59"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "consequence",
+      "stage": "consequence",
+      "objection_type": null,
+      "title": "Cost-of-inaction (consequence) questions",
+      "summary": "Questions that make the prospect vividly picture the future pain and lost outcomes if they leave their current situation unchanged.",
+      "content": {
+        "questions": [
+          "If you don't move forward and things stay exactly as they are now, what does that end up costing you down the road?",
+          "Do you really want to keep missing out on that when you wouldn't have to?",
+          "Say you leave this untouched for another three, six, or twelve months of the same frustration and resentment, where does that leave you at that point?",
+          "If you decide to do nothing about it, what happens to the thing that matters most to you here?"
+        ]
+      },
+      "tags": [
+        "consequence",
+        "cost-of-inaction",
+        "future-pacing",
+        "urgency"
+      ],
+      "trigger_signal": "stage=consequence AND prospect has named a problem but is showing low urgency to fix it",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "63"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "qualifying",
+      "stage": "qualify",
+      "objection_type": null,
+      "title": "Why-now / importance qualifying questions",
+      "summary": "Questions that get the prospect to justify to themselves why acting now beats delay, by weighing how important change is against the risk of pushing it off.",
+      "content": {
+        "questions": [
+          "How important is it to you to actually turn this around and get the result you're really after, not just now but going forward?",
+          "Why is now the right time to deal with this, instead of pushing it down the road the way a lot of people do and ending up with the outcome you're trying to avoid?",
+          "What makes handling this a priority for you today rather than something you keep putting off?"
+        ]
+      },
+      "tags": [
+        "qualifying",
+        "why-now",
+        "urgency",
+        "self-selling"
+      ],
+      "trigger_signal": "stage=qualify AND prospect is weighing whether to act now versus later",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "63,73"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "transition",
+      "stage": "transition",
+      "objection_type": null,
+      "title": "Transition / bridge-to-next-step questions",
+      "summary": "A short bridge that recaps the prospect's stated goal and the emotion they expressed, then proposes the next step (present now, book a demo, or send a proposal) and asks for a soft yes.",
+      "content": {
+        "questions": [
+          "Based on everything you've shared, what we do could genuinely work for you, because you mentioned you wanted that outcome and the way things stand now has you feeling the way you described.",
+          "If it's alright with you, I can walk you through a few things we could do to solve the exact problems you mentioned. Would that be helpful?",
+          "This gave me a good picture of where you are versus where you want to be. The natural next step would be to set up a session to show you exactly how we solve these same problems for our clients. Would that help you?",
+          "Good first conversation, I understand your situation and challenges now. If it makes sense, the next step would be for us to put together a proposal with a few options for solving what you told me you wanted. Would that be helpful?"
+        ]
+      },
+      "tags": [
+        "transition",
+        "bridge",
+        "next-step",
+        "soft-close"
+      ],
+      "trigger_signal": "stage=transition AND engagement complete (problem, emotion, and desired outcome all captured)",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "64,66"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Presentation principles: present without presenting",
+      "summary": "Core rules for the solution phase: keep it brief, tie everything to problems and goals already surfaced, and customize to the individual prospect rather than dumping features.",
+      "content": {
+        "points": [
+          "Present without 'presenting' — the presentation should only be about 10 to 15 percent of the whole sale, not a long feature dump.",
+          "Only present to the specific problems, challenges, and goals the prospect raised earlier; cut anything that doesn't map to what they told you.",
+          "Tailor every presentation to the individual prospect; cookie-cutter demos signal you didn't listen and break trust.",
+          "People buy from the person they trust understands their unique situation, so keep the focus on their problems and desired results, not on your product's features.",
+          "The amount of information a prospect actually needs is far less than the salesperson assumes."
+        ]
+      },
+      "tags": [
+        "presentation",
+        "principle",
+        "customization",
+        "brevity",
+        "trust"
+      ],
+      "trigger_signal": "stage=presentation/solution AND rep is about to present or is over-presenting (long talk-time or generic pitch detected)",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "65,67,69"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Three-step present-to-the-problem formula",
+      "summary": "A repeatable presentation script: restate the problem and its consequences, show how you solve that specific piece, then translate it into what it means for them, reinforced with quantified case studies.",
+      "content": {
+        "points": [
+          "Step 1, restate the core problem: 'One of the biggest issues people come to us with is their main challenge, which leads to these consequences.'",
+          "Step 2, show the fix: 'The way we solve that for clients like you is by handling that specific part of the problem.'",
+          "Step 3, translate to meaning: 'What that means for you is the advantages and benefits you get once it's solved.'",
+          "Reinforce with a case study: a real client in a similar situation, the problem they had, what you did, and the quantified result using real numbers.",
+          "Prospects care about outcomes, not features, so always answer 'what will this do for me and how does it get me where I want to go?'"
+        ]
+      },
+      "tags": [
+        "presentation",
+        "framework",
+        "case-study",
+        "benefits",
+        "principle"
+      ],
+      "trigger_signal": "stage=presentation/solution AND rep is structuring how to present the solution",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "68"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "transition",
+      "stage": "transition",
+      "objection_type": null,
+      "title": "Checking-for-agreement (trial-close) questions",
+      "summary": "Short micro-agreement questions dropped throughout the presentation to keep the prospect engaged, confirm they're following, and build forward momentum. Aim for several across a presentation.",
+      "content": {
+        "questions": [
+          "Is that landing okay with you?",
+          "Are we tracking together on this?",
+          "How does that sit with you?",
+          "Still with me here?",
+          "Can you see how that would play out?",
+          "Do you see how that would help in your case?",
+          "Where do you see that helping you the most?",
+          "Anything you'd want me to clarify on that?",
+          "Is there anything else you'd want me to cover?"
+        ]
+      },
+      "tags": [
+        "checking-for-agreement",
+        "trial-close",
+        "engagement",
+        "presentation"
+      ],
+      "trigger_signal": "stage in presentation/solution AND rep talk-time is high with low prospect engagement (surface one to re-engage)",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "69"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "qualifying",
+      "stage": "qualify",
+      "objection_type": null,
+      "title": "Proposal and decision-criteria qualifying questions",
+      "summary": "Questions used around the proposal to gauge fit and readiness: what matters most, decision process, budget, stakeholders, competitive comparison, and gently surfacing any hesitation before advancing to commitment.",
+      "content": {
+        "questions": [
+          "We'd planned to cover these areas for you; of everything, what feels most important to spend the most time on?",
+          "What are you hoping to get out of this proposal or demo?",
+          "What's your take on what we've laid out so far?",
+          "How well does this line up with what you're trying to accomplish?",
+          "Can you walk me through how you'll make this decision?",
+          "How will the budget or funding to fix this get decided?",
+          "Is there anything here that gives you pause? (use sparingly, only if you sense hesitation)",
+          "Besides you, who else would be part of choosing which firm to go with?",
+          "I'm picking up a little hesitation about what we've covered, can you help me understand what's behind that?",
+          "What's making you hold back?",
+          "If you met with a few other companies and they all looked like they could solve the problem about as well, at similar pricing, how would you decide who to go with?",
+          "Before we lock this in, is there anything else you'd want to go over so this gets you what you told me you wanted?"
+        ]
+      },
+      "tags": [
+        "qualifying",
+        "proposal",
+        "decision-process",
+        "budget",
+        "stakeholders",
+        "objection-surfacing"
+      ],
+      "trigger_signal": "stage=qualify AND a proposal or demo is on the table and the buying process / decision criteria are still unconfirmed",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "70"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "commitment",
+      "stage": "commit",
+      "objection_type": null,
+      "title": "Commitment / closing questions",
+      "summary": "Final-stage questions that get the prospect to affirm the fit in their own words, pick an option, and agree to the next step (arrangement, payment, onboarding). Includes the 'why do you feel that way' follow-up that has them sell themselves.",
+      "content": {
+        "questions": [
+          "Does this feel like it could be the right answer for you?",
+          "What makes you feel that way, just so I understand?",
+          "Of everything we went through today, which parts do you feel will help you the most?",
+          "Do you feel this is something you can do that will actually get you where you want to go?",
+          "Which of those options are you leaning toward? (soft tone)",
+          "Which one might you be leaning toward? (softer version, only if they've stayed surface-level with you)",
+          "What's drawing you to that one?",
+          "Does this feel like what you're looking for, so the people you care about aren't left carrying the cost later?",
+          "Before we get into the funding, do you feel this could be the answer for you? And why do you feel it would?",
+          "So the funding you'd need for us to solve the problem and get you to the result you want would be around this amount; any questions on how that works?",
+          "It looks like we covered what you were after, so the next step would be to set up the arrangement; you can use one of these payment options, and from there we'd handle onboarding so you get what you wanted. Would that work, or how would you like to proceed from here?"
+        ]
+      },
+      "tags": [
+        "commitment",
+        "closing",
+        "next-step",
+        "assumptive",
+        "choice-close"
+      ],
+      "trigger_signal": "stage=commit AND presentation complete and prospect is signalling positive intent",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "71,72,73,74"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Assumptive close and smooth-paperwork technique",
+      "summary": "For smaller or assumptive sales: offer a limited choice, then move into the application by calmly narrating each step, framing data requests as qualification, and signposting progress to reduce friction.",
+      "content": {
+        "points": [
+          "On lower-priced offers you can be more assumptive: present a small set of options and ask which they lean toward, rather than asking whether they want to move forward at all.",
+          "When you move into paperwork or qualification, narrate it smoothly and low-key ('let me just pull this up... is that correct?') so it feels like a natural continuation, not a hard commitment step.",
+          "Frame sensitive data requests as part of qualifying them (for example an eligibility or records check) so the ask feels logical and non-threatening.",
+          "Signpost progress through any application ('we're about halfway, then we'll finish up') and invite questions ('stop me anytime') to keep the prospect comfortable."
+        ]
+      },
+      "tags": [
+        "assumptive-close",
+        "onboarding",
+        "paperwork",
+        "friction-reduction",
+        "principle"
+      ],
+      "trigger_signal": "stage=commit AND a low-price / assumptive deal is moving into paperwork or onboarding",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "74"
+      }
+    },
+    {
+      "kind": "tonality",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Tonality cues for consequence, choice, and concern questions",
+      "summary": "How to deliver the heavier questions: slow pace on consequence questions, a soft and curious tone on choice questions, and a sincere concerned tone when probing hesitation.",
+      "content": {
+        "points": [
+          "Slow your pace and soften your voice on high-stakes consequence questions so they feel reflective rather than pushy.",
+          "Use a soft, curious tone when asking which option they lean toward; you're helping them decide, not pressuring them.",
+          "Use a genuinely concerned tone, never accusatory, when surfacing hesitation ('I'm sensing some hesitation, what's behind that?').",
+          "Let the heavier questions trail off slightly so the prospect fills the silence and does the talking."
+        ]
+      },
+      "tags": [
+        "tonality",
+        "pace",
+        "soft-tone",
+        "concerned-tone"
+      ],
+      "trigger_signal": "any stage: pair with consequence, choice, or objection-surfacing questions to guide delivery",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "63,70,74"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "commitment",
+      "stage": "commit",
+      "objection_type": null,
+      "title": "Soft-commitment close & payment logistics",
+      "summary": "Gains a soft 'yes' by asking whether the solution feels like the right fit, reinforces it with a 'why', then frames the concrete next step and collects payment/billing details. Works across industries (insurance, real estate, in-home demos).",
+      "content": {
+        "questions": [
+          "Does it feel like this is the right way to solve what you've been dealing with?",
+          "After everything we've covered, does this feel like the answer for you and the people it affects?",
+          "What is it that makes you feel that way?",
+          "Setting the cost aside for a moment, what makes you feel this is the right fit?",
+          "Which parts of this do you think will really help you get to the outcome you said matters most?",
+          "It sounds like we've covered what you were looking for, so the natural next step would just be getting the paperwork and scheduling started. Does that sound appropriate?",
+          "How would you like to move forward from here?",
+          "Once you're approved, which bank would you like the billing set up with?",
+          "Whenever you're ready, pull up your banking app or a check so we can confirm the routing number, just let me know.",
+          "And what's the account number I should put down?",
+          "For payment, would a credit or debit card, an invoice, or a wire transfer work best for you?"
+        ]
+      },
+      "tags": [
+        "commit",
+        "commitment",
+        "close",
+        "next-step",
+        "payment",
+        "money-concern"
+      ],
+      "trigger_signal": "stage=commit AND prospect has verbally agreed on value; surface when the rep needs to ask for the decision, frame the next step, or collect payment/billing details",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "75-77"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "connecting",
+      "stage": "connect",
+      "objection_type": null,
+      "title": "Cold-call opening & gatekeeper navigation",
+      "summary": "Openers for outbound cold calls: disarm with a soft 'can you help me' ask, find the right person by referencing overlooked gaps that cause a known problem, work the gatekeeper, and gracefully fall back to a voicemail transfer.",
+      "content": {
+        "questions": [
+          "Hi, it's just me calling, any chance you could help me out for a second?",
+          "Honestly I'm not sure who the right person is. I'm trying to reach whoever looks after this area, since gaps there can quietly cause the problem I mentioned. Who would that be?",
+          "Is the person who handles this around? My understanding is they oversee that process, where overlooked gaps can lead to the problem, are they available?",
+          "Would it make sense to put me through to their voicemail so I can leave a quick note and they can call back if they'd like?",
+          "Your team pointed me your way as the person who oversees this process, where gaps can end up forcing the problem to keep happening. Are you the right person to talk to about that?",
+          "Hi, is the person I'm after available?"
+        ]
+      },
+      "tags": [
+        "connect",
+        "connecting",
+        "cold-call",
+        "outbound",
+        "gatekeeper",
+        "opener"
+      ],
+      "trigger_signal": "channel=outbound cold-call AND (gatekeeper or wrong-contact detected OR call just connected with an unknown contact) and no rapport established yet",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "79,81,82"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": "connecting",
+      "stage": null,
+      "objection_type": null,
+      "title": "Personalized 30-second intro framework",
+      "summary": "A reusable structure for a short self-introduction used on cold calls or when someone asks what you do. Names common frustrations, states the opposite outcomes you deliver, and ends with a soft check-in to spark curiosity rather than pitch.",
+      "content": {
+        "points": [
+          "Place a short introduction before the connection stage on cold calls; its only job is to earn a moment of attention, not to sell.",
+          "Keep a brief 'what I do' commercial ready for when someone asks who you are or what the call is about.",
+          "Structure it as: name a few frustrations that people or companies like them commonly run into, then say you help people like that reach the opposite results.",
+          "Close with a soft check-in, for example 'does any of that resonate, or is that something you're running into?', to invite a conversation instead of pushing.",
+          "The goal is curiosity, not the sale; if the prospect gets aggressive, briefly apologize and pivot straight into the same short intro."
+        ]
+      },
+      "tags": [
+        "connect",
+        "connecting",
+        "cold-call",
+        "intro",
+        "principle",
+        "framework"
+      ],
+      "trigger_signal": "call type=cold OR prospect asks 'what do you do / who are you' AND no rapport established yet",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "79-80"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "connecting",
+      "stage": "connect",
+      "objection_type": null,
+      "title": "Pre-meeting rapport & pre-situation chit-chat (B2B)",
+      "summary": "Light, casual questions for the pre-sales window (e.g. waiting for others to join a meeting). They build rapport while quietly revealing the prospect's personality, how they feel about the company, and its culture.",
+      "content": {
+        "questions": [
+          "How long have you been with the company, and how has your role changed since you started?",
+          "How have your responsibilities shifted since you came on? (curious tone)",
+          "What do you enjoy about working here, and is there anything you're not a fan of? (light, playful tone)",
+          "If you asked your customers, what would they say is the main reason they choose you over the alternatives, and why do you think that is?",
+          "What would your team say keeps them working here rather than jumping to a competitor?"
+        ]
+      },
+      "tags": [
+        "connect",
+        "connecting",
+        "rapport",
+        "pre-meeting",
+        "small-talk",
+        "b2b"
+      ],
+      "trigger_signal": "meeting just started AND participants still assembling (pre-agenda small-talk window); B2B context",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "83"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "connecting",
+      "stage": "connect",
+      "objection_type": null,
+      "title": "Boardroom meeting openers (agenda & authority)",
+      "summary": "Opening questions to start a scheduled meeting that raise the rep's status and position them as the trusted authority while surfacing the prospect's real agenda and motivation for meeting.",
+      "content": {
+        "questions": [
+          "From where you sit, what would make this time together genuinely worthwhile?",
+          "What would you most like to cover today so we can keep the focus on you and what you're after?",
+          "What prompted you to set up this meeting, just so I have the full context? (curious, serious tone)",
+          "What led you to decide it might be worth bringing in outside help?",
+          "What were you hoping to walk away with from today, if anything?",
+          "What made you decide to bring me in, so I can see whether we can actually help?",
+          "What are the most important things you'd like us to get through today, and why those specifically, just so I understand? (curious tone)"
+        ]
+      },
+      "tags": [
+        "connect",
+        "connecting",
+        "opening",
+        "boardroom",
+        "agenda",
+        "status",
+        "transition"
+      ],
+      "trigger_signal": "scheduled meeting start AND agenda not yet set; rep needs a status-raising opener that surfaces the prospect's motivation",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "85"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "situation",
+      "stage": "discover",
+      "objection_type": null,
+      "title": "Past & present situation questions (B2B)",
+      "summary": "Questions that explore the prospect's history and current state, likes/dislikes about their current vendor, past hurdles, recent changes, market trends, and hindsight, to understand behaviors, priorities, and how they got to where they are.",
+      "content": {
+        "questions": [
+          "What are some things you genuinely like about the vendor you're using now, and what don't you love about them?",
+          "What hurdles have you run into in the past trying to solve that problem?",
+          "Can you walk me through a recent time you had to deal with that problem?",
+          "What's different about the company now compared to when you first started here, if anything?",
+          "What changes has your department been through lately, and how have those affected you?",
+          "What did the company expect of you when you started, and how have those expectations shifted over time?",
+          "What's been the hardest thing you've had to handle recently? Tell me more about that. (concerned tone)",
+          "What trends have you been noticing in your market lately?",
+          "What are you doing to adapt to that trend so you don't get left behind?",
+          "If you could do it all over again with that issue, what would you handle differently?"
+        ]
+      },
+      "tags": [
+        "discover",
+        "situation",
+        "history",
+        "current-state",
+        "b2b"
+      ],
+      "trigger_signal": "stage=discover AND situation coverage low (past and current-state history not yet gathered)",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "84"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "problem_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Expanded problem-awareness questions",
+      "summary": "A broad bank of problem-awareness questions that help the prospect articulate, prioritize, and quantify their problems, its causes, barriers, spread, expectations gap, desired results, and cost/impact on the business.",
+      "content": {
+        "questions": [
+          "You've been with your current vendor a while now, so it can't all be bad, what do you like about how they've handled things? And what would you change if it were up to you?",
+          "Would you be open to sharing the top two challenges you're wrestling with right now? Of those two, which one matters most to fix?",
+          "Why is solving that so important to you right now, specifically?",
+          "How long has this been an issue?",
+          "What do you think is actually causing it? Tell me more.",
+          "What's been getting in the way of you fixing it?",
+          "Who else on the team is running into this same thing?",
+          "What were you expecting when you signed with your current provider, and what results are you actually getting?",
+          "If you could get any result you wanted, what would that look like, and why that?",
+          "What would you change about your current situation if you had the chance?",
+          "Why change that part in particular?",
+          "What's the single biggest thing standing between you and solving the problem right now?",
+          "Which areas would you most want to improve if you could?",
+          "How much do you feel this is costing you in lost revenue or sales?",
+          "What are your biggest priorities this year when it comes to the area we're discussing?",
+          "What are your top priorities this year around something like data security? (industry-specific variant)",
+          "If you could change one thing about your current provider, what would it be, and why does that matter to you?",
+          "How is this problem showing up in your sales, production, profitability, or scheduling?",
+          "In what way is it hitting your bottom line?",
+          "When these problems come up, what does it actually cost you to fix them each time?"
+        ]
+      },
+      "tags": [
+        "frame_problem",
+        "problem-awareness",
+        "pain",
+        "discovery",
+        "cost-of-inaction"
+      ],
+      "trigger_signal": "stage=frame_problem AND the problem has not yet been clearly articulated, prioritized, or quantified by the prospect",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "86"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "consequence",
+      "stage": "consequence",
+      "objection_type": null,
+      "title": "Quantifying the cost of the unsolved problem",
+      "summary": "Continuation of a consequence set that puts hard numbers on what the unresolved problem is costing (lost clients, wasted hours, staffing and turnover), building urgency to act. Mostly B2B.",
+      "content": {
+        "questions": [
+          "Has this situation already cost you any clients? If so, what was that lost business worth to you in dollars?",
+          "Where else in the business might these issues be quietly spilling over?",
+          "Roughly how many hours a day go into wrestling with this? If it were gone, what would you do instead, and what would that be worth to you?",
+          "How many of your people are tied up dealing with this, and what does it cost you to train and keep them on it?",
+          "Have you lost anyone from the team because of this? Is that something you'd want to turn around, and why does fixing it matter now rather than later?",
+          "What does it run you to recruit and onboard a replacement, and how long before a new hire is genuinely up to speed?",
+          "What is all that lost time costing you? Which parts of the business feel it most, and in what way has it hit you personally?"
+        ]
+      },
+      "tags": [
+        "consequence",
+        "cost-of-inaction",
+        "urgency",
+        "b2b"
+      ],
+      "trigger_signal": "stage=consequence AND a concrete problem is named AND prospect has not yet quantified its cost",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "87"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "solution_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Surfacing gaps with the current vendor",
+      "summary": "Questions that expose the gap between the prospect's ideal outcome and what their existing provider actually delivers, gently seeding doubt about whether the current relationship is as good as they assume.",
+      "content": {
+        "questions": [
+          "How does your ideal setup stack up against what this current vendor actually delivers?",
+          "You've already hit some solid milestones, so where do you want to take things next in terms of future improvements?",
+          "When you first picked your current provider, what were you optimizing for? Have any of those priorities shifted given where you are today?",
+          "If you had a free hand, what would you change?",
+          "So it sounds like everything with your current setup is completely perfect, nothing at all you'd change? (say it with deliberate emphasis so they push back)",
+          "In what areas could your current provider honestly be doing better for you than they are now?"
+        ]
+      },
+      "tags": [
+        "solution_awareness",
+        "current-vendor",
+        "gap",
+        "switching"
+      ],
+      "trigger_signal": "stage=frame_problem AND prospect references an incumbent vendor/solution they currently use",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "88"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "situation",
+      "stage": "discover",
+      "objection_type": null,
+      "title": "Discovery about the prospect's own customers (B2B)",
+      "summary": "B2B discovery into the prospect's relationship with their own customers (who they are, how they're retained, where they're vulnerable) which quietly primes the fear of losing that customer base. Use only with prospects who have heavy external-customer contact, and adapt to their industry.",
+      "content": {
+        "questions": [
+          "Who are the customers that matter most to your business, and what does a typical one look like for you?",
+          "How do your clients judge whether working with you is paying off, and what results do they expect so they stay rather than leave?",
+          "Have your clients' expectations shifted over the past few years? In what way, and how do you see them changing next?",
+          "What are you actively doing right now to keep these clients from drifting to someone else?",
+          "In your clients' eyes, what makes them choose you over the alternatives?",
+          "When a prospect picks a competitor instead of you, what's usually behind that? How has losing those deals affected you, and is that something you'd like to change?",
+          "What would you call your company's biggest strengths, and where are the weak spots? How long have those been there, and what happens if they go unaddressed and you start losing clients over them?"
+        ]
+      },
+      "tags": [
+        "situation",
+        "discovery",
+        "b2b",
+        "external-customers",
+        "retention",
+        "consequence-priming"
+      ],
+      "trigger_signal": "stage=discover AND prospect is B2B with significant end-customer contact",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "89"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Expanding and precision-probing method",
+      "summary": "The core technique for getting prospects to say more, reach the root cause, and emotionally re-experience their problem so urgency builds.",
+      "content": {
+        "points": [
+          "The point of expanding probes is to move the prospect past surface answers to the root cause and the emotion of the problem, not just the facts.",
+          "When they mention a problem, invite them to elaborate (tell me more about that, give me a specific example), then repeat their own words back to them.",
+          "Follow an emotional answer with a soft 'in what way, though?' to draw out the feeling underneath it.",
+          "Lead-in phrases open people up: walk me through, describe for me, unpack or unwrap that, explain that in more detail so I understand.",
+          "If the prospect never emotionally connects to the pain, they feel no urgency to change, and no urgency means no purchase."
+        ]
+      },
+      "tags": [
+        "principle",
+        "probing",
+        "pain",
+        "urgency",
+        "technique"
+      ],
+      "trigger_signal": "any discovery or problem-framing moment where the prospect gives a short, vague, or surface-level answer",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "90-94"
+      }
+    },
+    {
+      "kind": "tonality",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Tone for probing and pain questions",
+      "summary": "Probing, pain, and decision questions should be delivered with a curious, softly-concerned, unhurried tone rather than an interrogating one.",
+      "content": {
+        "points": [
+          "Deliver probing questions with genuine curiosity, not the feel of an interrogation.",
+          "When touching on pain, layer in a soft, concerned tone so the prospect feels understood rather than pressured.",
+          "Slow down and verbally pace the heavier questions so they actually land."
+        ]
+      },
+      "tags": [
+        "tonality",
+        "curious",
+        "concerned",
+        "pacing"
+      ],
+      "trigger_signal": "delivering any probing, pain, or decision-making question",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "90-91, 97"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "problem_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Expanding and clarifying probes",
+      "summary": "Probes that push the prospect past surface answers toward the root cause and the emotional impact of a problem they've already raised.",
+      "content": {
+        "questions": [
+          "Tell me a bit more about that.",
+          "Can you give me a concrete example so I really understand what you mean?",
+          "How exactly do you mean?",
+          "What do you think is causing that?",
+          "What's behind that happening?",
+          "What's prompting you to look at changing this now?",
+          "What first led you down this path in the first place?",
+          "Why is that important to you right now?",
+          "Can I ask why?",
+          "Could you be a little more specific, maybe walk me through an example?",
+          "What do you mean by that exactly?",
+          "What's really motivating your decision to look at this?",
+          "What's driving the need to change your situation at this point?",
+          "Can you walk me through the steps that brought you to this conclusion?",
+          "How long has this been going on for, and has it affected you? In what way?",
+          "Of all these problems, which one is hitting you the hardest, and why that one?",
+          "Describe for me what you meant by that.",
+          "Can you unpack that a little more for me?",
+          "Can you unwrap that so I understand it better?",
+          "Explain that in a bit more detail so I'm clear on it.",
+          "You said you've been trying to get this going for a while, what hasn't worked so far?",
+          "Can you give me an example of the kind of problems you've been running into with them?",
+          "When you say it's been challenging, what do you mean by that exactly?"
+        ]
+      },
+      "tags": [
+        "problem_awareness",
+        "probing",
+        "root-cause",
+        "pain",
+        "clarify"
+      ],
+      "trigger_signal": "stage=frame_problem AND prospect has named a problem but stayed surface-level or vague",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "90-94"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "solution_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Value-of-solving and desired-outcome probes",
+      "summary": "Forward-looking probes that get the prospect to articulate what solving the problem is worth and what they want in a solution, building desire for a fix.",
+      "content": {
+        "questions": [
+          "What would actually solving this mean for you?",
+          "If it were fixed, what would that do for you, and in what way?",
+          "For the company, what's the real payoff in getting this implemented?",
+          "If you were able to turn this around, what would that mean for you personally?",
+          "And how would that make you feel?",
+          "What are you really hoping to get out of us potentially working together?",
+          "What would getting this handled do for you personally, and in what way?",
+          "Describe for me what you're hoping to find, just so I can see whether I can actually help.",
+          "When you think about choosing a company to work with, what matters most to you?"
+        ]
+      },
+      "tags": [
+        "solution_awareness",
+        "desired-outcome",
+        "value",
+        "motivation"
+      ],
+      "trigger_signal": "stage=frame_problem AND the problem is acknowledged; shifting the prospect toward the value of solving it",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "90-93"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "consequence",
+      "stage": "consequence",
+      "objection_type": null,
+      "title": "Personal cost of not solving it",
+      "summary": "A single sharp probe that makes the prospect confront the personal cost of leaving the problem unsolved and whether they're willing to settle for it.",
+      "content": {
+        "questions": [
+          "If you weren't able to solve this [restate their actual problem], what would that end up doing to you personally, and are you honestly willing to just settle for that?"
+        ]
+      },
+      "tags": [
+        "consequence",
+        "cost-of-inaction",
+        "personal-impact"
+      ],
+      "trigger_signal": "stage=consequence AND prospect is minimizing the problem or hesitating to act",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "93"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "qualifying",
+      "stage": "qualify",
+      "objection_type": null,
+      "title": "Decision-makers, decision process, and funding",
+      "summary": "Qualifying questions for uncovering how a company actually decides, who the other decision-makers and influencers are, and how funding gets approved, so no hidden stakeholder can quietly kill the deal. Mainly B2B; always restate the prospect's real problem instead of the generic word 'problem'.",
+      "content": {
+        "questions": [
+          "Walk me through how your company actually makes a decision when it comes to solving a challenge like this one.",
+          "Walk me through the criteria you'd use to make a call on something like this.",
+          "When you choose a company to help with this, what criteria are you weighing?",
+          "You mentioned funds are set aside to fix this, can I ask how that figure was arrived at?",
+          "You said you've got roughly a certain amount earmarked for this, how was that number decided, just so I understand?",
+          "Do you feel the funding you've been allocated is genuinely enough to solve this?",
+          "How will the funding for this project actually get decided?",
+          "What obstacles might you run into when trying to get financial sign-off to fix this? (usually near the end of the first discovery call)",
+          "Besides yourself, who else would be involved in approving the funding to get this solved?",
+          "How would you go about getting financial approval from the company to solve the issue we've talked about?",
+          "What are you hoping those other decision-makers will say when you take this to them?",
+          "Suppose you meet with the other companies and they all tick your boxes, solve the same problems, and price out about the same, how would you decide who to go with then?"
+        ]
+      },
+      "tags": [
+        "qualifying",
+        "decision-makers",
+        "authority",
+        "funding",
+        "b2b"
+      ],
+      "trigger_signal": "stage=qualify AND B2B AND decision process, other stakeholders, or funding not yet confirmed",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "90-91, 95-97"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "qualifying",
+      "stage": "qualify",
+      "objection_type": "price",
+      "title": "Reframing cost priority to results",
+      "summary": "A reframe used when a prospect makes price their top priority, shifting them from cost-based to results-based thinking so you avoid being commoditized. Works for both B2B and B2C.",
+      "content": {
+        "questions": [
+          "You said cost is the biggest thing for you, how does price compare to actually getting the result and having this problem genuinely solved, though?"
+        ]
+      },
+      "tags": [
+        "qualifying",
+        "price",
+        "reframe",
+        "results-vs-cost",
+        "commoditization"
+      ],
+      "trigger_signal": "prospect signals that price or cost is their top decision criterion",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "98"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Decision-making and funding method",
+      "summary": "How to navigate a company's buying decision: involve every influencer, frame spend as investment, and reframe price toward results.",
+      "content": {
+        "points": [
+          "A typical B2B deal has several influencers (often six or seven); talk to only one or two and the rest can quietly kill it, so identify and involve them all.",
+          "Even an enthusiastic CEO or CFO isn't enough; people who can't say yes can still say no, so surface everyone who could influence the outcome.",
+          "Avoid the word 'budget', which signals capped, limited thinking; use 'funds' or 'funding' to frame the spend as an investment in growth.",
+          "When price becomes the focus, steer the prospect toward results-based thinking (what solving it is worth) rather than cost-based thinking, so you're not compared on price alone.",
+          "In every decision-making question, repeat back the prospect's actual problem instead of the generic word 'problem'."
+        ]
+      },
+      "tags": [
+        "principle",
+        "decision-makers",
+        "funding",
+        "reframe",
+        "b2b"
+      ],
+      "trigger_signal": "stage=qualify; preparing to navigate authority and funding on a B2B deal",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "95-98"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": "solution_awareness",
+      "stage": null,
+      "objection_type": null,
+      "title": "How solution-awareness questions work (the two halves)",
+      "summary": "Explains the technique of getting prospects to attach emotionally to solving their problem by exploring their own past attempts and their desired future state, plus how the same questions open up decision-making politics and dissatisfaction with an incumbent.",
+      "content": {
+        "points": [
+          "Solution-awareness questions pull the prospect into their own ideas so they emotionally commit to solving the problem, and to solving it with you.",
+          "Half one looks backward: what they have tried before, which usually reveals they have done little and have carried the issue a long time, and what their ideal solution looks like so you know how to position yours.",
+          "Half two looks forward: what their life or business looks like once the newly surfaced problems are solved (their objective state).",
+          "For decision-makers and B2B deals these questions expose the decision-making process, surface competing internal interests, reveal who will resist, and map the company politics so you can arm an internal champion.",
+          "For displacing an incumbent, they open the prospect to options they never considered and surface dissatisfaction with their current provider, positioning you as the trusted authority."
+        ]
+      },
+      "tags": [
+        "solution_awareness",
+        "principle",
+        "framing",
+        "decision_makers"
+      ],
+      "trigger_signal": "stage=frame_problem AND rep needs coaching on how to run solution-awareness questions before asking them",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "99"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "solution_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Solution-awareness question bank (generic)",
+      "summary": "A broad set of solution-awareness questions that get the prospect to define goals and ideal criteria, review what they have already tried, quantify the cost of inaction, and picture the personal and business payoff of solving the problem.",
+      "content": {
+        "questions": [
+          "In the next three to six months, what are you most hoping to achieve in [area]?",
+          "And how does that line up with where things actually stand for you today? (curious, lightly skeptical tone)",
+          "Walk me through the qualities you are really looking for in a provider.",
+          "How does that compare with what your boss or department heads would want in a provider?",
+          "In your view, what sets your company apart from your competitors?",
+          "What makes you feel that is the case?",
+          "Which matters more to the business right now, trimming costs or growing sales and revenue?",
+          "Could you share your longer-term goals for [area], how they stack up against where you are today, and what has been stopping you from reaching them? (skeptical tone)",
+          "What have you already tried here in the past, what helped, and what fell flat?",
+          "How much would you estimate this has cost you so far, and in what ways?",
+          "Have you more or less given up on fixing this? (concerned tone)",
+          "Why does getting this handled now matter to you?",
+          "Have you given up on solving [the issue], and if so, why?",
+          "How long has this been going on across the organization?",
+          "How long has [area] been a problem for you?",
+          "What has kept you from fixing this before, and why look at it now instead of putting it off and risking [the consequences they said they want to avoid]?",
+          "What would you guess this is costing you in lost sales each year?",
+          "And in lost revenue each year, what do you think the number is?",
+          "You have already hit some big milestones, so where do you want to take things from here? (light skeptical tone, as if everything already looks perfect)",
+          "What would you say your top priorities are for this year in [area]?",
+          "Before we spoke, what were you doing about [the result they said they wanted], or were you already out looking for it?",
+          "If they have done nothing: so what has held you back from taking any action on it? (skeptical, concerned tone)",
+          "Just so I know whether we would even be a fit, besides [X] and [Y] that you mentioned, what else are you looking for in a solution?",
+          "What would your ideal criteria be for solving [the problem]?",
+          "On a personal level, what would solving [their problem] actually do for you, would it?",
+          "How serious is this issue for you, really? (lean in, concerned tone)",
+          "What were you hoping I might be able to do for you? (curious, concerned tone)",
+          "How do you picture this working out best for you?",
+          "How long has this been on your mind?",
+          "How do you feel about that?",
+          "Besides you, who else in the company sees this as a major problem?",
+          "What have you done so far to try to fix this?",
+          "If we could remove this problem, the one you said is costing the business over a million a year in lost revenue, what would that change for the company, and in what way?",
+          "How would making this change actually help you, and what would it mean for you personally?",
+          "If you brought your leadership a solution that could save the company a few million a year, what would that mean for you personally, and what would they say?",
+          "If those changes happened and solved this for the company, how would that help you most, and in what way?",
+          "If this problem were solved, what would it free you up to do, and how would that make you feel?",
+          "If you pulled off [their objective], what would that do for you personally, and in what way?",
+          "If you helped solve this, how would it benefit the company, what would it do for your department, and for you personally?"
+        ]
+      },
+      "tags": [
+        "solution_awareness",
+        "discovery",
+        "future_state",
+        "cost_of_inaction"
+      ],
+      "trigger_signal": "stage=frame_problem AND category=solution_awareness AND solution-awareness coverage low",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "100-101"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "solution_awareness",
+      "stage": "frame_problem",
+      "objection_type": null,
+      "title": "Why-now vs. why-delay disruption question",
+      "summary": "A pattern that plugs in the negative consequences a prospect wants to avoid and frames the choice as act now versus delay, so the prospect ends up defending their own reason to change.",
+      "content": {
+        "questions": [
+          "For you specifically, why look at fixing [X] now rather than kicking it down the road the way companies that end up struggling tend to?",
+          "Why act on [X] now instead of delaying and staying stuck with [the pain they want to avoid], like the many people who do not realize there is a better option?"
+        ]
+      },
+      "tags": [
+        "solution_awareness",
+        "consequence",
+        "status_quo",
+        "disruption"
+      ],
+      "trigger_signal": "stage=frame_problem AND prospect showing status-quo or complacency signals",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "102"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "transition",
+      "stage": "transition",
+      "objection_type": "brush_off",
+      "title": "Re-opening a stalling or dismissive prospect",
+      "summary": "Permission plus a gentle challenge to re-engage a prospect who is deflecting or brushing you off; the skeptical-tone versions make them re-justify why the meeting is even happening. Use only with a firm command of tone.",
+      "content": {
+        "questions": [
+          "Mind if I ask you something?",
+          "How could I point out that this might be a mistake for you, without you taking it the wrong way?",
+          "Then why am I even here? (skeptical tone, advanced use only)",
+          "Why did you want to meet in the first place? (skeptical tone, advanced use only)"
+        ]
+      },
+      "tags": [
+        "transition",
+        "objection",
+        "brush_off",
+        "re_engagement",
+        "tonality"
+      ],
+      "trigger_signal": "prospect deflecting, stalling, or brushing off AND rep needs to re-open the conversation",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "102"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "consequence",
+      "stage": "consequence",
+      "objection_type": null,
+      "title": "Consequence questions (expanded)",
+      "summary": "Questions that make the prospect quantify and feel the cost of doing nothing, in lost profit, revenue, and unmet goals, and confront whether they can afford that risk.",
+      "content": {
+        "questions": [
+          "If you choose not to tackle this now, what will it cost you this year in lost profit, revenue, or sales?",
+          "If this goes unsolved, what impact does it have on the business, and can you really afford that risk? (lean in, empathetic and concerned tone)",
+          "What is the impact if the company does nothing about [the problem] and just stays with your current provider?",
+          "If you do not deal with [the problem], what would it cost you in lost revenue this year? (if they are unsure: if you really thought it through, what would it cost you?)",
+          "What is the potential impact on the business, and on you, if nothing changes? Are you okay settling for that, and can the company still hit [their goals] without solving this?",
+          "If you do nothing about this, what kinds of effects will that have on the business?"
+        ]
+      },
+      "tags": [
+        "consequence",
+        "cost_of_inaction",
+        "risk"
+      ],
+      "trigger_signal": "stage=consequence AND consequence coverage low",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "103"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "qualifying",
+      "stage": "qualify",
+      "objection_type": null,
+      "title": "Funding and budget qualifying questions",
+      "summary": "Questions that surface the prospect's funding process, budget range, approval obstacles, and other decision-makers, plus scripts for when the prospect claims they have no money, guiding them to find the funds themselves.",
+      "content": {
+        "questions": [
+          "Could you walk me through how you fund or budget for solving problems like this?",
+          "Just so I know how I can help, what budget or funding range are you working within?",
+          "How will the funding for this project actually get decided?",
+          "What roadblocks might come up when you go to get financial sign-off to solve [the problem]?",
+          "Besides you, who else would need to approve the funding to fix this?",
+          "How would you go about getting the company to approve funding for [the issue] you described?",
+          "What kind of budget are you able to put toward this so you can get started on [what they wanted]?",
+          "If you did have the funding in place, is this something that would work for you?",
+          "I get that budget might be tight based on what you shared. How do you think you could work that out so you can free up the funds to [what they wanted]?",
+          "What other avenues could you tap to find the funds so you can [what they wanted]?",
+          "Can I offer a suggestion? I can walk you through the routes other clients used to free up funds when they did not have them on hand, and you can see which are open to you. Which of those could work for you, so you can solve [the problem]?"
+        ]
+      },
+      "tags": [
+        "qualifying",
+        "budget",
+        "funding",
+        "decision_makers"
+      ],
+      "trigger_signal": "stage=qualify AND budget/funding not yet established OR prospect raises a money concern",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "104-105"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": "commitment",
+      "stage": null,
+      "objection_type": null,
+      "title": "Proposal process rules and three-option structure",
+      "summary": "Rules for proposals: never send one before understanding the problem and budget, restate the prospect's problems and objectives to revive pain and desired outcomes, keep value at least 10x price, always give three price tiers, and make the proposal a signable agreement.",
+      "content": {
+        "points": [
+          "Never send a proposal before you understand the prospect's problems and whether they have the budget to solve them, no exceptions, even if they ask for just pricing early.",
+          "A proposal should restate the two or three problems and two or three objectives the prospect shared, to revive the pain and the desired outcome and prove you understood their situation.",
+          "Aim for the value of solving their problems to be at least ten times the price of your offer, so the cost feels small next to the payoff.",
+          "Offer three options every time: a lower-priced but still profitable basic tier, a middle core offering where most prospects land, and a premium high-priced tier. The premium anchor makes the middle option feel like a bargain and lifts both close rate and deal size.",
+          "Make the proposal double as a simple signable agreement so buying is one easy step. Every extra step and delay raises the odds the deal falls apart; treat the signature as a micro-commitment that leads to the full commitment."
+        ]
+      },
+      "tags": [
+        "proposal",
+        "commitment",
+        "pricing",
+        "anchoring",
+        "principle"
+      ],
+      "trigger_signal": "stage=commit AND rep is about to build or send a proposal or pricing",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "106-107"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "transition",
+      "stage": "transition",
+      "objection_type": "premature_proposal",
+      "title": "Deflecting a premature proposal request",
+      "summary": "A response for when a prospect asks for a proposal or pricing before discovery is done, redirecting them back to a few situation questions so anything you send is actually useful.",
+      "content": {
+        "questions": [
+          "I am glad to put a proposal together for you. Honestly though, I am not sure yet that we are even the right fit. It would probably serve you better if we ran through a few questions about your situation first, then built something that is actually useful. Would that be okay with you?"
+        ]
+      },
+      "tags": [
+        "transition",
+        "objection",
+        "proposal",
+        "discovery",
+        "redirect"
+      ],
+      "trigger_signal": "prospect requests a proposal or pricing before discovery is complete",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "106"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "qualifying",
+      "stage": "qualify",
+      "objection_type": null,
+      "title": "Qualifying questions and hypothetical templates",
+      "summary": "Questions that gauge how important and urgent solving the problem is, plus hypothetical opener and closer phrase banks and a travel-or-demo qualifier that confirms commitment before you invest significant selling time.",
+      "content": {
+        "questions": [
+          "How important is solving this to you? (curious, lightly skeptical tone)",
+          "How important is it for you to change your situation and get to [what they want]?",
+          "How important is it that you do something about this, and why now?",
+          "Is fixing this problem actually important to you, and why?",
+          "If you could, what would that do for you?",
+          "Are you ready to change your situation so you can [what they want]?",
+          "It sounds like [what they are frustrated with] really bothers you. So if you could get what you want, how important is it to make that happen, and why now?",
+          "Say I did come out for a full day, you got the owners and other decision-makers in the room, and everyone agreed we can solve [the problems they mentioned] the way we do for other clients. What do you see happening next?",
+          "Let's say we could solve [their problem]. What do you feel would happen next?",
+          "Suppose we pulled this off for you. Where would we go from there?",
+          "Imagine for a second we got you [what you want]. What would you want to happen next?",
+          "Assuming we managed to fix this. What do you see happening from there?"
+        ]
+      },
+      "tags": [
+        "qualifying",
+        "urgency",
+        "commitment",
+        "hypothetical"
+      ],
+      "trigger_signal": "stage=qualify AND urgency or commitment not yet confirmed",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "108-109"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": "qualifying",
+      "stage": null,
+      "objection_type": null,
+      "title": "Reading urgency and obstacles from qualifying responses",
+      "summary": "How to interpret a prospect's answer to a hypothetical qualifying question to gauge urgency, surface hidden decision-makers or budget gaps, and decide whether to invest significant selling time.",
+      "content": {
+        "points": [
+          "A prospect's answer to a hypothetical qualifying question reveals where the deal really stands and how much urgency exists.",
+          "We would definitely move forward means a green light that is worth investing your time and travel.",
+          "We would have to run it past a committee or corporate means there are hidden decision-makers to uncover.",
+          "We would need to secure budget means the funding is not yet in place.",
+          "We would have to compare it to our current provider means the incumbent is still in play.",
+          "I am not sure what would happen means there is not enough urgency or trust yet.",
+          "Only invest significant selling time such as travel or in-person demos after securing smaller commitments; if the answer is anything but a clear green light, remove those obstacles first.",
+          "Listen for what the prospect means, not just their literal words; read tonality and body language for true urgency."
+        ]
+      },
+      "tags": [
+        "qualifying",
+        "urgency",
+        "decision_makers",
+        "principle",
+        "tonality"
+      ],
+      "trigger_signal": "stage=qualify AND rep is interpreting a prospect response or deciding whether to invest time",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "109"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "qualifying",
+      "stage": "qualify",
+      "objection_type": "references",
+      "title": "Handling a send-me-references request",
+      "summary": "A reference request is almost always a hidden concern. Uncover the real concern, lock in a next-step commitment, and pre-close on the outcome so the prospect does not use references as a way to disappear.",
+      "content": {
+        "questions": [
+          "Absolutely, I can do that. So I connect you with the right person, what specifically would you want to dig into with them? (surfaces the real concern)",
+          "Makes sense. When are you planning to reach out to them, so I can give them a heads-up and make sure they are available for you? (locks a commitment)",
+          "Let's say the references confirm we solved the same kind of problem you are dealing with. Where do you feel we would go from there? (pre-close on the outcome)"
+        ]
+      },
+      "tags": [
+        "qualifying",
+        "objection",
+        "references",
+        "commitment",
+        "pre_close"
+      ],
+      "trigger_signal": "prospect asks for references or testimonials",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "110"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "transition",
+      "stage": "transition",
+      "objection_type": "send_info_or_proposal_stall",
+      "title": "Redirect a 'just send me something' stall into discovery",
+      "summary": "When a prospect tries to end the call early by asking you to email info or a proposal, agree, then use questions to reframe the stall back into a discovery conversation before committing to send anything.",
+      "content": {
+        "questions": [
+          "Absolutely - what are you hoping the proposal will actually show you?",
+          "Before I put anything together, would it make sense for me to first understand what you're doing today around X? You might not even need us - so, for instance, what are you currently using for...?",
+          "Let's assume I get you that proposal and we're able to solve the X issues you raised so you can reach the outcome you mentioned - what would you see as the next step from there?",
+          "Happy to send that over - so I send you the right thing, what exactly are you hoping to see?",
+          "And who or what are you using for that right now?",
+          "That's a helpful start. What I can do, if you'd like, is send over how we might solve the X problems you mentioned. Once you and your team have looked it over to see whether it fits - what would you want the next step to be?"
+        ]
+      },
+      "tags": [
+        "objection",
+        "stall",
+        "transition",
+        "proposal",
+        "send-info"
+      ],
+      "trigger_signal": "prospect issues an early stall such as 'just send me a proposal/quote' or 'email me some info and I'll get back to you' before any gap/problem has been built",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "111-112"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "commitment",
+      "stage": "commit",
+      "objection_type": "call_back_stall",
+      "title": "Turn 'call me back, I'm too busy' into a booked time",
+      "summary": "When a prospect stalls with 'call me back later,' avoid the endless chase by either handing them your number and asking their timeframe (positioning you as busy), or booking a specific calendar slot together.",
+      "content": {
+        "questions": [
+          "No problem. I'll give you my number and you can call me back later today to catch me - would that help? My number is X. What's your timeframe for getting back to me today, just so I know whether I'll be free for you?",
+          "It can be tough to catch me at random with my schedule. Here's an idea: if you've got your calendar handy, I'll grab mine and we'll lock in a specific time - that way neither of us has to chase the other down. Would that work for you?",
+          "If you have your calendar in front of you, I can pull mine up and we'll book a set time so nobody has to chase anybody. Would that be appropriate?"
+        ]
+      },
+      "tags": [
+        "objection",
+        "stall",
+        "commitment",
+        "calendar",
+        "book-a-time",
+        "callback"
+      ],
+      "trigger_signal": "prospect says they're too busy right now and asks you to call them back, or otherwise won't commit to keep talking",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "113-114"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Principles for handling early-stage stalls",
+      "summary": "How to defuse 'send me info / call me back' stalls without conceding the sale or wasting time.",
+      "content": {
+        "points": [
+          "Agree first, then reframe. Adding a line like 'you might not even need us' disarms the prospect and lowers their guard so they'll answer your questions.",
+          "Never send a proposal or information until you've confirmed the person is serious about changing their situation - otherwise you burn selling time on someone who ghosts you.",
+          "Ask for THEIR timeframe to get back to you, not the other way around. It positions you as the busy expert whose time is valuable rather than a salesperson they can shrug off.",
+          "Book a concrete calendar time instead of accepting a vague 'I'll call you back' - it ends the chase and frames you as an authority.",
+          "If a booked callback is missed, wait a couple of minutes before reaching out so it doesn't look like you were waiting by the phone."
+        ]
+      },
+      "tags": [
+        "principle",
+        "objection-handling",
+        "disarm",
+        "qualify"
+      ],
+      "trigger_signal": "any early-stage stall objection is detected before a gap has been built",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "111-114"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "commitment",
+      "stage": "commit",
+      "objection_type": null,
+      "title": "Ask an existing customer for referrals",
+      "summary": "After you've delivered value, get the customer to articulate how you helped (so they own it), then guide them to name people they know with the same problem and help them plan the introduction.",
+      "content": {
+        "questions": [
+          "I appreciate the chance to work with you. Can I ask - in your own words, where do you feel we've helped you the most?",
+          "With that in mind, who do you know who might be wrestling with the same problem we solved for you?",
+          "Can you tell me a bit more about them, and why you feel I might be able to help them?",
+          "How do you think would be the best way to reach out to them?",
+          "Do you feel it'd be worth letting them know first that I'll be getting in touch?",
+          "What do you think you'd want to say to them?",
+          "Could I offer a suggestion? What if you mentioned the challenges you'd been dealing with, that they're facing something similar, and how we helped you with it - would that land better with them?",
+          "So aside from that person, who else do you feel we might be able to help?"
+        ]
+      },
+      "tags": [
+        "referral",
+        "commitment",
+        "ask-for-referral",
+        "post-sale"
+      ],
+      "trigger_signal": "stage=commit AND value has been delivered or the deal is won; rep is opening the referral ask with a served customer",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "115-117"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "connecting",
+      "stage": "connect",
+      "objection_type": null,
+      "title": "Open a call or meeting with a referred prospect",
+      "summary": "How to start the first contact with someone who was referred - naming the mutual connection and the problem you solved, then handing control to the prospect rather than assuming interest.",
+      "content": {
+        "questions": [
+          "Hi, is this the right person? This is your name. A mutual contact of ours suggested I reach out - I recently helped them with a problem that was causing them some trouble, and they mentioned you might be running into something similar. Is now an okay time to talk?",
+          "Great to meet you. So I don't repeat things you've already gone over with our mutual contact, would you mind sharing what the two of you discussed, and then what you'd like to focus on today, so we can center this on you and what you might be looking for?"
+        ]
+      },
+      "tags": [
+        "referral",
+        "connecting",
+        "opener",
+        "warm-intro"
+      ],
+      "trigger_signal": "stage=connect AND the lead originated from a referral or warm introduction",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "118-119"
+      }
+    },
+    {
+      "kind": "principle",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Referral best-practices",
+      "summary": "Mindset and language rules that keep referral asks and referral calls from triggering resistance.",
+      "content": {
+        "points": [
+          "Don't lead with yourself or your company. Make the ask about the customer and how they feel you've helped them so they own the value and want to introduce you.",
+          "Never assume a referral is automatically interested just because someone passed their name along - your first job is still to uncover whether they even have a problem worth solving.",
+          "Let go of the outcome and focus on whether you can actually help. Problem-finders and problem-solvers earn trust; product-pushers get price-shopped and ghosted.",
+          "Use tentative, neutral language like 'might be' when describing the referral's possible problems - stating it as fact triggers resistance and makes assertive personalities push back and deny it.",
+          "Drop pressure phrases like 'so you can make an informed decision' or 'we don't just work with anyone' - they manufacture sales pressure even on a warm referral."
+        ]
+      },
+      "tags": [
+        "principle",
+        "referral",
+        "best-practices",
+        "language"
+      ],
+      "trigger_signal": "rep is about to ask for a referral or make first contact with a referred prospect",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "115-119"
+      }
+    },
+    {
+      "kind": "tonality",
+      "category": null,
+      "stage": null,
+      "objection_type": null,
+      "title": "Tone on stalls, openers, and referral calls",
+      "summary": "Delivery guidance: the tone at the start of a call drives resistance more than the words.",
+      "content": {
+        "points": [
+          "The tone you use at the very start of a call causes more sales resistance than the words themselves - an eager, pushy delivery makes prospects stall and pile on objections.",
+          "Deliver stall-handling and referral questions calmly, curiously, and unhurried so the prospect's guard stays down.",
+          "When calling a referral, don't sound excited or assumptive; a relaxed, problem-focused tone keeps them from getting defensive."
+        ]
+      },
+      "tags": [
+        "tonality",
+        "tone",
+        "pacing",
+        "resistance"
+      ],
+      "trigger_signal": "start of a call OR while handling a stall or referral; detect an eager/pushy tone or fast pace",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "111, 117"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "situation",
+      "stage": "discover",
+      "objection_type": null,
+      "title": "De-escalate and resolve an upset customer",
+      "summary": "When an existing customer complains, ask questions to understand and to make them feel heard instead of arguing the facts - the goal is to win the relationship, not the argument.",
+      "content": {
+        "questions": [
+          "Just so I understand - what exactly happened?",
+          "Can you walk me through that in a bit more detail?",
+          "Thanks for flagging this. Can you tell me everything you know about what happened, and how the other side has reacted so far?",
+          "What else can you tell me about the situation?",
+          "How do you think things got to this point?",
+          "I'm sorry this happened. What would you like to see done so we can put it right for you?",
+          "This bothers me too - how soon can we meet in person to talk it through?",
+          "Would it help if I dug into the facts and then we regrouped to go over some possible ways to fix this?",
+          "If anything else comes up in the meantime, will you bring it straight to me so I can help?"
+        ]
+      },
+      "tags": [
+        "situation",
+        "complaint-resolution",
+        "de-escalation",
+        "retention",
+        "service-recovery"
+      ],
+      "trigger_signal": "an existing customer raises a complaint or is upset about the product/service",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "120"
+      }
+    },
+    {
+      "kind": "question_bank",
+      "category": "situation",
+      "stage": "discover",
+      "objection_type": null,
+      "title": "Monitor account health to keep customers",
+      "summary": "Periodic relationship-monitoring questions for existing clients; the answers reveal whether the relationship is strong or at risk and open the door to improvements and expansion.",
+      "content": {
+        "questions": [
+          "Where do you feel we're helping you most, and why? What changes could we make to get you even bigger results?",
+          "What goals would you like us to help you reach over the next quarter or year?",
+          "How do you see us being different from the vendor you used before - and why do you feel that way?",
+          "How could we make your life easier? Tell me more...",
+          "In what ways do you think we could improve to make things better on your end?",
+          "Would you be open to giving me some advice on how we could do better for you?",
+          "What do you feel we're doing best for you - the thing that's really helping you get where you want to go?"
+        ]
+      },
+      "tags": [
+        "situation",
+        "retention",
+        "account-management",
+        "expansion",
+        "feedback"
+      ],
+      "trigger_signal": "post-sale check-in or account review with an existing customer",
+      "priority": null,
+      "source_ref": {
+        "doc": "questions",
+        "pages": "121"
+      }
+    }
+  ]
+}

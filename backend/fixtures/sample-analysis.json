@@ -1,0 +1,224 @@
+{
+  "call_metadata": {
+    "call_id": "fixture-001",
+    "advisor_name": "Alex",
+    "prospect_name": "Rob",
+    "call_duration": "00:02:18"
+  },
+  "timestamp_analysis": {
+    "opening_phase": "00:00:00 - 00:00:20",
+    "discovery_phase": "00:00:20 - 00:01:19",
+    "presentation_phase": "00:01:27 - 00:02:05",
+    "closing_phase": "00:02:05 - 00:02:18",
+    "disqualification_phase": "N/A"
+  },
+  "disqualification_summary": {
+    "was_disqualified": false,
+    "disqualified_criteria": [],
+    "disqualification_timestamp": null,
+    "disqualification_reasoning": null,
+    "disqualification_quality": null
+  },
+  "evaluations": [
+    {
+      "criterion": "Call Opening",
+      "rating": "Yes",
+      "score": 9.09,
+      "timestamp_events": [
+        {
+          "timestamp": "00:00:20",
+          "speaker": "Alex",
+          "quote": "how big a priority is this for you this quarter?",
+          "impact": "Positive",
+          "note": "Strong qualifying question demonstrating this criterion."
+        }
+      ],
+      "reasoning": "Alex handled Call Opening well \u2014 clear, growth-focused execution grounded in the transcript. Keep building on this strength."
+    },
+    {
+      "criterion": "Question Quality/Quantity",
+      "rating": "Yes",
+      "score": 9.09,
+      "timestamp_events": [
+        {
+          "timestamp": "00:00:20",
+          "speaker": "Alex",
+          "quote": "how big a priority is this for you this quarter?",
+          "impact": "Positive",
+          "note": "Strong qualifying question demonstrating this criterion."
+        }
+      ],
+      "reasoning": "Alex handled Question Quality/Quantity well \u2014 clear, growth-focused execution grounded in the transcript. Keep building on this strength."
+    },
+    {
+      "criterion": "Tension-Building",
+      "rating": "Partial",
+      "score": 4.55,
+      "timestamp_events": [
+        {
+          "timestamp": "00:00:20",
+          "speaker": "Alex",
+          "quote": "how big a priority is this for you this quarter?",
+          "impact": "Positive",
+          "note": "Strong qualifying question demonstrating this criterion."
+        }
+      ],
+      "reasoning": "Alex handled Tension-Building well \u2014 clear, growth-focused execution grounded in the transcript. Keep building on this strength."
+    },
+    {
+      "criterion": "H - High Priority",
+      "rating": "Yes",
+      "score": 9.09,
+      "timestamp_events": [
+        {
+          "timestamp": "00:00:20",
+          "speaker": "Alex",
+          "quote": "how big a priority is this for you this quarter?",
+          "impact": "Positive",
+          "note": "Strong qualifying question demonstrating this criterion."
+        }
+      ],
+      "reasoning": "Alex handled H - High Priority well \u2014 clear, growth-focused execution grounded in the transcript. Keep building on this strength."
+    },
+    {
+      "criterion": "E - Economic Resources",
+      "rating": "Yes",
+      "score": 9.09,
+      "timestamp_events": [
+        {
+          "timestamp": "00:00:20",
+          "speaker": "Alex",
+          "quote": "how big a priority is this for you this quarter?",
+          "impact": "Positive",
+          "note": "Strong qualifying question demonstrating this criterion."
+        }
+      ],
+      "reasoning": "Alex handled E - Economic Resources well \u2014 clear, growth-focused execution grounded in the transcript. Keep building on this strength."
+    },
+    {
+      "criterion": "A - Authority to Decide",
+      "rating": "Yes",
+      "score": 9.09,
+      "timestamp_events": [
+        {
+          "timestamp": "00:00:20",
+          "speaker": "Alex",
+          "quote": "how big a priority is this for you this quarter?",
+          "impact": "Positive",
+          "note": "Strong qualifying question demonstrating this criterion."
+        }
+      ],
+      "reasoning": "Alex handled A - Authority to Decide well \u2014 clear, growth-focused execution grounded in the transcript. Keep building on this strength."
+    },
+    {
+      "criterion": "R - Readiness to Act",
+      "rating": "Yes",
+      "score": 9.09,
+      "timestamp_events": [
+        {
+          "timestamp": "00:00:20",
+          "speaker": "Alex",
+          "quote": "how big a priority is this for you this quarter?",
+          "impact": "Positive",
+          "note": "Strong qualifying question demonstrating this criterion."
+        }
+      ],
+      "reasoning": "Alex handled R - Readiness to Act well \u2014 clear, growth-focused execution grounded in the transcript. Keep building on this strength."
+    },
+    {
+      "criterion": "T - Temperament",
+      "rating": "Yes",
+      "score": 9.09,
+      "timestamp_events": [
+        {
+          "timestamp": "00:00:20",
+          "speaker": "Alex",
+          "quote": "how big a priority is this for you this quarter?",
+          "impact": "Positive",
+          "note": "Strong qualifying question demonstrating this criterion."
+        }
+      ],
+      "reasoning": "Alex handled T - Temperament well \u2014 clear, growth-focused execution grounded in the transcript. Keep building on this strength."
+    },
+    {
+      "criterion": "Objection Prevention/Handling",
+      "rating": "Partial",
+      "score": 4.55,
+      "timestamp_events": [
+        {
+          "timestamp": "00:00:20",
+          "speaker": "Alex",
+          "quote": "how big a priority is this for you this quarter?",
+          "impact": "Positive",
+          "note": "Strong qualifying question demonstrating this criterion."
+        }
+      ],
+      "reasoning": "Alex handled Objection Prevention/Handling well \u2014 clear, growth-focused execution grounded in the transcript. Keep building on this strength."
+    },
+    {
+      "criterion": "Closing Actions",
+      "rating": "Yes",
+      "score": 9.09,
+      "timestamp_events": [
+        {
+          "timestamp": "00:00:20",
+          "speaker": "Alex",
+          "quote": "how big a priority is this for you this quarter?",
+          "impact": "Positive",
+          "note": "Strong qualifying question demonstrating this criterion."
+        }
+      ],
+      "reasoning": "Alex handled Closing Actions well \u2014 clear, growth-focused execution grounded in the transcript. Keep building on this strength."
+    },
+    {
+      "criterion": "Next Steps/Follow-Up Approaches",
+      "rating": "Yes",
+      "score": 9.09,
+      "timestamp_events": [
+        {
+          "timestamp": "00:00:20",
+          "speaker": "Alex",
+          "quote": "how big a priority is this for you this quarter?",
+          "impact": "Positive",
+          "note": "Strong qualifying question demonstrating this criterion."
+        }
+      ],
+      "reasoning": "Alex handled Next Steps/Follow-Up Approaches well \u2014 clear, growth-focused execution grounded in the transcript. Keep building on this strength."
+    }
+  ],
+  "critical_moments": [
+    {
+      "timestamp": "00:00:46",
+      "type": "Strong Move",
+      "description": "Quantified the cost of inaction, building urgency.",
+      "affected_criteria": [
+        "Tension-Building",
+        "E - Economic Resources"
+      ]
+    }
+  ],
+  "summary": {
+    "total_score": 90.91,
+    "percentage": 90.91,
+    "max_possible": 100,
+    "strengths": [
+      {
+        "strength": "Excellent HEART qualification before presenting",
+        "timestamps": [
+          "00:00:20",
+          "00:01:19"
+        ]
+      }
+    ],
+    "areas_for_improvement": [
+      {
+        "area": "Deepen tension-building around consequences",
+        "timestamps": [
+          "00:00:46"
+        ],
+        "recommendation": "Ask a follow-up on downstream impact to raise urgency."
+      }
+    ],
+    "overall_assessment": "Strong, well-qualified call that advanced to next steps. Alex qualified all HEART dimensions before presenting and secured a clear commitment. Sharpening tension-building will make great calls even better."
+  }
+}

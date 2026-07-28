@@ -1,0 +1,36 @@
+# TLS reverse proxy for the production stack (docker-compose.prod.yml).
+# Caddy terminates HTTPS and is the ONLY thing exposed to the internet (80/443).
+# It auto-provisions + renews a Let's Encrypt cert for $PUBLIC_DOMAIN and redirects
+# http -> https. backend and frontend stay internal to the compose network.
+#
+# Serving the app and /api under ONE domain keeps auth cookies first-party (SameSite
+# Lax, Secure), so no CORS/cross-site cookie config is needed.
+
+{
+	# Expiry / recovery notices from Let's Encrypt.
+	email {$ACME_EMAIL}
+}
+
+{$PUBLIC_DOMAIN} {
+	encode gzip
+
+	# API + BetterAuth (/api/auth/*) -> backend service on the compose network.
+	handle /api/* {
+		reverse_proxy backend:8080
+	}
+
+	# Everything else -> the SolidJS frontend.
+	handle {
+		reverse_proxy frontend:5173
+	}
+
+	# Baseline hardening headers.
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		# Don't advertise the server software.
+		-Server
+	}
+}

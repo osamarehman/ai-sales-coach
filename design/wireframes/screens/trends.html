@@ -1,0 +1,81 @@
+<!-- @dsCard group="Screens" name="Trends" subtitle="Score over time, per-criterion breakdown, manager leaderboard" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trends — AI Sales Coach</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo"></span><b>Sales Coach</b></div>
+    <div class="nav-item"><span class="ic"></span>Dashboard</div>
+    <div class="nav-item"><span class="ic"></span>Calls</div>
+    <div class="nav-item"><span class="ic"></span>Team</div>
+    <div class="nav-item active"><span class="ic"></span>Trends</div>
+    <div class="nav-label">Workspace</div>
+    <div class="nav-item"><span class="ic"></span>Settings</div>
+    <div class="spacer"></div>
+    <div class="user-chip"><span class="avatar"></span><div class="meta">Jordan Lee<br><small>Acme Sales · Manager</small></div></div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar"><div class="crumbs"><b>Trends</b></div><div class="grow"></div>
+      <div class="input placeholder" style="width:150px">All reps ▾</div>
+      <div class="input placeholder" style="width:150px">Last 90 days ▾</div></div>
+
+    <div class="content">
+      <div class="page-head"><div><h1>Trends</h1><div class="sub">How scores move over time and which criteria drive them.</div></div></div>
+
+      <div class="grid-2" style="margin-bottom:16px">
+        <div class="card pad">
+          <div class="between" style="margin-bottom:12px"><b>Average score over time</b><span class="chip yes"><span class="dot"></span>+6.4 pts</span></div>
+          <div class="ph" style="height:200px"></div>
+        </div>
+        <div class="card pad">
+          <div class="grp" style="padding:0 0 12px">Outcome mix</div>
+          <div class="ph" style="height:160px; border-radius:50%; width:160px; margin:0 auto"></div>
+          <div class="row" style="justify-content:center; gap:16px; margin-top:14px; font-size:12.5px">
+            <span class="pill"><span class="dot" style="background:var(--pos)"></span>Won 50%</span>
+            <span class="pill"><span class="dot" style="background:var(--neg)"></span>Lost 33%</span>
+            <span class="pill"><span class="dot" style="background:var(--dq)"></span>DQ 17%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-h"><h3>Per-criterion average</h3><div class="grow"></div><span class="muted" style="font-size:12px">out of 9.09</span></div>
+          <div style="padding:14px 18px">
+            <div class="between" style="margin-bottom:8px"><span>Call Opening</span><span class="mono muted">8.6</span></div>
+            <div class="ph" style="height:8px; margin-bottom:14px; width:95%"></div>
+            <div class="between" style="margin-bottom:8px"><span>Question Quality</span><span class="mono muted">4.4</span></div>
+            <div class="ph" style="height:8px; margin-bottom:14px; width:48%"></div>
+            <div class="between" style="margin-bottom:8px"><span>Tension-Building</span><span class="mono muted">6.1</span></div>
+            <div class="ph" style="height:8px; margin-bottom:14px; width:67%"></div>
+            <div class="between" style="margin-bottom:8px"><span>H — High Priority</span><span class="mono muted">3.1</span></div>
+            <div class="ph" style="height:8px; margin-bottom:14px; width:34%"></div>
+            <div class="between" style="margin-bottom:8px"><span>Closing Actions</span><span class="mono muted">8.2</span></div>
+            <div class="ph" style="height:8px; width:90%"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-h"><h3>Leaderboard</h3><span class="chip"><span class="dot"></span>Managers only</span></div>
+          <table class="table">
+            <thead><tr><th>#</th><th>Rep</th><th>Avg</th><th>Calls</th><th>Trend</th></tr></thead>
+            <tbody>
+              <tr class="row"><td class="muted">1</td><td class="who"><span class="avatar sm"></span><b>M. Chen</b></td><td class="score-cell">82.6</td><td class="muted">7</td><td><span class="d up" style="font-size:12px">+4.1</span></td></tr>
+              <tr class="row"><td class="muted">2</td><td class="who"><span class="avatar sm"></span><b>S. Patel</b></td><td class="score-cell">77.1</td><td class="muted">6</td><td><span class="d up" style="font-size:12px">+1.8</span></td></tr>
+              <tr class="row"><td class="muted">3</td><td class="who"><span class="avatar sm"></span><b>A. Kim</b></td><td class="score-cell">61.3</td><td class="muted">5</td><td><span class="d down muted" style="font-size:12px">-2.2</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
