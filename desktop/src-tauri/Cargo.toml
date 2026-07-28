@@ -2,7 +2,7 @@
 name = "app"
 # Keep in sync with tauri.conf.json `version` — this drives env!("CARGO_PKG_VERSION"), the app_version
 # the client reports to the backend. The updater's current-version comparison uses tauri.conf.json.
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 license = "UNLICENSED"
 description = "AI Sales Coach desktop overlay"
