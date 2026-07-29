@@ -6,14 +6,17 @@ import { verifyRealtimeToken } from "./lib/token";
 import { initConn, parseControl, parseAudioFrame, audioAdmitted, msg, type ConnState } from "./protocol";
 import { createLiveSession, markConsent, closeLiveSession } from "./sessions";
 import { loadPlaybook } from "./framework";
-import { anthropicCompleter } from "./cue-engine";
+import { selectCueCompleter, cueEngineEnabled } from "./cue-engine";
 import { CueRuntime } from "./cue-runtime";
 import { insertLiveCue } from "./cues";
+import { insertLiveTranscriptSegment } from "./transcript-persist";
+import { startStt, type SttManager } from "./stt";
 import { captureException } from "./lib/telemetry";
 
 interface Data {
   conn: ConnState;
   runtime?: CueRuntime; // the live cue engine (RT-3), armed after consent when a key is configured
+  stt?: SttManager; // the RT-2 STT relay, armed after consent when ELEVENLABS_API is configured
 }
 type WS = ServerWebSocket<Data>;
 
@@ -120,11 +123,13 @@ async function onControl(ws: WS, raw: string) {
       await markConsent(st.sessionId!, control.method, control.ts_ms);
       st.phase = "consented";
       void startCueRuntime(ws); // best-effort; never blocks the consent / RT-0 path
+      startSttRuntime(ws); // arm the STT relay (guarded by ELEVENLABS_API); also best-effort
       return;
     }
 
     case "bye": {
       ws.data.runtime?.stop();
+      ws.data.stt?.close();
       await finalize(st, control.reason ?? "user_stopped");
       ws.close(1000, "bye");
       return;
@@ -143,8 +148,11 @@ async function onAudio(ws: WS, frame: Uint8Array) {
     return; // fail closed: never process audio before consent
   }
   try {
-    parseAudioFrame(frame); // validate structure. RT-2 will decode PCM -> STT and call
-    st.framesAccepted++; //    ws.data.runtime?.feedTranscript(seg) to drive the cue engine (RT-3).
+    const meta = parseAudioFrame(frame); // validate structure + read channel / ts_ms
+    st.framesAccepted++;
+    // RT-2: forward the raw PCM payload (after the 9-byte header) to the per-channel STT relay.
+    // Committed segments come back via startStt's onSegment (feedTranscript + persist + overlay).
+    ws.data.stt?.feed(meta.channel, frame.subarray(9), meta.tsMs);
   } catch {
     ws.send(msg.error("bad_message", "malformed audio frame"));
   }
@@ -152,6 +160,7 @@ async function onAudio(ws: WS, frame: Uint8Array) {
 
 async function onClose(ws: WS) {
   ws.data.runtime?.stop();
+  ws.data.stt?.close();
   await finalize(ws.data.conn, "disconnected");
 }
 
@@ -161,7 +170,7 @@ async function onClose(ws: WS) {
 // calling ws.data.runtime?.feedTranscript(seg) as the merged transcript settles.
 async function startCueRuntime(ws: WS): Promise<void> {
   const st = ws.data.conn;
-  if (!config.anthropicApiKey) return; // engine disabled without a key
+  if (!cueEngineEnabled()) return; // engine disabled unless the selected provider has a key
   if (!st.sessionId || !st.tenantId || ws.data.runtime) return;
   const sessionId = st.sessionId;
   const tenantId = st.tenantId;
@@ -177,7 +186,7 @@ async function startCueRuntime(ws: WS): Promise<void> {
     // live path — window/deadline goals depend on knowing the scheduled call length.
     ws.data.runtime = new CueRuntime({
       playbook,
-      completer: anthropicCompleter(),
+      completer: selectCueCompleter(),
       onCue: async (cue) => {
         try {
           ws.send(
@@ -199,6 +208,38 @@ async function startCueRuntime(ws: WS): Promise<void> {
     console.error("[realtime] failed to start cue engine", err);
     captureException(err, { where: "start_cue_engine", sessionId, tenantId });
   }
+}
+
+// Arm the RT-2 STT relay for a consented session. Best-effort and fully guarded: with no
+// ELEVENLABS_API key the relay stays off and the WS runs RT-0 (+ cue engine, key permitting)
+// unchanged. Each FINAL segment drives the cue engine (feedTranscript), streams to the overlay's
+// debug transcript view, and persists to live_transcript_segments (best-effort — a DB hiccup
+// never breaks the live feed). Scribe sessions open lazily per channel on the first audio frame.
+function startSttRuntime(ws: WS): void {
+  const st = ws.data.conn;
+  if (!config.elevenLabsApiKey) return; // relay disabled without a key
+  if (!st.sessionId || !st.tenantId || ws.data.stt) return;
+  const sessionId = st.sessionId;
+  const tenantId = st.tenantId;
+  ws.data.stt = startStt({
+    apiKey: config.elevenLabsApiKey,
+    model: config.scribeModel,
+    onSegment: async (seg) => {
+      ws.data.runtime?.feedTranscript(seg);
+      try {
+        ws.send(msg.transcript({ speaker: seg.speaker, text: seg.text, tsMs: seg.endMs, final: seg.final }));
+      } catch {
+        /* socket may be gone */
+      }
+      try {
+        await insertLiveTranscriptSegment({ sessionId, tenantId, seg });
+      } catch (err) {
+        console.error("[realtime] failed to persist transcript segment", err);
+        captureException(err, { where: "persist_transcript", sessionId, tenantId });
+      }
+    },
+  });
+  console.log(`[realtime] STT relay armed for session ${sessionId}`);
 }
 
 // Persist the terminal state exactly once (whichever of bye / socket-close fires first).

@@ -97,6 +97,8 @@ export const msg = {
   // authored, de-branded nudge (never LLM free-text); `id` lets the client de-dupe/ack.
   cue: (c: { id: string; tier: CueTier; text: string; category: string | null; ttlMs: number; tsMs: number }) =>
     JSON.stringify({ type: "cue", id: c.id, tier: c.tier, text: c.text, ttl_ms: c.ttlMs, category: c.category, ts_ms: c.tsMs }),
-  // NOTE: the observability `transcript` frame (desktop/PROTOCOL.md §Server→Client) ships with RT-2,
-  // the slice that actually produces merged transcript segments — no builder until there's a producer.
+  // A transcript segment for the overlay's optional debug view (desktop/PROTOCOL.md §Server→Client).
+  // Produced by the RT-2 STT relay; `final` is always true (only settled/committed segments are sent).
+  transcript: (s: { speaker: "rep" | "prospect"; text: string; tsMs: number; final: boolean }) =>
+    JSON.stringify({ type: "transcript", speaker: s.speaker, text: s.text, ts_ms: s.tsMs, final: s.final }),
 };

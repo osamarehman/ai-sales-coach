@@ -11,7 +11,7 @@ export interface TranscriptSegment {
   text: string;
   startMs: number; // call clock: when this segment's speech began
   endMs: number; // call clock: when it ended
-  final: boolean; // AssemblyAI immutable/final segment (partials are dropped by the buffer)
+  final: boolean; // a settled/committed segment (Scribe committed_transcript); partials are dropped by the buffer
 }
 
 // A tiny append-only buffer. Stateful on purpose (one per live session); the metric

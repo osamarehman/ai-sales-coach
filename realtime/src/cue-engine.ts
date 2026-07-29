@@ -149,6 +149,77 @@ export function anthropicCompleter(opts?: { apiKey?: string; model?: string; tim
   };
 }
 
+// OpenRouter completer (OpenAI-compatible Chat Completions). Same forced-tool contract as the
+// Anthropic path, so the de-brand guarantee is identical: the model only fills emit_cues (a cue_key
+// + confidence), never rep-facing prose. This is the A/B lever — point REALTIME_CUE_MODEL at any
+// tool-calling model (gpt-4o-mini, claude-haiku-4.5, an open-source model) without touching logic.
+export function openRouterCompleter(opts?: { apiKey?: string; model?: string; timeoutMs?: number }): Completer {
+  return async (req) => {
+    const apiKey = opts?.apiKey ?? config.openRouterApiKey;
+    if (!apiKey) throw new Error("OPENROUTER_API_KEY is not set — cue engine cannot run");
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), opts?.timeoutMs ?? 3000);
+    try {
+      const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: { authorization: `Bearer ${apiKey}`, "content-type": "application/json" },
+        body: JSON.stringify({
+          model: opts?.model ?? config.cueModel,
+          max_tokens: 512,
+          temperature: 0,
+          messages: [
+            { role: "system", content: req.system },
+            { role: "user", content: req.user },
+          ],
+          // OpenAI function-tool shape reuses the Anthropic tool's JSON Schema verbatim as `parameters`.
+          tools: [{ type: "function", function: { name: EMIT_TOOL.name, description: EMIT_TOOL.description, parameters: EMIT_TOOL.input_schema } }],
+          tool_choice: { type: "function", function: { name: EMIT_TOOL.name } },
+        }),
+        signal: controller.signal,
+      });
+      if (!res.ok) {
+        const body = await res.text().catch(() => "");
+        throw new Error(`OpenRouter ${res.status}: ${body.slice(0, 300)}`);
+      }
+      return parseOpenRouterToolCall(await res.json(), EMIT_TOOL.name);
+    } finally {
+      clearTimeout(timer);
+    }
+  };
+}
+
+// Recover the forced tool call's arguments from an OpenRouter/OpenAI chat completion. OpenAI-style
+// APIs return tool arguments as a JSON STRING (unlike Anthropic's structured input), so this is where
+// the emit_cues object is decoded. Pure + exported so the risky bit (missing call / non-JSON args) is
+// unit-tested without a network round-trip. Throws on a missing tool call or unparseable arguments;
+// runCueEngine still treats the RESULT as untrusted and re-validates every field.
+export function parseOpenRouterToolCall(data: unknown, toolName: string): unknown {
+  const choices = (data as {
+    choices?: Array<{ message?: { tool_calls?: Array<{ function?: { name?: string; arguments?: unknown } }> } }>;
+  })?.choices;
+  const calls = choices?.[0]?.message?.tool_calls;
+  const call = Array.isArray(calls) ? calls.find((t) => t?.function?.name === toolName) : undefined;
+  const args = call?.function?.arguments;
+  if (typeof args !== "string") throw new Error(`OpenRouter returned no ${toolName} tool_call`);
+  try {
+    return JSON.parse(args);
+  } catch {
+    throw new Error(`OpenRouter ${toolName} arguments were not valid JSON`);
+  }
+}
+
+// Pick the cue completer from config.cueProvider. Both share the emit_cues contract, so switching
+// provider/model is purely an env change (the A/B lever) with no de-brand or wiring risk.
+export function selectCueCompleter(): Completer {
+  return config.cueProvider === "anthropic" ? anthropicCompleter() : openRouterCompleter();
+}
+
+// Whether a cue completer can actually run: the selected provider must have its API key. server.ts
+// guards engine arming on this — no key => engine stays off and the WS runs RT-0 unchanged.
+export function cueEngineEnabled(): boolean {
+  return config.cueProvider === "anthropic" ? !!config.anthropicApiKey : !!config.openRouterApiKey;
+}
+
 // ---- prompt building ------------------------------------------------------
 
 const clamp01 = (n: number): number => (Number.isFinite(n) ? Math.min(Math.max(n, 0), 1) : 0);

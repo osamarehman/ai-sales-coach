@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { buildSystemPrompt, buildUserPrompt, runCueEngine, type Completer } from "./cue-engine";
+import { buildSystemPrompt, buildUserPrompt, runCueEngine, parseOpenRouterToolCall, type Completer } from "./cue-engine";
 import type { CueDefinition, CueFramework } from "./framework";
 import type { Signals } from "./signals";
 import type { TranscriptSegment } from "./transcript";
@@ -128,5 +128,33 @@ describe("runCueEngine — stage/coverage canonicalization (de-brand + slug-drif
       fixed({ candidates: [], coverage: { stages_covered: ["Discover", "PRESENT", "made_up_stage"] } }),
     );
     expect(r.coverage.stagesCovered.sort()).toEqual(["discover", "present"]); // casing normalized, junk dropped
+  });
+});
+
+describe("parseOpenRouterToolCall (Companion i — OpenRouter decode)", () => {
+  const wrap = (args: unknown, name = "emit_cues") => ({
+    choices: [{ message: { tool_calls: [{ function: { name, arguments: args } }] } }],
+  });
+
+  test("decodes the forced tool call's JSON-string arguments into an object", () => {
+    const out = parseOpenRouterToolCall(
+      wrap(JSON.stringify({ candidates: [{ cue_key: "x", confidence: 0.5 }] })),
+      "emit_cues",
+    );
+    expect(out).toEqual({ candidates: [{ cue_key: "x", confidence: 0.5 }] });
+  });
+
+  test("throws when the named tool call is absent (wrong name / no calls / no choices)", () => {
+    expect(() => parseOpenRouterToolCall(wrap("{}", "other_tool"), "emit_cues")).toThrow(/no emit_cues tool_call/);
+    expect(() => parseOpenRouterToolCall({ choices: [{ message: {} }] }, "emit_cues")).toThrow(/no emit_cues tool_call/);
+    expect(() => parseOpenRouterToolCall({}, "emit_cues")).toThrow(/no emit_cues tool_call/);
+  });
+
+  test("throws when arguments are present but not valid JSON", () => {
+    expect(() => parseOpenRouterToolCall(wrap("{not json"), "emit_cues")).toThrow(/not valid JSON/);
+  });
+
+  test("throws when arguments are missing entirely (not a string)", () => {
+    expect(() => parseOpenRouterToolCall(wrap(undefined), "emit_cues")).toThrow(/no emit_cues tool_call/);
   });
 });

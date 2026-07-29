@@ -61,9 +61,19 @@ services:
       # Same secret the backend signs tokens with (falls back to BETTER_AUTH_SECRET).
       REALTIME_TOKEN_SECRET: ${REALTIME_TOKEN_SECRET:-}
       BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-}
-      # Live cue engine (RT-3): Anthropic direct (Haiku 4.5). Blank => engine stays off.
+      # Live cue engine (RT-3): inference via OpenRouter by default (A/B cheap/fast models), or set
+      # REALTIME_CUE_PROVIDER=anthropic to call Anthropic direct. A blank key for the SELECTED provider
+      # => engine stays off (RT-0 unaffected). OPENROUTER_API_KEY is the same key the backend uses.
+      REALTIME_CUE_PROVIDER: ${REALTIME_CUE_PROVIDER:-openrouter}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
-      REALTIME_CUE_MODEL: ${REALTIME_CUE_MODEL:-claude-haiku-4-5-20251001}
+      # Optional model override — an OpenRouter slug (default openai/gpt-4o-mini) or, for the anthropic
+      # provider, a model id. Left blank here so the code's provider-aware default is the single source.
+      REALTIME_CUE_MODEL: ${REALTIME_CUE_MODEL:-}
+      # Live STT relay (RT-2): ElevenLabs Scribe v2 Realtime. Blank => relay stays off (RT-0 +
+      # cue engine unaffected). NOTE: the var is ELEVENLABS_API (not _KEY).
+      ELEVENLABS_API: ${ELEVENLABS_API:-}
+      SCRIBE_MODEL: ${SCRIBE_MODEL:-scribe_v2_realtime}
       # Observability (PostHog error tracking). Blank => capture is a no-op.
       # Sourced from the project token (phc_…, client-safe); the container env the SDK reads is POSTHOG_KEY.
       POSTHOG_KEY: ${POSTHOG_PROJECT_TOKEN:-${POSTHOG_KEY:-}}
